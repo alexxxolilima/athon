@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const REGRA_PADRAO = {
-        PERCENTUAL_MULTA: 0.30,
+        PERCENTUAL_MULTA: 0.30, // Mantido para multa por fidelidade
     };
 
     const CONFIG = {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             equipamento: document.getElementById('equipamento'),
             totalMulta: document.getElementById('totalMulta'),
             custoAdicionalOut: document.getElementById('custoAdicionalOut'),
-            multaMensalidadesDesconto: document.getElementById('multaMensalidadesDesconto') // novo campo de saída
+            multaMensalidadesDesconto: document.getElementById('multaMensalidadesDesconto') // campo de saída (agora representa valor das mensalidades com desconto)
         }
     };
 
@@ -126,11 +126,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const equipamento = dados.custoEquipamento;
         const custoAdicional = dados.custoAdicional;
-        let multaMensalidadesDesconto = 0;
+
+        // Cálculo atualizado: remover a aplicação dos 30% sobre o valor das mensalidades com desconto
+        let multaMensalidadesDesconto = 0; // neste campo mantemos o nome, mas agora representa o VALOR das mensalidades com desconto
+        let valorMensalidadesComDesconto = 0;
+
         if (dados.qtdMensalidadesDesconto > 0 && dados.planoBase > 0 && dados.descontoPercent >= 0 && dados.descontoPercent <= 100) {
             const mensalidadeDescontada = dados.planoBase * (1 - (dados.descontoPercent / 100));
-            const somaMensalidadesDescontadas = mensalidadeDescontada * dados.qtdMensalidadesDesconto;
-            multaMensalidadesDesconto = somaMensalidadesDescontadas * REGRA_PADRAO.PERCENTUAL_MULTA;
+            valorMensalidadesComDesconto = mensalidadeDescontada * dados.qtdMensalidadesDesconto;
+
+            // Removida a multiplicação por REGRA_PADRAO.PERCENTUAL_MULTA
+            // Agora cobramos o somatório das mensalidades já com desconto.
+            multaMensalidadesDesconto = valorMensalidadesComDesconto;
         }
 
         const total = multaFidelidade + proRataPlanoBase + svaTotal + equipamento + custoAdicional + multaMensalidadesDesconto;
@@ -143,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
             total,
             valorMensalTotal,
             svaValorTotal: svaTotal,
-            multaMensalidadesDesconto 
+            multaMensalidadesDesconto,
+            valorMensalidadesComDesconto
         };
     }
 
@@ -362,8 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.custoAdicional > 0) {
             linesToCopy.push(`OUTROS: ${fmt(res.custoAdicional)}`);
         }
+        // Atualizado: rótulo para refletir que aqui mostramos o valor das mensalidades já com desconto
         if (res.multaMensalidadesDesconto > 0) {
-            linesToCopy.push(`Multa mensalidades com desconto: ${fmt(res.multaMensalidadesDesconto)}`);
+            linesToCopy.push(`Mensalidades com desconto: ${fmt(res.multaMensalidadesDesconto)}`);
         }
 
         const textToCopy = linesToCopy.join('\n');
