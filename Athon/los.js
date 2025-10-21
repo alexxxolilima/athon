@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const PATHS = { carne: 'carne.html', off: '/off.html' };
+    const PATHS = { carne: 'carne.html', off: 'off.html' };
 
     const floatingBtn = document.getElementById('floating-btn');
     const menuPanel = document.getElementById('menu-panel');
@@ -88,4 +88,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
 
