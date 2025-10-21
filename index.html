@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Dashbord Inicial">
+    <meta name="author" content="Alex Lima, Gustavo">
+
+    <title>Athon telecom — Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="Athon/style.css">
+</head>
+
+<body>
+    <div id="cursor" aria-hidden="true"></div>
+
+    <div class="container" role="main" aria-live="polite">
+        <div class="floating" id="floating">
+            <button id="floating-btn" aria-label="Abrir menu">⋮</button>
+            <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
+                <div class="menu-tabs" role="tablist">
+                    <button id="tab-1" class="active" onclick="switchTab(1)">Planilhas</button>
+                    <button id="tab-2" onclick="switchTab(2)">Drive</button>
+                </div>
+                <div class="menu-content">
+                    <div id="panel-1" class="menu-links">
+                        <a href="https://docs.google.com/spreadsheets/d/1ClqFfHkbuycU88QomXHL88vH793DJ6p3MntE_YogSHw/edit?gid=999274711#gid=999274711"
+                            target="_blank">Financeiro Diário</a>
+                        <a href="https://docs.google.com/spreadsheets/d/13qTrlHItLsbjqVDQE8JBFZfsi6ZFG9cR-JM4rOq37ec/edit?ouid=107892575591282318109&usp=sheets_home&ths=true"
+                            target="_blank">Solicitação de Cancelamento</a>
+                        <a href="https://docs.google.com/spreadsheets/d/1BtUH-LZP5wBuXtx28Zg-mWzPvPAQOS4kuOuUdj_rVQU/edit?gid=368144143#gid=368144143" target="_blank">Solicitação de Renegociação</a>
+                    </div>
+                    <div id="panel-2" class="menu-links" style="display:none">
+                        <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit?tab=t.0#heading=h.a5affn7scpmn" target="_blank">Script Padrão N1</a>
+                        <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit?tab=t.rvifx5qy9eak" target="_blank">Informações Equipamentos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="header-center">
+            <div class="logo" aria-hidden="false" style="display:flex;align-items:center;gap:12px">
+                <img src="/img/OIP.jpg" alt="Athon telecom" class="company-logo" />
+                <div class="brand-text">
+                    <div class="brand">Athon telecom</div>
+                </div>
+            </div>
+        </header>
+
+
+
+        <div class="module-card" role="article" aria-labelledby="m2-title">
+            <div class="module-title" id="m2-title">Athon OFF</div>
+            <div class="mini-preview" data-src="/desh_inicio/off.html">
+                <iframe class="mini-frame" src="/desh_inicio/off.html" title="Preview OFF" loading="lazy"
+                    sandbox="allow-same-origin"></iframe>
+                <div class="preview-fallback" aria-hidden="true" style="display:none">Preview indisponível</div>
+            </div>
+            <div class="module-body">
+                <div class="mini"></div>
+                <button class="btn btn-primary" data-module="off">Abrir</button>
+            </div>
+        </div>
+        </section>
+    </div>
+
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-shell">
+            <button id="modal-close" class="modal-close" aria-label="Fechar módulo">✕</button>
+
+            <iframe id="modal-frame" class="modal-frame" src="" title="Módulo em tela cheia"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+    </div>
+
+    <script src="/Athon/los.js"></script>
+</body>
+
+</html>
