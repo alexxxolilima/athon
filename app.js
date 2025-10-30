@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const REGRA_PADRAO = {
-        PERCENTUAL_MULTA: 0.30, // Mantido para multa por fidelidade
+        PERCENTUAL_MULTA: 0.30,
     };
 
     const CONFIG = {
@@ -432,3 +432,29 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarInputs();
     calcularEExibir();
 });
+
+  (function() {
+    const body = document.body;
+    const btn = document.getElementById('btnTheme');
+    if (!btn) return;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      btn.textContent = '☀️';
+      btn.setAttribute('aria-pressed', 'true');
+    }
+
+    btn.addEventListener('click', function() {
+      const isDark = body.classList.toggle('dark-mode');
+      btn.textContent = isDark ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', String(isDark));
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      body.classList.add('dark-mode');
+      btn.textContent = '☀️';
+      btn.setAttribute('aria-pressed', 'true');
+    }
+  })();
