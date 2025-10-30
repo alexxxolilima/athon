@@ -71,10 +71,16 @@ body {
 .header {
     text-align: center;
     padding: 10px 0 30px;
-    background-color: transparent;
-    border-bottom: none;
-    box-shadow: none;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    .header-content,
+.header-branding {
+    background: transparent !important;
 }
+
+}
+
 
 .header-content {
     display: flex;
@@ -91,16 +97,18 @@ body {
     justify-content: flex-start;
 }
 
-.company-logo {
+   .company-logo {
     width: 56px;
     height: 56px;
     object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
     display: block;
+    background-color: #0b4f73;
     flex-shrink: 0;
 }
+
 
 .brand-text .brand {
     font-weight: 800;
@@ -578,7 +586,72 @@ body.dark-mode .result-total {
 }
 
 .header,
-.header * {
-    border-bottom: none !important;
-    outline: none !important;
+.header-content,
+.header-branding {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-toggle-dark {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(2, 6, 23, 0.15);
+}
+
+.btn-toggle-dark:hover {
+    background: var(--brand-primary);
+    color: #fff;
+    border-color: var(--brand-primary);
+    transform: translateY(-2px);
+}
+
+.btn-toggle-dark:active {
+    transform: scale(0.95);
+}
+
+body.dark-mode .btn-toggle-dark {
+    background: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-main);
+}
+
+body.dark-mode .btn-toggle-dark:hover {
+    background: var(--brand-primary);
+    color: #fff;
+}
+
+body.dark-mode,
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode .header {
+    background: linear-gradient(180deg, rgba(11, 79, 115, 0.15), transparent);
+    border-bottom: 1px solid var(--card-border);
+}
+
+@keyframes rotateTheme {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-toggle-dark:active {
+    animation: rotateTheme 0.4s linear;
 }
