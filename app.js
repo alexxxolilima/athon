@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dados = lerInputs();
         const planoBaseIsValid = validarCampo(DOM.planoBase);
         const descontoIsValid = (DOM.descontoPercent ? validarCampo(DOM.descontoPercent) : true) &&
-                                (DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true);
+            (DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true);
         const formIsEmpty = isFormEmpty(dados);
 
         if (formIsEmpty || !planoBaseIsValid) {
@@ -348,34 +348,31 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const linesToCopy = [];
+        const pad = n => String(n).padStart(2, '0');
+        const hoje = new Date();
+        const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
 
-        linesToCopy.push(`Valor total: ${fmt(res.total)}`);
-        linesToCopy.push('');
-        if (dados.planoBase > 0) {
-            linesToCopy.push(`Valor do Plano: ${fmt(dados.planoBase)}`);
-        }
+        const lines = [];
+        lines.push(`Cliente negativado em: ${dataHoje}`);
+        lines.push(`Valor total da dívida: ${fmt(res.total)}`);
+
         if (res.proRata > 0) {
-            linesToCopy.push(`Valor do Proporcional: ${fmt(res.proRata)}`);
-        }
-        if (res.equipamento > 0) {
-            linesToCopy.push(`NÃO DEVOLUÇÃO DOS EQUIPAMENTOS: ${fmt(res.equipamento)}`);
-        }
-        if (res.multaFidelidade > 0) {
-            linesToCopy.push(`Multa fidelidade: ${fmt(res.multaFidelidade)}`);
-        }
-        if (res.svaValorTotal > 0) {
-            linesToCopy.push(`SVA: ${fmt(res.svaValorTotal)}`);
-        }
-        if (res.custoAdicional > 0) {
-            linesToCopy.push(`OUTROS: ${fmt(res.custoAdicional)}`);
-        }
-        // Atualizado: rótulo para refletir que aqui mostramos o valor das mensalidades já com desconto
-        if (res.multaMensalidadesDesconto > 0) {
-            linesToCopy.push(`Mensalidades com desconto: ${fmt(res.multaMensalidadesDesconto)}`);
+            lines.push(`${fmt(res.proRata)} dias de uso ${dados.diasDeUso} )`);
         }
 
-        const textToCopy = linesToCopy.join('\n');
+        if (res.multaFidelidade > 0) {
+            lines.push(`${fmt(res.multaFidelidade)} meses de multa`);
+        }
+
+        if (res.equipamento > 0) {
+            lines.push(`${fmt(res.equipamento)} (valor do equipamento)`);
+        }
+
+        if (res.svaValorTotal > 0) {
+            lines.push(`${fmt(res.svaValorTotal)} (SVA)`);
+        }
+
+        const textToCopy = lines.join('\n');
 
         navigator.clipboard.writeText(textToCopy).then(() => {
             if (DOM.copySuccessMessage) {
@@ -389,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Não foi possível copiar o texto para a área de transferência.');
         });
     }
+
 
     const allInputs = [
         DOM.planoBase, DOM.mesesFidelidadeRestantes, DOM.diasDeUso,
@@ -433,28 +431,29 @@ document.addEventListener('DOMContentLoaded', () => {
     calcularEExibir();
 });
 
-  (function() {
+(function () {
     const body = document.body;
     const btn = document.getElementById('btnTheme');
     if (!btn) return;
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-      body.classList.add('dark-mode');
-      btn.textContent = '☀️';
-      btn.setAttribute('aria-pressed', 'true');
+        body.classList.add('dark-mode');
+        btn.textContent = '☀️';
+        btn.setAttribute('aria-pressed', 'true');
     }
 
-    btn.addEventListener('click', function() {
-      const isDark = body.classList.toggle('dark-mode');
-      btn.textContent = isDark ? '☀️' : '🌙';
-      btn.setAttribute('aria-pressed', String(isDark));
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    btn.addEventListener('click', function () {
+        const isDark = body.classList.toggle('dark-mode');
+        btn.textContent = isDark ? '☀️' : '🌙';
+        btn.setAttribute('aria-pressed', String(isDark));
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
     if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      body.classList.add('dark-mode');
-      btn.textContent = '☀️';
-      btn.setAttribute('aria-pressed', 'true');
+        body.classList.add('dark-mode');
+        btn.textContent = '☀️';
+        btn.setAttribute('aria-pressed', 'true');
     }
-  })();
+})();
+
