@@ -1,3 +1,4 @@
+/* Athon standardized style.css */
 :root {
     --brand-primary: #0b4f73;
     --brand-secondary: #072b57;
@@ -8,9 +9,12 @@
     --text-sec: #9fb6d0;
     --radius: 12px;
     --max-width: 1100px;
-    --transition-smooth: 350ms ease-in-out;
+    --transition-smooth: 280ms ease-in-out;
     --modal-z: 9999;
     --cursor-size: 10px;
+    --shadow-1: 0 12px 36px rgba(2, 6, 23, 0.35);
+    --shadow-2: 0 18px 48px rgba(2, 6, 23, 0.45);
+    --focus-ring: rgba(11, 79, 115, 0.22);
 }
 
 * {
@@ -21,14 +25,14 @@ html,
 body {
     height: 100%;
     margin: 0;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     -webkit-font-smoothing: antialiased
 }
 
 body {
     background: var(--bg-body);
     color: var(--text-main);
-    overflow: hidden
+    overflow: auto
 }
 
 .container {
@@ -40,14 +44,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+    gap: 28px
 }
 
-header {
+.header-center {
     display: flex;
     align-items: center;
-    gap: 12px;
-    justify-content: center
+    justify-content: center;
+    gap: 14px;
+    padding: 6px 0
 }
 
 .logo {
@@ -56,47 +61,51 @@ header {
     gap: 12px
 }
 
-.logo svg {
-    width: 46px;
-    height: 46px;
-    flex: 0 0 auto
-}
-
-.logo .brand {
+.brand-text .brand {
     font-weight: 800;
     font-size: 20px;
-    color: var(--text-main)
+    color: var(--text-main);
+    line-height: 1
 }
 
-.logo .tag {
+.brand-text .mini {
     font-size: 13px;
-    color: var(--text-sec)
+    color: var(--text-sec);
+    margin-top: 2px
 }
 
 .modules-wrap {
     display: flex;
-    gap: 28px;
+    gap: 20px;
     justify-content: center;
     align-items: stretch;
     flex-wrap: wrap;
+    width: 100%
 }
 
 .module-card {
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
     display: flex;
     flex-direction: column;
     background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--card-border);
     overflow: hidden;
-    box-shadow: 0 12px 36px rgba(2, 6, 23, 0.35);
-    transition: transform .18s var(--transition-smooth), box-shadow .18s var(--transition-smooth);
+    box-shadow: var(--shadow-1);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer
+}
+
+.module-card:focus {
+    outline: 3px solid var(--focus-ring)
 }
 
 .module-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 18px 48px rgba(2, 6, 23, 0.45);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-2)
 }
 
 .module-title {
@@ -115,18 +124,16 @@ header {
     background: transparent
 }
 
-.mini {
-    font-size: 13px;
-    color: var(--text-sec);
-    text-align: center
-}
-
 .mini-preview {
     position: relative;
     overflow: hidden;
     width: 100%;
     height: 180px;
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent
 }
 
 .mini-frame {
@@ -136,7 +143,7 @@ header {
     transform-origin: top center;
     border: 0;
     pointer-events: none;
-    margin-top: -120px;
+    margin-top: -120px
 }
 
 .preview-fallback {
@@ -161,7 +168,7 @@ header {
 
 .btn-primary {
     background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
-    color: white;
+    color: #fff;
     box-shadow: 0 10px 26px rgba(11, 75, 110, 0.18)
 }
 
@@ -195,7 +202,7 @@ header {
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: 0 12px 40px rgba(2, 6, 23, 0.12);
-    overflow: hidden;
+    overflow: hidden
 }
 
 .menu-tabs {
@@ -203,7 +210,7 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.03)
 }
 
-.menu-tabs button {
+.menu-tabs .tab {
     flex: 1;
     padding: 10px 12px;
     background: transparent;
@@ -211,6 +218,11 @@ header {
     cursor: pointer;
     font-weight: 600;
     color: var(--text-main)
+}
+
+.menu-tabs .tab.active {
+    background: rgba(255, 255, 255, 0.02);
+    outline: none
 }
 
 .menu-content {
@@ -236,7 +248,7 @@ header {
     align-items: stretch;
     justify-content: center;
     background: rgba(2, 6, 23, 0.85);
-    z-index: var(--modal-z);
+    z-index: var(--modal-z)
 }
 
 .modal.show {
@@ -249,7 +261,7 @@ header {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: transparent;
+    background: transparent
 }
 
 .modal-frame {
@@ -265,7 +277,7 @@ header {
     position: absolute;
     right: 18px;
     top: 18px;
-    z-index: calc(var(--modal-z) + 10);
+    z-index: calc(var(--modal-z)+10);
     width: 44px;
     height: 44px;
     border-radius: 10px;
@@ -277,7 +289,7 @@ header {
     box-shadow: 0 8px 22px rgba(2, 6, 23, 0.4);
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center
 }
 
 .modal-close:active {
@@ -290,7 +302,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .modal-loading .spinner {
@@ -299,24 +311,12 @@ header {
     border-radius: 50%;
     border: 4px solid rgba(255, 255, 255, 0.08);
     border-top-color: var(--brand-primary);
-    animation: spin 900ms linear infinite;
+    animation: spin 900ms linear infinite
 }
 
 @keyframes spin {
     to {
         transform: rotate(360deg)
-    }
-}
-
-@media(max-width:880px) {
-    .module-card {
-        width: 92%;
-        height: 420px
-    }
-
-    .modules-wrap {
-        flex-direction: column;
-        align-items: center
     }
 }
 
@@ -363,48 +363,15 @@ header {
     justify-content: center
 }
 
-.company-logo{
-  width:56px;
-  height:56px;
-  object-fit:cover;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:0 8px 24px rgba(2,6,23,0.45);
-  display:block;
-  flex-shrink:0;
-}
-
-.header-center{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  padding:6px 0;
-}
-
-.brand-text .brand{ font-weight:800; font-size:20px; color:var(--text-main); line-height:1; }
-.brand-text .mini{ font-size:13px; color:var(--text-sec); margin-top:2px; }
-
-.logo--stacked{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-}
-
-@media(max-width:600px){
-  .company-logo{ width:48px; height:48px; }
-  .brand-text .brand{ font-size:18px; }
-}
-
-.mini-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 180px;
-    overflow: hidden;
-    background: transparent;
-    border-radius: 12px;
+.company-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+    display: block;
+    flex-shrink: 0
 }
 
 .mini-logo {
@@ -412,5 +379,29 @@ header {
     height: 72px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.15);
+    border: 2px solid rgba(255, 255, 255, 0.15)
 }
+
+@media(max-width:880px) {
+    .module-card {
+        width: 92%;
+        height: 420px
+    }
+
+    .modules-wrap {
+        flex-direction: column;
+        align-items: center
+    }
+}
+
+@media(max-width:600px) {
+    .company-logo {
+        width: 48px;
+        height: 48px
+    }
+
+    .brand-text .brand {
+        font-size: 18px
+    }
+}
+
