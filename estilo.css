@@ -283,43 +283,33 @@ input::placeholder {
 }
 
 .sva-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background: transparent;
+  padding: 4px;
 }
 
 .sva-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 8px;
-    background: var(--input-bg);
-    border: 1px solid var(--input-border);
-    transition: border-color .18s, transform .18s;
-}
-
-.sva-item:hover {
-    border-color: var(--brand-primary)
-}
-
-.sva-name {
-    font-size: 0.95rem;
-    font-weight: 600
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
 }
 
 .sva-item input[type="number"] {
-    width: 64px;
-    padding: 6px;
-    text-align: center;
-    height: 36px;
-    margin: 0;
-    font-size: 14px;
-    border-radius: 8px;
+  width: 64px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 8px;
 }
 
-.sva-item input[type="number"]:focus {
-    transform: scale(1.02)
+@media (max-width: 520px) {
+  .sva-list { grid-template-columns: 1fr; }
+  .sva-item input[type="number"] { width: 72px; }
 }
 
 .error-feedback {
@@ -608,3 +598,4 @@ input::placeholder {
     animation: slideOutDown 220ms ease-in forwards;
     pointer-events: none
 }
+
