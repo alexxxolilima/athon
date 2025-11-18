@@ -10,92 +10,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="Athon/style.css">
     <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
-
-
-
 </head>
-
 <body>
-    <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="page-loader" aria-hidden="true"><div class="page-spinner" aria-hidden="true"></div></div>
 
-    <main class="container" role="main" aria-live="polite">
-        <div class="floating" id="floating">
-            <button id="floating-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">⋮</button>
-            <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
-                <div class="menu-tabs" role="tablist">
-                    <button id="tab-1" class="tab active" role="tab" aria-selected="true"
-                        data-tab="1">Planilhas</button>
-                    <button id="tab-2" class="tab" role="tab" aria-selected="false" data-tab="2">Drive</button>
-                </div>
-                <div class="menu-content">
-                    <div id="panel-1" class="menu-links" data-panel="1">
-                        <a href="https://docs.google.com/spreadsheets/d/1ClqFfHkbuycU88QomXHL88vH793DJ6p3MntE_YogSHw/edit?gid=999274711"
-                            target="_blank" rel="noopener">Financeiro Diário</a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform"
-                            target="_blank" rel="noopener">Solicitação de Cancelamento</a>
-                        <a href="https://docs.google.com/spreadsheets/d/1BtUH-LZP5wBuXtx28Zg-mWzPvPAQOS4kuOuUdj_rVQU/edit?gid=368144143"
-                            target="_blank" rel="noopener">Solicitação de Renegociação</a>
-                    </div>
-                    <div id="panel-2" class="menu-links" data-panel="2" hidden>
-                        <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit"
-                            target="_blank" rel="noopener">Script Padrão N1</a>
-                        <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit"
-                            target="_blank" rel="noopener">Informações Equipamentos</a>
-                    </div>
-                </div>
-            </div>
+  <main class="container" role="main" aria-live="polite">
+    <div class="floating" id="floating">
+      <button id="floating-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">⋮</button>
+      <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
+        <div class="menu-tabs" role="tablist">
+          <button id="tab-1" class="tab active" role="tab" aria-selected="true" data-tab="1">Planilhas</button>
+          <button id="tab-2" class="tab" role="tab" aria-selected="false" data-tab="2">Drive</button>
         </div>
-
-        <header class="header-center" role="banner">
-            <div class="logo">
-                <img src="img/OIP.jpg" alt="Athon Telecom" class="company-logo"
-                    onerror="this.src='https://via.placeholder.com/56x56?text=Logo'">
-                <div class="brand-text">
-                    <div class="brand">Athon Telecom</div>
-                </div>
-            </div>
-        </header>
-
-        <div class="modules-wrap" role="list">
-            <div class="module-card" role="listitem" tabindex="0" data-module="off">
-                <div class="module-title">Athon OFF</div>
-                <div class="mini-preview center">
-                    <img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo">
-                </div>
-                <div class="module-body">
-                    <button class="btn btn-primary" data-module="off">Abrir</button>
-                </div>
-            </div>
-
-            <div class="module-card" role="listitem" tabindex="0" data-module="Futuros projetos">
-                <div class="module-title">Futuros projetos</div>
-                <div class="mini-preview center">
-                    <img src="img/OIP.jpg" alt="Athon" class="company-logo mini-logo">
-                </div>
-                <div class="module-body">
-                    <button class="btn btn-primary" data-module="carne">Abrir</button>
-                </div>
-            </div>
+        <div class="menu-content">
+          <div id="panel-1" class="menu-links" data-panel="1">
+            <a href="https://docs.google.com/spreadsheets/d/1ClqFfHkbuycU88QomXHL88vH793DJ6p3MntE_YogSHw/edit?gid=999274711" target="_blank" rel="noopener">Financeiro Diário</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform" target="_blank" rel="noopener">Solicitação de Cancelamento</a>
+            <a href="https://docs.google.com/spreadsheets/d/1BtUH-LZP5wBuXtx28Zg-mWzPvPAQOS4kuOuUdj_rVQU/edit?gid=368144143" target="_blank" rel="noopener">Solicitação de Renegociação</a>
+          </div>
+          <div id="panel-2" class="menu-links" data-panel="2" hidden>
+            <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit" target="_blank" rel="noopener">Script Padrão N1</a>
+            <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit" target="_blank" rel="noopener">Informações Equipamentos</a>
+          </div>
         </div>
-    </main>
-
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="modal-shell">
-            <button id="modal-close" class="modal-close" aria-label="Fechar módulo">✕</button>
-            <div class="modal-loading" aria-hidden="true">
-                <div class="spinner" aria-hidden="true"></div>
-            </div>
-            <iframe id="modal-frame" class="modal-frame" src="" title="Módulo em tela cheia"
-                sandbox="allow-scripts allow-same-origin"></iframe>
-        </div>
+      </div>
     </div>
 
-    <script src="Athon/los.js"></script>
+    <header class="header-center" role="banner">
+      <div class="logo">
+        <img src="img/OIP.jpg" alt="Athon Telecom" class="company-logo" onerror="this.src='https://via.placeholder.com/56x56?text=Logo'">
+        <div class="brand-text"><div class="brand">Athon Telecom</div></div>
+      </div>
+    </header>
+
+    <div class="modules-wrap" role="list">
+      <div class="module-card" role="listitem" tabindex="0" data-module="off">
+        <div class="module-title">Athon OFF</div>
+        <div class="mini-preview center"><img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo"></div>
+        <div class="module-body"><button class="btn btn-primary" data-module="off">Abrir</button></div>
+  </main>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-shell">
+      <button id="modal-close" class="modal-close" aria-label="Fechar módulo">✕</button>
+      <div class="modal-loading" aria-hidden="true"><div class="spinner" aria-hidden="true"></div></div>
+      <iframe id="modal-frame" class="modal-frame" src="" title="Módulo em tela cheia" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+
+  <script src="Athon/los.js" defer></script>
 </body>
-
 </html>
-
-
 
 
 
