@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     if (typeof IMask === 'undefined') {
         console.error("ERRO CRÍTICO: A biblioteca IMask não foi carregada. Verifique se o <script src='https://unpkg.com/imask'></script> está no seu HTML.");
         return;
     }
 
-    const REGRA_PADRAO = {
-        PERCENTUAL_MULTA: 0.30,
-    };
-
+    const REGRA_PADRAO = { PERCENTUAL_MULTA: 0.30 };
     const CONFIG = {
         DIAS_DO_MES_BASE: 30,
         MAX_MESES_FIDELIDADE: 12,
@@ -33,13 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         groupPlanoBase: document.getElementById('group-planoBase'),
         groupMesesFidelidadeRestantes: document.getElementById('group-mesesFidelidadeRestantes'),
         groupDiasDeUso: document.getElementById('group-diasDeUso'),
-
         descontoPercent: document.getElementById('descontoPercent'),
         qtdMensalidadesDesconto: document.getElementById('qtdMensalidadesDesconto'),
         btnAplicarMensalidadeDesconto: document.getElementById('btnAplicarMensalidadeDesconto'),
         groupMensalidadeDesconto: document.getElementById('group-mensalidadeDesconto'),
         errorMensalidadeDesconto: document.getElementById('error-mensalidadeDesconto'),
-
         out: {
             diasACobrar: document.getElementById('diasACobrar'),
             valorMensalTotal: document.getElementById('valorMensalTotal'),
@@ -49,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             equipamento: document.getElementById('equipamento'),
             totalMulta: document.getElementById('totalMulta'),
             custoAdicionalOut: document.getElementById('custoAdicionalOut'),
-            multaMensalidadesDesconto: document.getElementById('multaMensalidadesDesconto') // campo de saída (agora representa valor das mensalidades com desconto)
+            multaMensalidadesDesconto: document.getElementById('multaMensalidadesDesconto')
         }
     };
 
@@ -61,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         padFractionalZeros: true,
         normalizeZeros: true,
         radix: ',',
-        mapToRadix: ['.'],
+        mapToRadix: ['.']
     };
 
     const planoBaseMask = IMask(DOM.planoBase, maskOptions);
@@ -75,13 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const mesesFidelidadeRestantes = Math.min(CONFIG.MAX_MESES_FIDELIDADE, Math.max(0, parseInt(DOM.mesesFidelidadeRestantes.value || 0)));
         const diasDeUso = Math.min(CONFIG.MAX_DIAS_DE_USO, Math.max(0, parseInt(DOM.diasDeUso.value || 0)));
         const custoEquipamento = parseFloat(DOM.custoEquipamento.value || 0) || 0;
-
         const descontoPercent = Math.min(100, Math.max(0, parseFloat(DOM.descontoPercent?.value || 0)));
         const qtdMensalidadesDesconto = Math.max(0, Math.min(CONFIG.MAX_MESES_FIDELIDADE, parseInt(DOM.qtdMensalidadesDesconto?.value || 0)));
 
         let svaValorTotal = 0;
         let svaData = [];
-
         DOM.svaInputs.forEach(i => {
             const q = Math.max(0, parseInt(i.value || 0));
             const price = parseFloat(i.dataset.price) || 0;
@@ -109,39 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calcular(dados) {
         const valorMensalTotal = dados.planoBase + dados.svaValorTotal;
-
         let proRataPlanoBase = 0;
         if (dados.diasDeUso > 0 && dados.planoBase > 0) {
             const custoDiarioPlano = dados.planoBase / CONFIG.DIAS_DO_MES_BASE;
             proRataPlanoBase = custoDiarioPlano * dados.diasDeUso;
         }
-
         const svaTotal = dados.svaValorTotal;
-
         let multaFidelidade = 0;
         if (dados.mesesFidelidadeRestantes > 0) {
             const valorBaseRestante = dados.planoBase * dados.mesesFidelidadeRestantes;
             multaFidelidade = valorBaseRestante * REGRA_PADRAO.PERCENTUAL_MULTA;
         }
-
         const equipamento = dados.custoEquipamento;
         const custoAdicional = dados.custoAdicional;
-
-        // Cálculo atualizado: remover a aplicação dos 30% sobre o valor das mensalidades com desconto
-        let multaMensalidadesDesconto = 0; // neste campo mantemos o nome, mas agora representa o VALOR das mensalidades com desconto
+        let multaMensalidadesDesconto = 0;
         let valorMensalidadesComDesconto = 0;
-
         if (dados.qtdMensalidadesDesconto > 0 && dados.planoBase > 0 && dados.descontoPercent >= 0 && dados.descontoPercent <= 100) {
             const mensalidadeDescontada = dados.planoBase * (1 - (dados.descontoPercent / 100));
             valorMensalidadesComDesconto = mensalidadeDescontada * dados.qtdMensalidadesDesconto;
-
-            // Removida a multiplicação por REGRA_PADRAO.PERCENTUAL_MULTA
-            // Agora cobramos o somatório das mensalidades já com desconto.
             multaMensalidadesDesconto = valorMensalidadesComDesconto;
         }
-
         const total = multaFidelidade + proRataPlanoBase + svaTotal + equipamento + custoAdicional + multaMensalidadesDesconto;
-
         return {
             multaFidelidade,
             proRata: proRataPlanoBase,
@@ -155,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    function renderResultados(res, diasACobrar) {
+    function renderResultados(res, diasACobrar, planoBase = 0) {
         DOM.out.diasACobrar.textContent = `${diasACobrar} dias`;
-        DOM.out.valorMensalTotal.textContent = fmt(res.valorMensalTotal);
+        DOM.out.valorMensalTotal.textContent = fmt(planoBase);
         DOM.out.multaFidelidade.textContent = fmt(res.multaFidelidade);
         DOM.out.proRata.textContent = fmt(res.proRata);
         DOM.out.totalSva.textContent = fmt(res.svaValorTotal);
@@ -175,22 +155,52 @@ document.addEventListener('DOMContentLoaded', () => {
         return totalMonetaryValue === 0 && totalTermValue === 0;
     }
 
+    function showResult() {
+        const el = DOM.resultadoCard;
+        if (!el) return;
+        el.classList.remove('animate-exit');
+        el.classList.add('visible', 'animate-entrance');
+        el.addEventListener('animationend', function handler() {
+            el.classList.remove('animate-entrance');
+        }, { once: true });
+    }
+
+    function hideResult() {
+        const el = DOM.resultadoCard;
+        if (!el) return;
+        if (!el.classList.contains('visible') && !el.classList.contains('animate-entrance')) {
+            el.classList.remove('animate-exit', 'animate-entrance', 'visible');
+            return;
+        }
+        el.classList.remove('animate-entrance');
+        el.classList.add('animate-exit');
+        el.addEventListener('animationend', function handler() {
+            el.classList.remove('animate-exit', 'visible');
+        }, { once: true });
+    }
+
     function calcularEExibir() {
         const dados = lerInputs();
         const planoBaseIsValid = validarCampo(DOM.planoBase);
-        const descontoIsValid = (DOM.descontoPercent ? validarCampo(DOM.descontoPercent) : true) &&
-            (DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true);
-        const formIsEmpty = isFormEmpty(dados);
-
-        if (formIsEmpty || !planoBaseIsValid) {
-            DOM.resultadoCard.classList.remove('visible');
-            renderResultados({ multaFidelidade: 0, proRata: 0, equipamento: 0, custoAdicional: 0, totalSva: 0, total: 0, valorMensalTotal: 0, multaMensalidadesDesconto: 0 }, 0);
+        const descontoIsValid = (DOM.descontoPercent ? validarCampo(DOM.descontoPercent) : true) && (DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true);
+        if (!planoBaseIsValid || !descontoIsValid) {
+            hideResult();
+            renderResultados({ multaFidelidade: 0, proRata: 0, equipamento: 0, custoAdicional: 0, totalSva: 0, total: 0, valorMensalTotal: 0, multaMensalidadesDesconto: 0 }, 0, 0);
             return;
         }
-
-        DOM.resultadoCard.classList.add('visible');
+        const formIsEmpty = isFormEmpty(dados);
+        if (formIsEmpty) {
+            hideResult();
+            renderResultados({ multaFidelidade: 0, proRata: 0, equipamento: 0, custoAdicional: 0, totalSva: 0, total: 0, valorMensalTotal: 0, multaMensalidadesDesconto: 0 }, 0, 0);
+            return;
+        }
         const res = calcular(dados);
-        renderResultados(res, dados.diasDeUso);
+        renderResultados(res, dados.diasDeUso, dados.planoBase);
+        if (res && res.total > 0) {
+            showResult();
+        } else {
+            hideResult();
+        }
     }
 
     function debounce(fn, ms) {
@@ -216,9 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!inputEl) return true;
         let isValid = true;
         let errorMessage = '';
-
         if (inputEl === DOM.planoBase) {
-            const planoBaseValue = parseFloat(planoBaseMask.unmaskedValue) / 100 || 0;
+            const planoBaseValue = Number(planoBaseMask.typedValue ?? 0);
             if (planoBaseValue <= 0) {
                 isValid = false;
                 errorMessage = "O valor do Plano Base é obrigatório e deve ser maior que R$ 0,00.";
@@ -294,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
             DOM.custoEquipamento.value = data.custoEquipamento || 0;
             if (DOM.descontoPercent) DOM.descontoPercent.value = data.descontoPercent ?? '';
             if (DOM.qtdMensalidadesDesconto) DOM.qtdMensalidadesDesconto.value = data.qtdMensalidadesDesconto ?? 0;
-
             if (data.svaQuantities) {
                 DOM.svaInputs.forEach(inputEl => {
                     const savedSVA = data.svaQuantities.find(s => s.price == inputEl.dataset.price);
@@ -320,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
         DOM.svaInputs.forEach(i => i.value = 0);
         if (DOM.descontoPercent) DOM.descontoPercent.value = '';
         if (DOM.qtdMensalidadesDesconto) DOM.qtdMensalidadesDesconto.value = 0;
-
         DOM.groupPlanoBase.classList.remove('has-error');
         DOM.planoBase.setAttribute('aria-invalid', 'false');
         DOM.resultadoCard.classList.remove('visible');
@@ -340,74 +347,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-   function handleCopyResults() {
-    const dados = lerInputs();
-    const res = calcular(dados);
-
-    if (!res || res.total <= 0) return;
-
-    const pad = n => String(n).padStart(2, '0');
-    const hoje = new Date();
-    const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
-
-    const lines = [];
-    lines.push(`Cliente negativado em: ${dataHoje}`);
-
-     lines.push('');
-
-    lines.push(`Valor total da dívida: ${fmt(res.total)}`);
-   
-    if (res.proRata > 0 && dados.diasDeUso > 0) {
-        lines.push(`${fmt(res.proRata)} — ${dados.diasDeUso} dias de uso`);
-    }
-
-    if (res.multaFidelidade > 0 && dados.mesesFidelidadeRestantes > 0) {
-        lines.push(`${fmt(res.multaFidelidade)} — ${dados.mesesFidelidadeRestantes} meses de multa`);
-    }
-
-    if (res.multaMensalidadesDesconto > 0 && dados.qtdMensalidadesDesconto > 0) {
-        const pct = dados.descontoPercent ?? 0;
-        lines.push(`${fmt(res.multaMensalidadesDesconto)} — Mensalidades com desconto (${dados.qtdMensalidadesDesconto}x ${pct}% )`);
-    }
-
-    if (res.custoAdicional > 0) {
-        lines.push(`${fmt(res.custoAdicional)} - Custo adicional`);
-    }
-
-    if (res.equipamento > 0) {
-        lines.push(`${fmt(res.equipamento)} — Equipamento não devolvido`);
-    }
-
-    if (res.svaValorTotal > 0) {
-        lines.push(`${fmt(res.svaValorTotal)} — SVAs`);
-        if (Array.isArray(dados.svaData) && dados.svaData.length) {
-            const detalhamento = dados.svaData
-                .filter(s => s.quantity > 0)
-                .map(s => {
-                    const unit = s.quantity ? (s.total / s.quantity) : 0;
-                    return `  • ${s.name}: ${s.quantity} x ${fmt(unit)} = ${fmt(s.total)}`;
-                });
-            if (detalhamento.length) lines.push(...detalhamento);
+    function handleCopyResults() {
+        const dados = lerInputs();
+        const res = calcular(dados);
+        if (!res || res.total <= 0) return;
+        const pad = n => String(n).padStart(2, '0');
+        const hoje = new Date();
+        const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
+        const lines = [];
+        lines.push(`Cliente negativado em: ${dataHoje}`);
+        lines.push('');
+        lines.push(`Valor total da dívida: ${fmt(res.total)}`);
+        if (res.proRata > 0 && dados.diasDeUso > 0) {
+            lines.push(`${fmt(res.proRata)} — ${dados.diasDeUso} dias de uso`);
         }
-    }
-
-    const textToCopy = lines.filter((l, idx, arr) => {
-        return !(l === '' && (idx === arr.length - 1 || arr[idx + 1] === ''));
-    }).join('\n');
-
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        if (DOM.copySuccessMessage) {
-            DOM.copySuccessMessage.classList.add('show');
-            setTimeout(() => {
-                DOM.copySuccessMessage.classList.remove('show');
-            }, 2000);
+        if (res.multaFidelidade > 0 && dados.mesesFidelidadeRestantes > 0) {
+            lines.push(`${fmt(res.multaFidelidade)} — ${dados.mesesFidelidadeRestantes} meses de multa`);
         }
-    }).catch(err => {
-        console.error('Falha ao copiar o texto: ', err);
-        alert('Não foi possível copiar o texto para a área de transferência.');
-    });
-}
-
+        if (res.multaMensalidadesDesconto > 0 && dados.qtdMensalidadesDesconto > 0) {
+            const pct = dados.descontoPercent ?? 0;
+            lines.push(`${fmt(res.multaMensalidadesDesconto)} — Mensalidades com desconto (${dados.qtdMensalidadesDesconto}x ${pct}% )`);
+        }
+        if (res.custoAdicional > 0) {
+            lines.push(`${fmt(res.custoAdicional)} - Custo adicional`);
+        }
+        if (res.equipamento > 0) {
+            lines.push(`${fmt(res.equipamento)} — Equipamento não devolvido`);
+        }
+        if (res.svaValorTotal > 0) {
+            lines.push(`${fmt(res.svaValorTotal)} — SVAs`);
+            if (Array.isArray(dados.svaData) && dados.svaData.length) {
+                const detalhamento = dados.svaData
+                    .filter(s => s.quantity > 0)
+                    .map(s => {
+                        const unit = s.quantity ? (s.total / s.quantity) : 0;
+                        return `  • ${s.name}: ${s.quantity} x ${fmt(unit)} = ${fmt(s.total)}`;
+                    });
+                if (detalhamento.length) lines.push(...detalhamento);
+            }
+        }
+        const textToCopy = lines.filter((l, idx, arr) => {
+            return !(l === '' && (idx === arr.length - 1 || arr[idx + 1] === ''));
+        }).join('\n');
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            if (DOM.copySuccessMessage) {
+                DOM.copySuccessMessage.classList.add('show');
+                setTimeout(() => {
+                    DOM.copySuccessMessage.classList.remove('show');
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error('Falha ao copiar o texto: ', err);
+            alert('Não foi possível copiar o texto para a área de transferência.');
+        });
+    }
 
     const allInputs = [
         DOM.planoBase, DOM.mesesFidelidadeRestantes, DOM.diasDeUso,
@@ -456,27 +449,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const btn = document.getElementById('btnTheme');
     if (!btn) return;
-
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
         btn.textContent = '☀️';
         btn.setAttribute('aria-pressed', 'true');
     }
-
     btn.addEventListener('click', function () {
         const isDark = body.classList.toggle('dark-mode');
         btn.textContent = isDark ? '☀️' : '🌙';
         btn.setAttribute('aria-pressed', String(isDark));
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-
     if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         body.classList.add('dark-mode');
         btn.textContent = '☀️';
         btn.setAttribute('aria-pressed', 'true');
     }
 })();
+
 
 
 
