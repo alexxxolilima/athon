@@ -2,82 +2,91 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Dashboard Inicial">
-    <meta name="author" content="Alex Lima, Gustavo Matos, Bianca Marques">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard Inicial" />
+    <meta name="author" content="Alex Lima, Gustavo Matos , Bianca Marques" />
     <title>Athon Telecom — Dashboard</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-       <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
-
     <link rel="stylesheet" href="Athon/style.css">
+    <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
+
+
+
 </head>
 
 <body>
     <div id="cursor" aria-hidden="true"></div>
 
-    <div class="container" role="main" aria-live="polite">
-
+    <main class="container" role="main" aria-live="polite">
         <div class="floating" id="floating">
-            <button id="floating-btn" aria-label="Abrir menu">⋮</button>
+            <button id="floating-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">⋮</button>
             <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
                 <div class="menu-tabs" role="tablist">
-                    <button id="tab-1" class="active" onclick="switchTab(1)">Planilhas</button>
-                    <button id="tab-2" onclick="switchTab(2)">Drive</button>
+                    <button id="tab-1" class="tab active" role="tab" aria-selected="true"
+                        data-tab="1">Planilhas</button>
+                    <button id="tab-2" class="tab" role="tab" aria-selected="false" data-tab="2">Drive</button>
                 </div>
                 <div class="menu-content">
-                    <div id="panel-1" class="menu-links">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSczvb1FwJ7XZedC8lwt3ZjcLhTskn8hsVdxNpbCOohgbze7Lw/viewform"
-                            target="_blank">Financeiro Diário</a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJEhunLBOElAmHojkDzOLhIm4DO67iIlMxXvhwI1pZbK6Jgg/viewform"
-                            target="_blank">Solicitação de Cancelamento</a>
+                    <div id="panel-1" class="menu-links" data-panel="1">
+                        <a href="https://docs.google.com/spreadsheets/d/1ClqFfHkbuycU88QomXHL88vH793DJ6p3MntE_YogSHw/edit?gid=999274711"
+                            target="_blank" rel="noopener">Financeiro Diário</a>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform"
-                            target="_blank">Solicitação de Renegociação</a>
+                            target="_blank" rel="noopener">Solicitação de Cancelamento</a>
+                        <a href="https://docs.google.com/spreadsheets/d/1BtUH-LZP5wBuXtx28Zg-mWzPvPAQOS4kuOuUdj_rVQU/edit?gid=368144143"
+                            target="_blank" rel="noopener">Solicitação de Renegociação</a>
                     </div>
-                    <div id="panel-2" class="menu-links" style="display:none">
-                        <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit?tab=t.0#heading=h.a5affn7scpmn"
-                            target="_blank">Script Padrão N1</a>
-                        <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit?tab=t.rvifx5qy9eak"
-                            target="_blank">Informações Equipamentos</a>
+                    <div id="panel-2" class="menu-links" data-panel="2" hidden>
+                        <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit"
+                            target="_blank" rel="noopener">Script Padrão N1</a>
+                        <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit"
+                            target="_blank" rel="noopener">Informações Equipamentos</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <header class="header-center">
+        <header class="header-center" role="banner">
             <div class="logo">
                 <img src="img/OIP.jpg" alt="Athon Telecom" class="company-logo"
-                onerror="this.src='https://via.placeholder.com/56x56?text=Logo'">
+                    onerror="this.src='https://via.placeholder.com/56x56?text=Logo'">
                 <div class="brand-text">
                     <div class="brand">Athon Telecom</div>
                 </div>
             </div>
         </header>
 
-        <div class="module-card" onclick="openModal('off.html')" style="cursor:pointer;">
-            <div class="module-title">Athon OFF</div>
-            <div class="mini-preview center">
-             <img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo">
-        </div>
+        <div class="modules-wrap" role="list">
+            <div class="module-card" role="listitem" tabindex="0" data-module="off">
+                <div class="module-title">Athon OFF</div>
+                <div class="mini-preview center">
+                    <img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo">
+                </div>
+                <div class="module-body">
+                    <button class="btn btn-primary" data-module="off">Abrir</button>
+                </div>
+            </div>
 
-            <div class="module-body">
-                <button class="btn btn-primary" data-module="off">Abrir</button>
+            <div class="module-card" role="listitem" tabindex="0" data-module="carne">
+                <div class="module-title">Athon Carne</div>
+                <div class="mini-preview center">
+                    <img src="img/OIP.jpg" alt="Athon Carne Logo" class="company-logo mini-logo">
+                </div>
+                <div class="module-body">
+                    <button class="btn btn-primary" data-module="carne">Abrir</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-shell">
             <button id="modal-close" class="modal-close" aria-label="Fechar módulo">✕</button>
-
-            <iframe id="modal-frame" class="modal-frame" src=""
-                title="Módulo em tela cheia"
-                sandbox="allow-scripts allow-same-origin">
-            </iframe>
+            <div class="modal-loading" aria-hidden="true">
+                <div class="spinner" aria-hidden="true"></div>
+            </div>
+            <iframe id="modal-frame" class="modal-frame" src="" title="Módulo em tela cheia"
+                sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
     </div>
 
@@ -85,7 +94,6 @@
 </body>
 
 </html>
-
 
 
 
