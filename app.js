@@ -340,52 +340,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function handleCopyResults() {
-        const dados = lerInputs();
-        const res = calcular(dados);
+   function handleCopyResults() {
+    const dados = lerInputs();
+    const res = calcular(dados);
 
-        if (res.total <= 0) {
-            return;
-        }
+    if (!res || res.total <= 0) return;
 
-        const pad = n => String(n).padStart(2, '0');
-        const hoje = new Date();
-        const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
+    const pad = n => String(n).padStart(2, '0');
+    const hoje = new Date();
+    const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
 
-        const lines = [];
-        lines.push(`Cliente negativado em: ${dataHoje}`);
-        lines.push(`Valor total da dívida: ${fmt(res.total)}`);
+    const lines = [];
+    lines.push(`Cliente negativado em: ${dataHoje}`);
 
-        if (res.proRata > 0) {
-            lines.push(`${fmt(res.proRata)} dias de uso ${dados.diasDeUso} )`);
-        }
+     lines.push('');
 
-        if (res.multaFidelidade > 0) {
-            lines.push(`${fmt(res.multaFidelidade)} meses de multa`);
-        }
-
-        if (res.equipamento > 0) {
-            lines.push(`${fmt(res.equipamento)} (valor do equipamento)`);
-        }
-
-        if (res.svaValorTotal > 0) {
-            lines.push(`${fmt(res.svaValorTotal)} (SVA)`);
-        }
-
-        const textToCopy = lines.join('\n');
-
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            if (DOM.copySuccessMessage) {
-                DOM.copySuccessMessage.classList.add('show');
-                setTimeout(() => {
-                    DOM.copySuccessMessage.classList.remove('show');
-                }, 2000);
-            }
-        }).catch(err => {
-            console.error('Falha ao copiar o texto: ', err);
-            alert('Não foi possível copiar o texto para a área de transferência.');
-        });
+    lines.push(`Valor total da dívida: ${fmt(res.total)}`);
+   
+    if (res.proRata > 0 && dados.diasDeUso > 0) {
+        lines.push(`${fmt(res.proRata)} — ${dados.diasDeUso} dias de uso`);
     }
+
+    if (res.multaFidelidade > 0 && dados.mesesFidelidadeRestantes > 0) {
+        lines.push(`${fmt(res.multaFidelidade)} — ${dados.mesesFidelidadeRestantes} meses de multa`);
+    }
+
+    if (res.multaMensalidadesDesconto > 0 && dados.qtdMensalidadesDesconto > 0) {
+        const pct = dados.descontoPercent ?? 0;
+        lines.push(`${fmt(res.multaMensalidadesDesconto)} — Mensalidades com desconto (${dados.qtdMensalidadesDesconto}x ${pct}% )`);
+    }
+
+    if (res.custoAdicional > 0) {
+        lines.push(`Custo adicional - ${fmt(res.custoAdicional)} `);
+    }
+
+    if (res.equipamento > 0) {
+        lines.push(`${fmt(res.equipamento)} — Equipamento não devolvido`);
+    }
+
+    if (res.svaValorTotal > 0) {
+        lines.push(`${fmt(res.svaValorTotal)} — SVAs`);
+        if (Array.isArray(dados.svaData) && dados.svaData.length) {
+            const detalhamento = dados.svaData
+                .filter(s => s.quantity > 0)
+                .map(s => {
+                    const unit = s.quantity ? (s.total / s.quantity) : 0;
+                    return `  • ${s.name}: ${s.quantity} x ${fmt(unit)} = ${fmt(s.total)}`;
+                });
+            if (detalhamento.length) lines.push(...detalhamento);
+        }
+    }
+
+    const textToCopy = lines.filter((l, idx, arr) => {
+        return !(l === '' && (idx === arr.length - 1 || arr[idx + 1] === ''));
+    }).join('\n');
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        if (DOM.copySuccessMessage) {
+            DOM.copySuccessMessage.classList.add('show');
+            setTimeout(() => {
+                DOM.copySuccessMessage.classList.remove('show');
+            }, 2000);
+        }
+    }).catch(err => {
+        console.error('Falha ao copiar o texto: ', err);
+        alert('Não foi possível copiar o texto para a área de transferência.');
+    });
+}
 
 
     const allInputs = [
@@ -456,5 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-pressed', 'true');
     }
 })();
+
 
 
