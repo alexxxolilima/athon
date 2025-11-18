@@ -1,4 +1,3 @@
-/* Athon standardized style.css */
 :root {
     --brand-primary: #0b4f73;
     --brand-secondary: #072b57;
@@ -18,13 +17,14 @@
 }
 
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
 }
 
 html,
 body {
     height: 100%;
-    margin: 0;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     -webkit-font-smoothing: antialiased
 }
@@ -32,7 +32,8 @@ body {
 body {
     background: var(--bg-body);
     color: var(--text-main);
-    overflow: auto
+    overflow: auto;
+    -webkit-font-smoothing: antialiased
 }
 
 .container {
@@ -88,6 +89,7 @@ body {
     height: 320px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--card-border);
@@ -96,11 +98,13 @@ body {
     transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
     text-decoration: none;
     color: inherit;
-    cursor: pointer
+    cursor: pointer;
+    padding: 12px
 }
 
 .module-card:focus {
-    outline: 3px solid var(--focus-ring)
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px
 }
 
 .module-card:hover {
@@ -109,52 +113,39 @@ body {
 }
 
 .module-title {
-    padding: 12px 10px 6px;
     text-align: center;
     font-weight: 700;
-    color: var(--text-main)
+    color: var(--text-main);
+    margin-bottom: 8px
+}
+
+.mini-preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    background: transparent;
+    padding: 6px
+}
+
+.mini-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35)
 }
 
 .module-body {
-    padding: 10px;
+    padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     background: transparent
-}
-
-.mini-preview {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 180px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent
-}
-
-.mini-frame {
-    width: 100%;
-    height: 900px;
-    transform: scale(0.22);
-    transform-origin: top center;
-    border: 0;
-    pointer-events: none;
-    margin-top: -120px
-}
-
-.preview-fallback {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-sec);
-    padding: 12px;
-    text-align: center
 }
 
 .btn {
@@ -221,8 +212,7 @@ body {
 }
 
 .menu-tabs .tab.active {
-    background: rgba(255, 255, 255, 0.02);
-    outline: none
+    background: rgba(255, 255, 255, 0.02)
 }
 
 .menu-content {
@@ -297,12 +287,13 @@ body {
 }
 
 .modal-loading {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    pointer-events: none
+    pointer-events: none;
+    z-index: calc(var(--modal-z)+5)
 }
 
 .modal-loading .spinner {
@@ -320,26 +311,31 @@ body {
     }
 }
 
-#cursor {
+#page-loader {
     position: fixed;
-    left: 0;
-    top: 0;
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    background: var(--brand-primary);
-    transform: translate(-50%, -50%);
-    transition: width .12s ease, height .12s ease, transform .08s linear;
-    opacity: .95
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2, 6, 23, 0.6);
+    z-index: 100000;
+    backdrop-filter: blur(4px)
 }
 
-.cursor-large {
-    width: 28px;
-    height: 28px;
-    opacity: .18
+#page-loader.show {
+    display: flex
 }
+
+.page-spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--brand-primary);
+    animation: spin 900ms linear infinite;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45)
+}
+
 
 .visually-hidden {
     position: absolute !important;
@@ -374,15 +370,7 @@ body {
     flex-shrink: 0
 }
 
-.mini-logo {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.15)
-}
-
-@media(max-width:880px) {
+@media (max-width:880px) {
     .module-card {
         width: 92%;
         height: 420px
@@ -394,7 +382,7 @@ body {
     }
 }
 
-@media(max-width:600px) {
+@media (max-width:600px) {
     .company-logo {
         width: 48px;
         height: 48px
@@ -404,4 +392,5 @@ body {
         font-size: 18px
     }
 }
+
 
