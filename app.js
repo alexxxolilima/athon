@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (res.custoAdicional > 0) {
-        lines.push(`Custo adicional - ${fmt(res.custoAdicional)} `);
+        lines.push(`${fmt(res.custoAdicional)} - Custo adicional`);
     }
 
     if (res.equipamento > 0) {
@@ -477,6 +477,9 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-pressed', 'true');
     }
 })();
+
+
+
 
 
 
