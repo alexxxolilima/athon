@@ -1,472 +1,454 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Verificação de Dependências
     if (typeof IMask === 'undefined') {
-        console.error("ERRO CRÍTICO: A biblioteca IMask não foi carregada. Verifique se o <script src='https://unpkg.com/imask'></script> está no seu HTML.");
+        console.error("ERRO: IMask não carregado. Adicione <script src='https://unpkg.com/imask'></script>");
         return;
     }
 
-    const REGRA_PADRAO = { PERCENTUAL_MULTA: 0.30 };
-    const CONFIG = {
-        DIAS_DO_MES_BASE: 30,
-        MAX_MESES_FIDELIDADE: 12,
-        MAX_DIAS_DE_USO: 365,
-        DEBOUNCE_MS: 300,
-        DARK_MODE_KEY: 'simulador_dark_mode',
-        PERSISTENCE_KEY: 'simulador_inputs'
+    // 2. Constantes e Configurações
+    const R = { PERCENTUAL_MULTA: 0.30 };
+    const C = {
+        DIAS_MES: 30,
+        MAX_FIDELIDADE: 12,
+        MAX_DIAS: 365,
+        DEBOUNCE: 300,
+        KEY_THEME: 'simulador_dark_mode',
+        KEY_DATA: 'simulador_inputs'
     };
 
+    // 3. Mapeamento do DOM (Cache de elementos)
+    const $ = id => document.getElementById(id);
     const DOM = {
-        planoBase: document.getElementById('planoBase'),
-        mesesFidelidadeRestantes: document.getElementById('mesesFidelidadeRestantes'),
-        diasDeUso: document.getElementById('diasDeUso'),
-        custoEquipamento: document.getElementById('custoEquipamento'),
+        // Inputs Principais
+        planoBase: $('planoBase'),
+        mesesFid: $('mesesFidelidadeRestantes'),
+        diasUso: $('diasDeUso'),
+        custoEquip: $('custoEquipamento'),
+        custoAd: $('custoAdicionalInput'),
+
+        // Descontos
+        descPercent: $('descontoPercent'),
+        qtdDesc: $('qtdMensalidadesDesconto'),
+
+        // SVAs (Coleta dinâmica)
         svaInputs: Array.from(document.querySelectorAll('.sva-quantity')),
-        custoAdicionalInput: document.getElementById('custoAdicionalInput'),
-        resultadoCard: document.getElementById('resultadoCard'),
-        btnReset: document.getElementById('btnReset'),
-        btnToggleDarkMode: document.getElementById('btnToggleDarkMode'),
-        btnCopyResults: document.getElementById('btnCopyResults'),
-        copySuccessMessage: document.getElementById('copySuccessMessage'),
-        groupPlanoBase: document.getElementById('group-planoBase'),
-        groupMesesFidelidadeRestantes: document.getElementById('group-mesesFidelidadeRestantes'),
-        groupDiasDeUso: document.getElementById('group-diasDeUso'),
-        descontoPercent: document.getElementById('descontoPercent'),
-        qtdMensalidadesDesconto: document.getElementById('qtdMensalidadesDesconto'),
-        btnAplicarMensalidadeDesconto: document.getElementById('btnAplicarMensalidadeDesconto'),
-        groupMensalidadeDesconto: document.getElementById('group-mensalidadeDesconto'),
-        errorMensalidadeDesconto: document.getElementById('error-mensalidadeDesconto'),
+
+        // Botões e UI
+        resultadoCard: $('resultadoCard'),
+        btnReset: $('btnReset'),
+        btnTheme: $('btnTheme'), // ID corrigido conforme HTML
+        btnCopy: $('btnCopyResults'),
+        msgCopy: $('copySuccessMessage'),
+
+        // Grupos para validação (Classes CSS)
+        gPlano: $('group-planoBase'),
+        gMeses: $('group-mesesFidelidadeRestantes'),
+        gDias: $('group-diasDeUso') || $('group-dias-de-uso'), // Fallback de segurança
+        gDesc: $('group-mensalidadeDesconto'),
+
+        // Saídas (Outputs)
         out: {
-            diasACobrar: document.getElementById('diasACobrar'),
-            valorMensalTotal: document.getElementById('valorMensalTotal'),
-            multaFidelidade: document.getElementById('multaFidelidade'),
-            proRata: document.getElementById('proRata'),
-            totalSva: document.getElementById('totalSva'),
-            equipamento: document.getElementById('equipamento'),
-            totalMulta: document.getElementById('totalMulta'),
-            custoAdicionalOut: document.getElementById('custoAdicionalOut'),
-            multaMensalidadesDesconto: document.getElementById('multaMensalidadesDesconto')
-        }
+            dias: $('diasACobrar'),
+            valorMensal: $('valorMensalTotal'),
+            multaFid: $('multaFidelidade'),
+            proRata: $('proRata'),
+            sva: $('totalSva'),
+            equip: $('equipamento'),
+            total: $('totalMulta'),
+            extra: $('custoAdicionalOut'),
+            multaDesc: $('multaMensalidadesDesconto')
+        },
+
+        // Calendário (Date Picker)
+        dateBtn: $('dateRangeBtn'),
+        datePanel: $('dateRangePanel'),
+        drFrom: $('drFrom'),
+        drTo: $('drTo'),
+        drDiff: $('drDiffCalc'),
+        drTotal: $('drTotalDays')
     };
 
-    const maskOptions = {
-        mask: Number,
-        scale: 2,
-        signed: false,
-        thousandsSeparator: '.',
-        padFractionalZeros: true,
-        normalizeZeros: true,
-        radix: ',',
-        mapToRadix: ['.']
-    };
+    // 4. Configuração de Máscaras (IMask)
+    const maskCfg = { mask: Number, scale: 2, signed: false, thousandsSeparator: '.', padFractionalZeros: true, normalizeZeros: true, radix: ',', mapToRadix: ['.'] };
+    let maskPlano = DOM.planoBase ? IMask(DOM.planoBase, maskCfg) : null;
+    let maskCusto = DOM.custoAd ? IMask(DOM.custoAd, maskCfg) : null;
 
-    const planoBaseMask = IMask(DOM.planoBase, maskOptions);
-    const custoAdicionalMask = IMask(DOM.custoAdicionalInput, maskOptions);
-
+    // Helpers
     const fmt = v => (isFinite(v) ? v : 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const getVal = (mask, el) => mask ? Number(mask.typedValue || 0) : Number(el?.value || 0);
 
+    // 5. Leitura de Dados
     function lerInputs() {
-        const planoBase = Number(planoBaseMask.typedValue ?? 0);
-        const custoAdicional = Number(custoAdicionalMask.typedValue ?? 0);
-        const mesesFidelidadeRestantes = Math.min(CONFIG.MAX_MESES_FIDELIDADE, Math.max(0, parseInt(DOM.mesesFidelidadeRestantes.value || 0)));
-        const diasDeUso = Math.min(CONFIG.MAX_DIAS_DE_USO, Math.max(0, parseInt(DOM.diasDeUso.value || 0)));
-        const custoEquipamento = parseFloat(DOM.custoEquipamento.value || 0) || 0;
-        const descontoPercent = Math.min(100, Math.max(0, parseFloat(DOM.descontoPercent?.value || 0)));
-        const qtdMensalidadesDesconto = Math.max(0, Math.min(CONFIG.MAX_MESES_FIDELIDADE, parseInt(DOM.qtdMensalidadesDesconto?.value || 0)));
+        const plano = getVal(maskPlano, DOM.planoBase);
+        const custoAd = getVal(maskCusto, DOM.custoAd);
+        const meses = Math.min(C.MAX_FIDELIDADE, Math.max(0, parseInt(DOM.mesesFid?.value || 0)));
+        const dias = Math.min(C.MAX_DIAS, Math.max(0, parseInt(DOM.diasUso?.value || 0)));
+        const equip = parseFloat(DOM.custoEquip?.value || 0) || 0;
+        const desc = Math.min(100, Math.max(0, parseFloat(DOM.descPercent?.value || 0)));
+        const qtdDesc = Math.max(0, Math.min(C.MAX_FIDELIDADE, parseInt(DOM.qtdDesc?.value || 0)));
 
-        let svaValorTotal = 0;
-        let svaData = [];
+        let svaTotal = 0, svaData = [];
         DOM.svaInputs.forEach(i => {
             const q = Math.max(0, parseInt(i.value || 0));
-            const price = parseFloat(i.dataset.price) || 0;
-            svaValorTotal += q * price;
-            svaData.push({ name: i.dataset.svaName, quantity: q, total: q * price });
+            const p = parseFloat(i.dataset.price || 0);
+            svaTotal += q * p;
+            svaData.push({ name: i.dataset.svaName, q, total: q * p });
         });
 
         const data = {
-            planoBase,
-            mesesFidelidadeRestantes,
-            diasDeUso,
-            custoEquipamento,
-            custoAdicional,
-            svaValorTotal,
-            svaData,
-            planoBaseUnmasked: planoBaseMask.unmaskedValue,
-            custoAdicionalUnmasked: custoAdicionalMask.unmaskedValue,
-            descontoPercent,
-            qtdMensalidadesDesconto
+            plano, custoAd, meses, dias, equip, desc, qtdDesc, svaTotal, svaData,
+            rawPlano: maskPlano?.unmaskedValue, rawCusto: maskCusto?.unmaskedValue
         };
-
-        salvarInputs(data);
+        salvarStorage(data);
         return data;
     }
 
-    function calcular(dados) {
-        const valorMensalTotal = dados.planoBase + dados.svaValorTotal;
-        let proRataPlanoBase = 0;
-        if (dados.diasDeUso > 0 && dados.planoBase > 0) {
-            const custoDiarioPlano = dados.planoBase / CONFIG.DIAS_DO_MES_BASE;
-            proRataPlanoBase = custoDiarioPlano * dados.diasDeUso;
+    // 6. Cálculo Lógico (Core)
+    function calcular(d) {
+        // Pro-rata
+        let proRata = 0;
+        if (d.dias > 0 && d.plano > 0) proRata = (d.plano / C.DIAS_MES) * d.dias;
+
+        // Multa Fidelidade
+        let multa = 0;
+        if (d.meses > 0) multa = (d.plano * d.meses) * R.PERCENTUAL_MULTA;
+
+        // Multa/Cobrança Mensalidades com Desconto
+        let multaDesc = 0;
+        if (d.qtdDesc > 0 && d.plano > 0) {
+            const valorComDesc = d.plano * (1 - (d.desc / 100));
+            multaDesc = valorComDesc * d.qtdDesc;
         }
-        const svaTotal = dados.svaValorTotal;
-        let multaFidelidade = 0;
-        if (dados.mesesFidelidadeRestantes > 0) {
-            const valorBaseRestante = dados.planoBase * dados.mesesFidelidadeRestantes;
-            multaFidelidade = valorBaseRestante * REGRA_PADRAO.PERCENTUAL_MULTA;
-        }
-        const equipamento = dados.custoEquipamento;
-        const custoAdicional = dados.custoAdicional;
-        let multaMensalidadesDesconto = 0;
-        let valorMensalidadesComDesconto = 0;
-        if (dados.qtdMensalidadesDesconto > 0 && dados.planoBase > 0 && dados.descontoPercent >= 0 && dados.descontoPercent <= 100) {
-            const mensalidadeDescontada = dados.planoBase * (1 - (dados.descontoPercent / 100));
-            valorMensalidadesComDesconto = mensalidadeDescontada * dados.qtdMensalidadesDesconto;
-            multaMensalidadesDesconto = valorMensalidadesComDesconto;
-        }
-        const total = multaFidelidade + proRataPlanoBase + svaTotal + equipamento + custoAdicional + multaMensalidadesDesconto;
-        return {
-            multaFidelidade,
-            proRata: proRataPlanoBase,
-            equipamento,
-            custoAdicional,
-            total,
-            valorMensalTotal,
-            svaValorTotal: svaTotal,
-            multaMensalidadesDesconto,
-            valorMensalidadesComDesconto
-        };
+
+        const total = multa + proRata + d.svaTotal + d.equip + d.custoAd + multaDesc;
+        return { multa, proRata, equip: d.equip, extra: d.custoAd, total, sva: d.svaTotal, multaDesc, plano: d.plano };
     }
 
-    function renderResultados(res, diasACobrar, planoBase = 0) {
-        DOM.out.diasACobrar.textContent = `${diasACobrar} dias`;
-        DOM.out.valorMensalTotal.textContent = fmt(planoBase);
-        DOM.out.multaFidelidade.textContent = fmt(res.multaFidelidade);
-        DOM.out.proRata.textContent = fmt(res.proRata);
-        DOM.out.totalSva.textContent = fmt(res.svaValorTotal);
-        DOM.out.equipamento.textContent = fmt(res.equipamento);
-        DOM.out.custoAdicionalOut.textContent = fmt(res.custoAdicional);
-        DOM.out.totalMulta.textContent = fmt(res.total);
-        if (DOM.out.multaMensalidadesDesconto) {
-            DOM.out.multaMensalidadesDesconto.textContent = fmt(res.multaMensalidadesDesconto || 0);
-        }
+    // 7. Renderização na Tela
+    function render(res, dias, plano) {
+        const set = (el, txt) => { if (el) el.textContent = txt; };
+        set(DOM.out.dias, `${dias} dias`);
+        set(DOM.out.valorMensal, fmt(plano));
+        set(DOM.out.proRata, fmt(res.proRata));
+        set(DOM.out.multaFid, fmt(res.multa));
+        set(DOM.out.sva, fmt(res.sva));
+        set(DOM.out.equip, fmt(res.equip));
+        set(DOM.out.extra, fmt(res.extra));
+        set(DOM.out.multaDesc, fmt(res.multaDesc));
+        set(DOM.out.total, fmt(res.total));
     }
 
-    function isFormEmpty(dados) {
-        const totalMonetaryValue = dados.planoBase + dados.svaValorTotal + dados.custoEquipamento + dados.custoAdicional;
-        const totalTermValue = dados.mesesFidelidadeRestantes + dados.diasDeUso;
-        return totalMonetaryValue === 0 && totalTermValue === 0;
-    }
-
-    function showResult() {
+    // 8. UI: Mostrar/Ocultar Card
+    function toggleResult(show) {
         const el = DOM.resultadoCard;
         if (!el) return;
-        el.classList.remove('animate-exit');
-        el.classList.add('visible', 'animate-entrance');
-        el.addEventListener('animationend', function handler() {
-            el.classList.remove('animate-entrance');
-        }, { once: true });
-    }
-
-    function hideResult() {
-        const el = DOM.resultadoCard;
-        if (!el) return;
-        if (!el.classList.contains('visible') && !el.classList.contains('animate-entrance')) {
-            el.classList.remove('animate-exit', 'animate-entrance', 'visible');
-            return;
-        }
-        el.classList.remove('animate-entrance');
-        el.classList.add('animate-exit');
-        el.addEventListener('animationend', function handler() {
-            el.classList.remove('animate-exit', 'visible');
-        }, { once: true });
-    }
-
-    function calcularEExibir() {
-        const dados = lerInputs();
-        const planoBaseIsValid = validarCampo(DOM.planoBase);
-        const descontoIsValid = (DOM.descontoPercent ? validarCampo(DOM.descontoPercent) : true) && (DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true);
-        if (!planoBaseIsValid || !descontoIsValid) {
-            hideResult();
-            renderResultados({ multaFidelidade: 0, proRata: 0, equipamento: 0, custoAdicional: 0, totalSva: 0, total: 0, valorMensalTotal: 0, multaMensalidadesDesconto: 0 }, 0, 0);
-            return;
-        }
-        const formIsEmpty = isFormEmpty(dados);
-        if (formIsEmpty) {
-            hideResult();
-            renderResultados({ multaFidelidade: 0, proRata: 0, equipamento: 0, custoAdicional: 0, totalSva: 0, total: 0, valorMensalTotal: 0, multaMensalidadesDesconto: 0 }, 0, 0);
-            return;
-        }
-        const res = calcular(dados);
-        renderResultados(res, dados.diasDeUso, dados.planoBase);
-        if (res && res.total > 0) {
-            showResult();
+        if (show) {
+            el.classList.remove('animate-exit');
+            el.classList.add('visible', 'animate-entrance');
         } else {
-            hideResult();
+            if (!el.classList.contains('visible')) return;
+            el.classList.remove('animate-entrance');
+            el.classList.add('animate-exit');
+            setTimeout(() => el.classList.remove('visible', 'animate-exit'), 500); // Wait CSS animation
         }
     }
 
-    function debounce(fn, ms) {
-        let t;
-        return function (...args) {
-            clearTimeout(t);
-            t = setTimeout(() => fn.apply(this, args), ms);
-        };
-    }
-    const debouncedCalc = debounce(calcularEExibir, CONFIG.DEBOUNCE_MS);
+    // 9. Função Principal (Orquestradora)
+    function calcularEExibir() {
+        const d = lerInputs();
+        const valid = validar(false); // Valida sem mostrar erro visual agressivo no input contínuo
 
-    function showFieldError(inputEl, groupEl, errorMessage, isError) {
-        if (!groupEl || !inputEl) return;
-        groupEl.classList.toggle('has-error', isError);
-        inputEl.setAttribute('aria-invalid', isError);
-        const errorFeedbackEl = document.getElementById(inputEl.getAttribute('aria-describedby'));
-        if (errorFeedbackEl) {
-            errorFeedbackEl.textContent = errorMessage;
+        if (!valid || (d.plano + d.svaTotal + d.equip + d.custoAd + d.meses + d.dias === 0)) {
+            toggleResult(false);
+            render({ multa: 0, proRata: 0, equip: 0, extra: 0, total: 0, sva: 0, multaDesc: 0 }, 0, 0);
+            return;
         }
+
+        const res = calcular(d);
+        render(res, d.dias, d.plano);
+
+        if (res.total > 0) toggleResult(true);
+        else toggleResult(false);
     }
 
-    function validarCampo(inputEl) {
-        if (!inputEl) return true;
-        let isValid = true;
-        let errorMessage = '';
-        if (inputEl === DOM.planoBase) {
-            const planoBaseValue = Number(planoBaseMask.typedValue ?? 0);
-            if (planoBaseValue <= 0) {
-                isValid = false;
-                errorMessage = "O valor do Plano Base é obrigatório e deve ser maior que R$ 0,00.";
-            }
-            showFieldError(inputEl, DOM.groupPlanoBase, errorMessage, !isValid);
-        } else if (inputEl === DOM.mesesFidelidadeRestantes) {
-            const value = parseInt(inputEl.value || 0);
-            if (value < 0 || value > CONFIG.MAX_MESES_FIDELIDADE) {
-                isValid = false;
-                errorMessage = `O número de meses deve ser entre 0 e ${CONFIG.MAX_MESES_FIDELIDADE}.`;
-            }
-            showFieldError(inputEl, DOM.groupMesesFidelidadeRestantes, errorMessage, !isValid);
-        } else if (inputEl === DOM.diasDeUso) {
-            const value = parseInt(inputEl.value || 0);
-            if (value < 0 || value > CONFIG.MAX_DIAS_DE_USO) {
-                isValid = false;
-                errorMessage = `O número de dias deve ser entre 0 e ${CONFIG.MAX_DIAS_DE_USO}.`;
-            }
-            showFieldError(inputEl, DOM.groupDiasDeUso, errorMessage, !isValid);
-        } else if (inputEl === DOM.descontoPercent) {
-            const v = parseFloat(inputEl.value || 0);
-            if (isNaN(v) || v < 0 || v > 100) {
-                isValid = false;
-                errorMessage = 'Informe um desconto entre 0 e 100.';
-            }
-            showFieldError(inputEl, DOM.groupMensalidadeDesconto, errorMessage, !isValid);
-        } else if (inputEl === DOM.qtdMensalidadesDesconto) {
-            const v = parseInt(inputEl.value || 0);
-            if (isNaN(v) || v < 0 || v > CONFIG.MAX_MESES_FIDELIDADE) {
-                isValid = false;
-                errorMessage = `Quantidade deve ser entre 0 e ${CONFIG.MAX_MESES_FIDELIDADE}.`;
-            }
-            showFieldError(inputEl, DOM.groupMensalidadeDesconto, errorMessage, !isValid);
-        }
-        return isValid;
+    // Debounce para performance
+    const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+    const calcDebounced = debounce(calcularEExibir, C.DEBOUNCE);
+
+    // 10. Validação
+    function setError(el, group, msg, isErr) {
+        if (!group) return;
+        group.classList.toggle('has-error', isErr);
+        if (el) el.setAttribute('aria-invalid', isErr);
+        const f = group.querySelector('.error-feedback') || document.getElementById(el?.getAttribute('aria-describedby'));
+        if (f) f.textContent = msg;
     }
 
-    function salvarInputs(dados) {
+    function validar(visual = true) {
+        let ok = true;
+
+        // Plano Base
+        const p = getVal(maskPlano, DOM.planoBase);
+        const pOk = p > 0;
+        if (visual) setError(DOM.planoBase, DOM.gPlano, 'Valor obrigatório > 0.', !pOk);
+        if (!pOk) ok = false;
+
+        // Meses
+        const m = parseInt(DOM.mesesFid?.value || 0);
+        const mOk = m >= 0 && m <= C.MAX_FIDELIDADE;
+        if (visual && !mOk) setError(DOM.mesesFid, DOM.gMeses, `Entre 0 e ${C.MAX_FIDELIDADE}.`, true);
+        if (!mOk) ok = false;
+
+        // Dias
+        const d = parseInt(DOM.diasUso?.value || 0);
+        const dOk = d >= 0 && d <= C.MAX_DIAS;
+        if (visual && !dOk) setError(DOM.diasUso, DOM.gDias, `Entre 0 e ${C.MAX_DIAS}.`, true);
+        if (!dOk) ok = false;
+
+        return ok;
+    }
+
+    // 11. Persistência (LocalStorage)
+    function salvarStorage(d) {
         try {
-            const svaQuantities = DOM.svaInputs.map(i => ({
-                price: i.dataset.price,
-                q: Math.max(0, parseInt(i.value || 0))
-            }));
-            const dataToSave = {
-                planoBaseUnmasked: dados.planoBaseUnmasked,
-                custoAdicionalUnmasked: dados.custoAdicionalUnmasked,
-                mesesFidelidadeRestantes: dados.mesesFidelidadeRestantes,
-                diasDeUso: dados.diasDeUso,
-                custoEquipamento: dados.custoEquipamento,
-                svaQuantities: svaQuantities,
-                descontoPercent: dados.descontoPercent,
-                qtdMensalidadesDesconto: dados.qtdMensalidadesDesconto
+            const payload = {
+                plano: d.rawPlano, custo: d.rawCusto, meses: d.meses, dias: d.dias,
+                equip: d.equip, desc: d.desc, qtdDesc: d.qtdDesc,
+                sva: DOM.svaInputs.map(i => ({ p: i.dataset.price, v: i.value }))
             };
-            localStorage.setItem(CONFIG.PERSISTENCE_KEY, JSON.stringify(dataToSave));
-        } catch (e) {
-            console.error("Erro ao salvar dados no localStorage:", e);
-        }
+            localStorage.setItem(C.KEY_DATA, JSON.stringify(payload));
+        } catch (e) { }
     }
 
-    function carregarInputs() {
+    function carregarStorage() {
         try {
-            const savedData = localStorage.getItem(CONFIG.PERSISTENCE_KEY);
-            if (!savedData) return;
-            const data = JSON.parse(savedData);
-            if (data.planoBaseUnmasked) {
-                planoBaseMask.unmaskedValue = data.planoBaseUnmasked;
-            }
-            if (data.custoAdicionalUnmasked) {
-                custoAdicionalMask.unmaskedValue = data.custoAdicionalUnmasked;
-            }
-            DOM.mesesFidelidadeRestantes.value = data.mesesFidelidadeRestantes || 0;
-            DOM.diasDeUso.value = data.diasDeUso || 0;
-            DOM.custoEquipamento.value = data.custoEquipamento || 0;
-            if (DOM.descontoPercent) DOM.descontoPercent.value = data.descontoPercent ?? '';
-            if (DOM.qtdMensalidadesDesconto) DOM.qtdMensalidadesDesconto.value = data.qtdMensalidadesDesconto ?? 0;
-            if (data.svaQuantities) {
-                DOM.svaInputs.forEach(inputEl => {
-                    const savedSVA = data.svaQuantities.find(s => s.price == inputEl.dataset.price);
-                    if (savedSVA) {
-                        inputEl.value = savedSVA.q;
-                    }
-                });
-            }
-        } catch (e) {
-            console.error("Erro ao carregar dados do localStorage:", e);
-            localStorage.removeItem(CONFIG.PERSISTENCE_KEY);
-        }
+            const raw = localStorage.getItem(C.KEY_DATA);
+            if (!raw) return;
+            const d = JSON.parse(raw);
+            if (d.plano && maskPlano) maskPlano.unmaskedValue = d.plano;
+            if (d.custo && maskCusto) maskCusto.unmaskedValue = d.custo;
+            if (DOM.mesesFid) DOM.mesesFid.value = d.meses || 0;
+            if (DOM.diasUso) DOM.diasUso.value = d.dias || 0;
+            if (DOM.custoEquip) DOM.custoEquip.value = d.equip || 0;
+            if (DOM.descPercent) DOM.descPercent.value = d.desc || '';
+            if (DOM.qtdDesc) DOM.qtdDesc.value = d.qtdDesc || 0;
+            if (d.sva) d.sva.forEach(s => {
+                const el = DOM.svaInputs.find(i => i.dataset.price === s.p);
+                if (el) el.value = s.v;
+            });
+        } catch (e) { localStorage.removeItem(C.KEY_DATA); }
     }
 
-    function resetFormulario() {
-        DOM.planoBase.value = '';
-        planoBaseMask.updateValue();
-        DOM.custoAdicionalInput.value = '';
-        custoAdicionalMask.updateValue();
-        DOM.mesesFidelidadeRestantes.value = 0;
-        DOM.diasDeUso.value = 0;
-        DOM.custoEquipamento.value = 0;
+    // 12. Reset Global
+    function resetAll() {
+        if (DOM.planoBase) DOM.planoBase.value = '';
+        if (maskPlano) maskPlano.updateValue();
+        if (DOM.custoAd) DOM.custoAd.value = '';
+        if (maskCusto) maskCusto.updateValue();
+        [DOM.mesesFid, DOM.diasUso, DOM.custoEquip, DOM.qtdDesc].forEach(e => { if (e) e.value = 0; });
+        if (DOM.descPercent) DOM.descPercent.value = '';
         DOM.svaInputs.forEach(i => i.value = 0);
-        if (DOM.descontoPercent) DOM.descontoPercent.value = '';
-        if (DOM.qtdMensalidadesDesconto) DOM.qtdMensalidadesDesconto.value = 0;
-        DOM.groupPlanoBase.classList.remove('has-error');
-        DOM.planoBase.setAttribute('aria-invalid', 'false');
-        DOM.resultadoCard.classList.remove('visible');
-        localStorage.removeItem(CONFIG.PERSISTENCE_KEY);
+
+        // Limpar erros visuais
+        [DOM.gPlano, DOM.gMeses, DOM.gDias, DOM.gDesc].forEach(g => g?.classList.remove('has-error'));
+
+        localStorage.removeItem(C.KEY_DATA);
         calcularEExibir();
     }
 
-    function toggleDarkMode() {
-        const isDarkMode = document.body.classList.toggle('dark-mode');
-        localStorage.setItem(CONFIG.DARK_MODE_KEY, isDarkMode ? 'true' : 'false');
+    // 13. Dark Mode
+    function initTheme() {
+        const saved = localStorage.getItem(C.KEY_THEME);
+        const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved === 'true' || (saved === null && sysDark);
+        document.body.classList.toggle('dark-mode', isDark);
+        if (DOM.btnTheme) DOM.btnTheme.setAttribute('aria-pressed', String(isDark));
+    }
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem(C.KEY_THEME, String(isDark));
+        if (DOM.btnTheme) DOM.btnTheme.setAttribute('aria-pressed', String(isDark));
     }
 
-    function initDarkMode() {
-        const savedMode = localStorage.getItem(CONFIG.DARK_MODE_KEY);
-        if (savedMode === 'true' || (savedMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.body.classList.add('dark-mode');
+    // 14. Copiar Resultados
+    function copyResults() {
+        const d = lerInputs();
+        const r = calcular(d);
+        if (r.total <= 0) return;
+
+        const now = new Date();
+        const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+
+        let lines = [
+            `Cliente negativado em: ${dateStr}`, '',
+            `Valor total da dívida: ${fmt(r.total)}`
+        ];
+        if (r.proRata > 0) lines.push(`${fmt(r.proRata)} — ${d.dias} dias de uso`);
+        if (r.multa > 0) lines.push(`${fmt(r.multa)} — ${d.meses} meses de multa`);
+        if (r.multaDesc > 0) lines.push(`${fmt(r.multaDesc)} — Mensalidades desc. (${d.qtdDesc}x ${d.desc}%)`);
+        if (r.extra > 0) lines.push(`${fmt(r.extra)} — Custo adicional`);
+        if (r.equip > 0) lines.push(`${fmt(r.equip)} — Equipamento não devolvido`);
+        if (r.sva > 0) {
+            lines.push(`${fmt(r.sva)} — SVAs`);
+            d.svaData.filter(s => s.q > 0).forEach(s =>
+                lines.push(`  • ${s.name}: ${s.q} x ${fmt(s.total / s.q)} = ${fmt(s.total)}`)
+            );
         }
+
+        navigator.clipboard.writeText(lines.join('\n'))
+            .then(() => {
+                if (DOM.msgCopy) {
+                    DOM.msgCopy.classList.add('show');
+                    setTimeout(() => DOM.msgCopy.classList.remove('show'), 2000);
+                }
+            })
+            .catch(() => alert('Erro ao copiar.'));
     }
 
-    function handleCopyResults() {
-        const dados = lerInputs();
-        const res = calcular(dados);
-        if (!res || res.total <= 0) return;
-        const pad = n => String(n).padStart(2, '0');
-        const hoje = new Date();
-        const dataHoje = `${pad(hoje.getDate())}/${pad(hoje.getMonth() + 1)}/${hoje.getFullYear()}`;
-        const lines = [];
-        lines.push(`Cliente negativado em: ${dataHoje}`);
-        lines.push('');
-        lines.push(`Valor total da dívida: ${fmt(res.total)}`);
-        if (res.proRata > 0 && dados.diasDeUso > 0) {
-            lines.push(`${fmt(res.proRata)} — ${dados.diasDeUso} dias de uso`);
-        }
-        if (res.multaFidelidade > 0 && dados.mesesFidelidadeRestantes > 0) {
-            lines.push(`${fmt(res.multaFidelidade)} — ${dados.mesesFidelidadeRestantes} meses de multa`);
-        }
-        if (res.multaMensalidadesDesconto > 0 && dados.qtdMensalidadesDesconto > 0) {
-            const pct = dados.descontoPercent ?? 0;
-            lines.push(`${fmt(res.multaMensalidadesDesconto)} — Mensalidades com desconto (${dados.qtdMensalidadesDesconto}x ${pct}% )`);
-        }
-        if (res.custoAdicional > 0) {
-            lines.push(`${fmt(res.custoAdicional)} - Custo adicional`);
-        }
-        if (res.equipamento > 0) {
-            lines.push(`${fmt(res.equipamento)} — Equipamento não devolvido`);
-        }
-        if (res.svaValorTotal > 0) {
-            lines.push(`${fmt(res.svaValorTotal)} — SVAs`);
-            if (Array.isArray(dados.svaData) && dados.svaData.length) {
-                const detalhamento = dados.svaData
-                    .filter(s => s.quantity > 0)
-                    .map(s => {
-                        const unit = s.quantity ? (s.total / s.quantity) : 0;
-                        return `  • ${s.name}: ${s.quantity} x ${fmt(unit)} = ${fmt(s.total)}`;
-                    });
-                if (detalhamento.length) lines.push(...detalhamento);
-            }
-        }
-        const textToCopy = lines.filter((l, idx, arr) => {
-            return !(l === '' && (idx === arr.length - 1 || arr[idx + 1] === ''));
-        }).join('\n');
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            if (DOM.copySuccessMessage) {
-                DOM.copySuccessMessage.classList.add('show');
-                setTimeout(() => {
-                    DOM.copySuccessMessage.classList.remove('show');
-                }, 2000);
-            }
-        }).catch(err => {
-            console.error('Falha ao copiar o texto: ', err);
-            alert('Não foi possível copiar o texto para a área de transferência.');
-        });
-    }
+    const inputs = [DOM.planoBase, DOM.mesesFid, DOM.diasUso, DOM.custoEquip, DOM.custoAd, DOM.descPercent, DOM.qtdDesc, ...DOM.svaInputs].filter(Boolean);
 
-    const allInputs = [
-        DOM.planoBase, DOM.mesesFidelidadeRestantes, DOM.diasDeUso,
-        DOM.custoEquipamento, DOM.custoAdicionalInput,
-        DOM.descontoPercent, DOM.qtdMensalidadesDesconto,
-        ...DOM.svaInputs
-    ].filter(Boolean);
-
-    allInputs.forEach(input => {
-        input.addEventListener('input', debouncedCalc);
-        if (input.type === 'number' || input.id === 'custoEquipamento') {
-            input.addEventListener('change', () => {
-                validarCampo(input);
-                debouncedCalc();
-            });
-        } else if (input === DOM.planoBase) {
-            planoBaseMask.on('complete', () => {
-                validarCampo(input);
-                debouncedCalc();
-            });
-            planoBaseMask.on('accept', debouncedCalc);
-        } else if (input === DOM.custoAdicionalInput) {
-            custoAdicionalMask.on('complete', debouncedCalc);
-            custoAdicionalMask.on('accept', debouncedCalc);
+    inputs.forEach(i => {
+        i.addEventListener('input', calcDebounced);
+        if (i.type === 'number' || i.tagName === 'SELECT') {
+            i.addEventListener('change', () => { validar(true); calcDebounced(); });
         }
     });
 
-    if (DOM.btnAplicarMensalidadeDesconto) {
-        DOM.btnAplicarMensalidadeDesconto.addEventListener('click', () => {
-            const ok1 = DOM.descontoPercent ? validarCampo(DOM.descontoPercent) : true;
-            const ok2 = DOM.qtdMensalidadesDesconto ? validarCampo(DOM.qtdMensalidadesDesconto) : true;
-            if (ok1 && ok2) debouncedCalc();
-        });
-    }
+    if (maskPlano) maskPlano.on('complete', () => { validar(true); calcDebounced(); });
+    if (maskCusto) maskCusto.on('accept', calcDebounced);
 
-    if (DOM.btnReset) DOM.btnReset.addEventListener('click', resetFormulario);
-    if (DOM.btnToggleDarkMode) DOM.btnToggleDarkMode.addEventListener('click', toggleDarkMode);
-    if (DOM.btnCopyResults) DOM.btnCopyResults.addEventListener('click', handleCopyResults);
+    if (DOM.btnReset) DOM.btnReset.addEventListener('click', resetAll);
+    if (DOM.btnTheme) DOM.btnTheme.addEventListener('click', toggleTheme);
+    if (DOM.btnCopy) DOM.btnCopy.addEventListener('click', copyResults);
 
-    initDarkMode();
-    carregarInputs();
+    initTheme();
+    carregarStorage();
     calcularEExibir();
+
+    (function calendarModule() {
+        if (!DOM.dateBtn || !DOM.datePanel) return;
+
+        let picker = document.getElementById('datePickerWidget');
+
+        if (!picker) {
+            picker = document.createElement('div');
+            picker.id = 'datePickerWidget';
+            DOM.datePanel.appendChild(picker);
+        }
+
+        const pad = n => String(n).padStart(2, '0');
+        const parseBr = s => {
+            if (!s) return null; const p = s.split('/');
+            return p.length === 3 ? new Date(+p[2], +p[1] - 1, +p[0]) : null;
+        };
+        const fmtBr = d => `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+        const diffDays = (a, b) => Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / (86400000));
+
+        function buildCal(m, y, input) {
+            picker.innerHTML = '';
+            const head = document.createElement('div');
+
+            const prev = document.createElement('button'); prev.textContent = '<'; prev.onclick = (e) => { e.stopPropagation(); buildCal(m < 1 ? 11 : m - 1, m < 1 ? y - 1 : y, input); };
+            const next = document.createElement('button'); next.textContent = '>'; next.onclick = (e) => { e.stopPropagation(); buildCal(m > 10 ? 0 : m + 1, m > 10 ? y + 1 : y, input); };
+            const title = document.createElement('strong'); title.textContent = `${pad(m + 1)}/${y}`;
+
+            head.append(prev, title, next);
+            picker.appendChild(head);
+
+            // Grid
+            const grid = document.createElement('div');
+            grid.style.cssText = 'display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center';
+
+            const weeks = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+            weeks.forEach(w => {
+                const el = document.createElement('div');
+                el.textContent = w;
+                el.style.cssText = 'font-size:0.75rem; font-weight:bold; color:var(--text-muted); padding-bottom:4px;';
+                grid.appendChild(el);
+            });
+
+            const daysInMonth = new Date(y, m + 1, 0).getDate();
+            const startDay = new Date(y, m, 1).getDay();
+
+            for (let i = 0; i < startDay; i++) grid.appendChild(document.createElement('div'));
+            for (let d = 1; d <= daysInMonth; d++) {
+                const btn = document.createElement('button');
+                btn.textContent = d;
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    input.value = fmtBr(new Date(y, m, d));
+                    updateDiff();
+                };
+                grid.appendChild(btn);
+            }
+            picker.appendChild(grid);
+        }
+
+        let activeInput = null;
+
+        function showCal(input) {
+            if (activeInput === input && picker.style.display === 'block') {
+                return;
+            }
+
+            activeInput = input;
+            const d = parseBr(input.value) || new Date();
+            buildCal(d.getMonth(), d.getFullYear(), input);
+
+            picker.style.display = 'block';
+        }
+
+        function hideCal() {
+            picker.style.display = 'none';
+            activeInput = null;
+        }
+
+        function outsideClick(e) {
+            if (!DOM.datePanel.contains(e.target) && e.target !== DOM.dateBtn) {
+                DOM.datePanel.style.display = 'none';
+                DOM.datePanel.setAttribute('data-visible', 'false');
+            }
+        }
+        document.addEventListener('click', outsideClick);
+
+        function updateDiff() {
+            const d1 = parseBr(DOM.drFrom.value), d2 = parseBr(DOM.drTo.value);
+            if (d1 && d2) {
+                const diff = Math.max(0, diffDays(d1, d2));
+                if (DOM.drDiff) DOM.drDiff.textContent = `${Math.floor(diff / 7)} sem, ${diff % 7} dias`;
+                if (DOM.drTotal) DOM.drTotal.textContent = `${diff} dias total`;
+                if (DOM.diasUso) { DOM.diasUso.value = diff; DOM.diasUso.dispatchEvent(new Event('input')); }
+            }
+        }
+
+        DOM.dateBtn.onclick = (e) => {
+            e.stopPropagation();
+            const vis = DOM.datePanel.getAttribute('data-visible') === 'true';
+            DOM.datePanel.style.display = vis ? 'none' : 'block';
+            DOM.datePanel.setAttribute('data-visible', !vis);
+
+            if (!vis && !DOM.drFrom.value) {
+                const hoje = fmtBr(new Date());
+                DOM.drFrom.value = hoje;
+                DOM.drTo.value = hoje;
+                updateDiff();
+            }
+
+            if (!vis) {
+                showCal(DOM.drFrom);
+            }
+        };
+
+        if (DOM.drFrom) DOM.drFrom.addEventListener('click', (e) => { e.stopPropagation(); showCal(DOM.drFrom); });
+        if (DOM.drTo) DOM.drTo.addEventListener('click', (e) => { e.stopPropagation(); showCal(DOM.drTo); });
+
+        DOM.datePanel.addEventListener('click', (e) => e.stopPropagation());
+
+    })();
+
 });
 
-(function () {
-    const body = document.body;
-    const btn = document.getElementById('btnTheme');
-    if (!btn) return;
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        btn.textContent = '☀️';
-        btn.setAttribute('aria-pressed', 'true');
-    }
-    btn.addEventListener('click', function () {
-        const isDark = body.classList.toggle('dark-mode');
-        btn.textContent = isDark ? '☀️' : '🌙';
-        btn.setAttribute('aria-pressed', String(isDark));
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-    if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        body.classList.add('dark-mode');
-        btn.textContent = '☀️';
-        btn.setAttribute('aria-pressed', 'true');
-    }
-})();
+
 
 
 
