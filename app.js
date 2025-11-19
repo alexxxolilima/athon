@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Verificação de Dependências
     if (typeof IMask === 'undefined') {
         console.error("ERRO: IMask não carregado. Adicione <script src='https://unpkg.com/imask'></script>");
         return;
     }
 
-    // 2. Constantes e Configurações
     const R = { PERCENTUAL_MULTA: 0.30 };
     const C = {
         DIAS_MES: 30,
@@ -16,37 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
         KEY_DATA: 'simulador_inputs'
     };
 
-    // 3. Mapeamento do DOM (Cache de elementos)
     const $ = id => document.getElementById(id);
     const DOM = {
-        // Inputs Principais
         planoBase: $('planoBase'),
         mesesFid: $('mesesFidelidadeRestantes'),
         diasUso: $('diasDeUso'),
         custoEquip: $('custoEquipamento'),
         custoAd: $('custoAdicionalInput'),
 
-        // Descontos
         descPercent: $('descontoPercent'),
         qtdDesc: $('qtdMensalidadesDesconto'),
 
-        // SVAs (Coleta dinâmica)
         svaInputs: Array.from(document.querySelectorAll('.sva-quantity')),
 
-        // Botões e UI
         resultadoCard: $('resultadoCard'),
         btnReset: $('btnReset'),
-        btnTheme: $('btnTheme'), // ID corrigido conforme HTML
+        btnTheme: $('btnTheme'), 
         btnCopy: $('btnCopyResults'),
         msgCopy: $('copySuccessMessage'),
 
-        // Grupos para validação (Classes CSS)
         gPlano: $('group-planoBase'),
         gMeses: $('group-mesesFidelidadeRestantes'),
-        gDias: $('group-diasDeUso') || $('group-dias-de-uso'), // Fallback de segurança
+        gDias: $('group-diasDeUso') || $('group-dias-de-uso'),
         gDesc: $('group-mensalidadeDesconto'),
 
-        // Saídas (Outputs)
         out: {
             dias: $('diasACobrar'),
             valorMensal: $('valorMensalTotal'),
@@ -59,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
             multaDesc: $('multaMensalidadesDesconto')
         },
 
-        // Calendário (Date Picker)
         dateBtn: $('dateRangeBtn'),
         datePanel: $('dateRangePanel'),
         drFrom: $('drFrom'),
@@ -68,16 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         drTotal: $('drTotalDays')
     };
 
-    // 4. Configuração de Máscaras (IMask)
     const maskCfg = { mask: Number, scale: 2, signed: false, thousandsSeparator: '.', padFractionalZeros: true, normalizeZeros: true, radix: ',', mapToRadix: ['.'] };
     let maskPlano = DOM.planoBase ? IMask(DOM.planoBase, maskCfg) : null;
     let maskCusto = DOM.custoAd ? IMask(DOM.custoAd, maskCfg) : null;
 
-    // Helpers
     const fmt = v => (isFinite(v) ? v : 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const getVal = (mask, el) => mask ? Number(mask.typedValue || 0) : Number(el?.value || 0);
 
-    // 5. Leitura de Dados
     function lerInputs() {
         const plano = getVal(maskPlano, DOM.planoBase);
         const custoAd = getVal(maskCusto, DOM.custoAd);
@@ -103,17 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return data;
     }
 
-    // 6. Cálculo Lógico (Core)
     function calcular(d) {
-        // Pro-rata
         let proRata = 0;
         if (d.dias > 0 && d.plano > 0) proRata = (d.plano / C.DIAS_MES) * d.dias;
 
-        // Multa Fidelidade
         let multa = 0;
         if (d.meses > 0) multa = (d.plano * d.meses) * R.PERCENTUAL_MULTA;
 
-        // Multa/Cobrança Mensalidades com Desconto
         let multaDesc = 0;
         if (d.qtdDesc > 0 && d.plano > 0) {
             const valorComDesc = d.plano * (1 - (d.desc / 100));
@@ -124,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { multa, proRata, equip: d.equip, extra: d.custoAd, total, sva: d.svaTotal, multaDesc, plano: d.plano };
     }
 
-    // 7. Renderização na Tela
     function render(res, dias, plano) {
         const set = (el, txt) => { if (el) el.textContent = txt; };
         set(DOM.out.dias, `${dias} dias`);
@@ -138,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         set(DOM.out.total, fmt(res.total));
     }
 
-    // 8. UI: Mostrar/Ocultar Card
     function toggleResult(show) {
         const el = DOM.resultadoCard;
         if (!el) return;
@@ -149,14 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!el.classList.contains('visible')) return;
             el.classList.remove('animate-entrance');
             el.classList.add('animate-exit');
-            setTimeout(() => el.classList.remove('visible', 'animate-exit'), 500); // Wait CSS animation
+            setTimeout(() => el.classList.remove('visible', 'animate-exit'), 500);
         }
     }
 
-    // 9. Função Principal (Orquestradora)
     function calcularEExibir() {
         const d = lerInputs();
-        const valid = validar(false); // Valida sem mostrar erro visual agressivo no input contínuo
+        const valid = validar(false);
 
         if (!valid || (d.plano + d.svaTotal + d.equip + d.custoAd + d.meses + d.dias === 0)) {
             toggleResult(false);
@@ -171,11 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
         else toggleResult(false);
     }
 
-    // Debounce para performance
     const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
     const calcDebounced = debounce(calcularEExibir, C.DEBOUNCE);
 
-    // 10. Validação
     function setError(el, group, msg, isErr) {
         if (!group) return;
         group.classList.toggle('has-error', isErr);
@@ -187,19 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function validar(visual = true) {
         let ok = true;
 
-        // Plano Base
         const p = getVal(maskPlano, DOM.planoBase);
         const pOk = p > 0;
-        if (visual) setError(DOM.planoBase, DOM.gPlano, 'Valor obrigatório > 0.', !pOk);
+        if (visual) setError(DOM.planoBase, DOM.gPlano, 'Insira um valor maior que R$ 0,00.', !pOk);
         if (!pOk) ok = false;
 
-        // Meses
         const m = parseInt(DOM.mesesFid?.value || 0);
         const mOk = m >= 0 && m <= C.MAX_FIDELIDADE;
         if (visual && !mOk) setError(DOM.mesesFid, DOM.gMeses, `Entre 0 e ${C.MAX_FIDELIDADE}.`, true);
         if (!mOk) ok = false;
 
-        // Dias
         const d = parseInt(DOM.diasUso?.value || 0);
         const dOk = d >= 0 && d <= C.MAX_DIAS;
         if (visual && !dOk) setError(DOM.diasUso, DOM.gDias, `Entre 0 e ${C.MAX_DIAS}.`, true);
@@ -208,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return ok;
     }
 
-    // 11. Persistência (LocalStorage)
     function salvarStorage(d) {
         try {
             const payload = {
@@ -239,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) { localStorage.removeItem(C.KEY_DATA); }
     }
 
-    // 12. Reset Global
     function resetAll() {
         if (DOM.planoBase) DOM.planoBase.value = '';
         if (maskPlano) maskPlano.updateValue();
@@ -249,14 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (DOM.descPercent) DOM.descPercent.value = '';
         DOM.svaInputs.forEach(i => i.value = 0);
 
-        // Limpar erros visuais
         [DOM.gPlano, DOM.gMeses, DOM.gDias, DOM.gDesc].forEach(g => g?.classList.remove('has-error'));
 
         localStorage.removeItem(C.KEY_DATA);
         calcularEExibir();
     }
 
-    // 13. Dark Mode
     function initTheme() {
         const saved = localStorage.getItem(C.KEY_THEME);
         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -270,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (DOM.btnTheme) DOM.btnTheme.setAttribute('aria-pressed', String(isDark));
     }
 
-    // 14. Copiar Resultados
     function copyResults() {
         const d = lerInputs();
         const r = calcular(d);
@@ -447,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
 });
+
 
 
 
