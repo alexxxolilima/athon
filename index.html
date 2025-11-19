@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dashboard Inicial" />
-  <meta name="author" content="Alex Lima, Gustavo" />
-  <title>Athon Telecom — Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="Athon/style.css" />
-  <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard Inicial" />
+    <meta name="author" content="Alex Lima, Gustavo Matos , Bianca Marques" />
+    <title>Athon Telecom — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="Athon/style.css">
+    <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
 </head>
 <body>
   <div id="cursor" aria-hidden="true"></div>
@@ -25,8 +26,8 @@
         <div class="menu-content">
           <div id="panel-1" class="menu-links" data-panel="1">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSczvb1FwJ7XZedC8lwt3ZjcLhTskn8hsVdxNpbCOohgbze7Lw/viewform" target="_blank" rel="noopener">Financeiro Diário</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform" target="_blank" rel="noopener">Solicitação de Renegociação</a>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScJEhunLBOElAmHojkDzOLhIm4DO67iIlMxXvhwI1pZbK6Jgg/viewform" target="_blank" rel="noopener">Solicitação de Cancelamento</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform" target="_blank" rel="noopener">Solicitação de Renegociação</a>
           </div>
           <div id="panel-2" class="menu-links" data-panel="2" hidden>
             <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit" target="_blank" rel="noopener">Script Padrão Atendimento</a>
@@ -43,12 +44,15 @@
       </div>
     </header>
 
-    <div class="modules-wrap" role="list">
-      <div class="module-card" role="listitem" tabindex="0" data-module="off">
-        <div class="module-title">Athon OFF</div>
-        <div class="mini-preview center"><img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo"></div>
-        <div class="module-body"><button class="btn btn-primary" data-module="off">Abrir</button></div>
-      </div>
+    <div class="module-card" role="listitem" tabindex="0">
+  <div class="module-title">Athon OFF</div>
+  <div class="mini-preview center">
+    <img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo">
+  </div>
+  <div class="module-body">
+    <a href="off.html" class="btn btn-primary" title="Abrir Athon OFF">Abrir</a>
+  </div>
+</div>
   </main>
 
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
@@ -62,6 +66,8 @@
   <script src="Athon/los.js" defer></script>
 </body>
 </html>
+
+
 
 
 
