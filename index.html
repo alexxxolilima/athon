@@ -1,87 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="utf-8" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Dashboard Inicial" />
-  <meta name="author" content="Alex Lima, Gustavo Matos , Bianca Marques" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="shortcut icon" href="OIP.jpg" type="image/png">
-  <title>Athon Localizador</title>
-
-  <link rel="stylesheet" href="style.css">
+  <meta name="author" content="Alex Lima, Gustavo" />
+  <title>Athon Telecom — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Athon/style.css" />
+  <link rel="shortcut icon" href="img/OIP.jpg" type="image/png">
 </head>
+<body>
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="page-loader" aria-hidden="true"><div class="page-spinner" aria-hidden="true"></div></div>
 
-<body class="dark-mode">
-  <main class="app">
-    <header>
-      <img id="companyLogo" class="company-logo" src="OIP.jpg" alt="Logo">
-      <div>
-        <h1 class="app-title">Athon <span class="brand">Localizador</span></h1>
+  <main class="container" role="main" aria-live="polite">
+    <div class="floating" id="floating">
+      <button id="floating-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">⋮</button>
+      <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
+        <div class="menu-tabs" role="tablist">
+          <button id="tab-1" class="tab active" role="tab" aria-selected="true" data-tab="1">Planilhas</button>
+          <button id="tab-2" class="tab" role="tab" aria-selected="false" data-tab="2">Drive</button>
+        </div>
+        <div class="menu-content">
+          <div id="panel-1" class="menu-links" data-panel="1">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSczvb1FwJ7XZedC8lwt3ZjcLhTskn8hsVdxNpbCOohgbze7Lw/viewform" target="_blank" rel="noopener">Financeiro Diário</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform" target="_blank" rel="noopener">Solicitação de Renegociação</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScJEhunLBOElAmHojkDzOLhIm4DO67iIlMxXvhwI1pZbK6Jgg/viewform" target="_blank" rel="noopener">Solicitação de Cancelamento</a>
+          </div>
+          <div id="panel-2" class="menu-links" data-panel="2" hidden>
+            <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit" target="_blank" rel="noopener">Script Padrão Atendimento</a>
+            <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit" target="_blank" rel="noopener">Informações Equipamentos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="header-center" role="banner">
+      <div class="logo">
+        <img src="img/OIP.jpg" alt="Athon Telecom" class="company-logo" onerror="this.src='https://via.placeholder.com/56x56?text=Logo'">
+        <div class="brand-text"><div class="brand">Athon Telecom</div></div>
       </div>
     </header>
 
-    <section class="card">
-      <label id="dropZone" class="dropzone" title="Clique ou arraste um arquivo aqui">
-        <input id="fileInput" type="file" accept=".csv,.xls,.xlsx,text/csv,text/tab-separated-values,text/plain">
-
-        <div style="flex-grow: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-          <div class="drop-info">
-            <div class="text-sm">Clique para selecionar ou arraste o arquivo aqui</div>
-          </div>
-
-          <div class="controls" style="display:flex; gap:10px; align-items:center;">
-            <button id="loadBtn" class="btn btn-primary" disabled>CARREGAR</button>
-          </div>
-        </div>
-
-      </label>
-
-      <div id="progressRow" class="mt-4 hidden">
-        <div class="progress-track">
-          <div id="progressBar" class="progress-bar" style="width:0%"></div>
-        </div>
-        <div id="loadingText" class="muted text-sm mt-2">Processando...</div>
+    <div class="modules-wrap" role="list">
+      <div class="module-card" role="listitem" tabindex="0" data-module="off">
+        <div class="module-title">Athon OFF</div>
+        <div class="mini-preview center"><img src="img/OIP.jpg" alt="Athon Off Logo" class="company-logo mini-logo"></div>
+        <div class="module-body"><button class="btn btn-primary" data-module="off">Abrir</button></div>
       </div>
-    </section>
-
-    <div class="mt-6">
-      <input id="filter" class="input" placeholder="Filtrar por cliente, endereço, filial..." />
-    </div>
-
-    <div id="results" class="grid mt-6" aria-live="polite"></div>
-
-    <div class="mt-6 text-center">
-      <button id="moreBtn" class="btn btn-ghost hidden">Carregar mais</button>
-    </div>
   </main>
 
-  <div id="dim" class="overlay-dim hidden" aria-hidden="true"></div>
-
-  <div id="overlay" class="overlay hidden" aria-hidden="true">
-    <div class="modal card" role="dialog" aria-modal="true">
-      <div class="modal-head">
-        <div>Detalhes</div>
-        <button id="closeModal" class="close-btn">Fechar</button>
-      </div>
-      <div id="modalBody" class="modal-body"></div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-shell">
+      <button id="modal-close" class="modal-close" aria-label="Fechar módulo">✕</button>
+      <div class="modal-loading" aria-hidden="true"><div class="spinner" aria-hidden="true"></div></div>
+      <iframe id="modal-frame" class="modal-frame" src="" title="Módulo em tela cheia" sandbox="allow-scripts allow-same-origin"></iframe>
     </div>
   </div>
 
-  <script src="log.js" defer></script>
+  <script src="Athon/los.js" defer></script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
 
 
 
