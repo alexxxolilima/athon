@@ -1,0 +1,309 @@
+{
+  "app": {
+    "tema_padrao": "light",
+    "atalho_tema": "Ctrl+J",
+    "animacoes": true,
+    "logo_url": "img/OIP.jpg"
+  },
+  "equipamentos": [
+     {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "tj_telecom",
+      "tags": [
+        "zte",
+        "f670l",
+        "tj"
+      ],
+      "id": "equipamento-1",
+      "filial": "TJ"
+    },
+     {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "ncl55gq503di",
+      "tags": [
+        "zte",
+        "f670l",
+        "tj"
+      ],
+      "id": "equipamento-2",
+      "filial": "TJ"
+    },
+     {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "TJ_telecom",
+      "tags": [
+        "zte",
+        "f670l",
+        "tj"
+      ],
+      "id": "equipamento-3",
+      "filial": "TJ"
+    },
+
+    {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "ncl55gq503di",
+      "tags": [
+        "zte",
+        "f670l",
+        "IW"
+      ],
+      "id": "equipamento-4",
+      "filial": "IW"
+    },
+
+    {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "iwnet111025",
+      "tags": [
+        "zte",
+        "f670l",
+        "IW"
+      ],
+      "id": "equipamento-5",
+      "filial": "IW"
+    },
+
+    {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "admin",
+      "senha": "iwnet7615",
+      "tags": [
+        "zte",
+        "f670l",
+        "IW"
+      ],
+      "id": "equipamento-6",
+      "filial": "IW"
+    },
+
+    {
+      "fabricante": "ZTE",
+      "modelo": "F670L",
+      "usuario": "multipro",
+      "senha": "multipro",
+      "tags": [
+        "zte",
+        "f670l",
+        "PLAY"
+      ],
+      "id": "equipamento-6",
+      "filial": "PLAY"
+    },
+
+    {
+      "fabricante": "TP-LINK",
+      "modelo": "AC-2000",
+      "senha": "7615",
+      "tags": [
+        "tp-link",
+        "ac-2000",
+        "roteador",
+        "iw"
+      ],
+      "id": "equipamento-7",
+      "filial": "IW"
+    },
+
+    {
+      "fabricante": "TP-LINK",
+      "modelo": "WR840",
+      "senha": "7615",
+      "tags": [
+        "tp-link",
+        "WR840",
+        "roteador",
+        "iw"
+      ],
+      "id": "equipamento-8",
+      "filial": "IW"
+    },
+
+    {
+      "fabricante": "TP-LINK",
+      "modelo": "AC-2000",
+      "senha": "tjtelecom",
+      "tags": [
+        "tp-link",
+        "ac-2000",
+        "TJ"
+      ],
+      "id": "equipamento-9",
+      "filial": "TJ"
+    },
+
+    {
+      "fabricante": "TP-LINK",
+      "modelo": "WR840",
+      "senha": "tjtelecom",
+      "tags": [
+        "tp-link",
+        "WR840",
+        "TJ"
+      ],
+      "id": "equipamento-10",
+      "filial": "TJ"
+    },
+
+    {
+      "fabricante": "INTELBRAS",
+      "modelo": "GW1200",
+      "ip": "192.168.0.1",
+      "usuario": "admin",
+      "senha": "admin",
+      "obs": "Atualize com o acesso real do seu parque.",
+      "tags": [
+        "intelbras",
+        "gw1200",
+        "play"
+      ],
+      "id": "equipamento-3",
+      "filial": "Play"
+    }
+  ],
+  "scripts": [
+    {
+      "titulo": "Diferença 2.4G vs 5G",
+      "palavras_chave": [
+        "2.4"
+      ],
+      "texto": "Sr(a)., sua internet possui duas frequências. A 5G é mais rápida e ideal para vídeos, jogos e chamadas perto do roteador. A 2.4G tem maior alcance e atravessa melhor paredes.",
+      "id": "script-1"
+    },
+    {
+      "titulo": "Separação de Bandas",
+      "palavras_chave": [
+        "band steering"
+      ],
+      "texto": "Realizamos a separação de bandas para estabilizar sua conexão. Agora existem duas redes distintas: uma 2.4G para alcance e outra 5G para velocidade.",
+      "id": "script-2"
+    },
+    {
+      "titulo": "Interferência de Wi-Fi Circundante",
+      "palavras_chave": [
+        "interferencia"
+      ],
+      "texto": "Identificamos muitas redes vizinhas no mesmo canal da sua rede, o que pode causar lentidão. Ajustamos para um canal menos congestionado para melhorar o desempenho.",
+      "id": "script-3"
+    },
+    {
+      "titulo": "Teste de DNS",
+      "palavras_chave": [
+        "dns"
+      ],
+      "texto": "Seu acesso está conectando, mas identificamos falha de resolução DNS. Vamos testar DNS público para validar estabilidade: 8.8.8.8 e 1.1.1.1.",
+      "id": "script-4"
+    }
+  ],
+  "topicos": [
+    {
+      "titulo": "WLAN (2.4GHz) - Ligado / Desligado",
+      "categoria": "WLAN",
+      "tags": [
+        "wlan"
+      ],
+      "resumo": "Liga ou desliga a rede 2.4 GHz. Maior alcance, menor velocidade e mais interferência.",
+      "detalhes": "Função: liga ou desliga a rede Wi-Fi 2.4 GHz.\n\nLigado: dispositivos podem conectar normalmente.\nDesligado: rede fica indisponível.\n\nObs.: 2.4 GHz tem maior alcance, mas menor velocidade e maior interferência.",
+      "id": "topico-1"
+    },
+    {
+      "titulo": "WLAN (5GHz) - Ligado / Desligado",
+      "categoria": "WLAN",
+      "tags": [
+        "wlan"
+      ],
+      "resumo": "Liga ou desliga a rede 5 GHz. Menor alcance, maior velocidade e menos interferência.",
+      "detalhes": "Função: liga ou desliga a rede Wi-Fi 5 GHz.\n\nLigado: permite conexão de dispositivos compatíveis.\nDesligado: rede 5 GHz fica inativa.\n\nObs.: 5 GHz entrega mais velocidade, porém com menor alcance.",
+      "id": "topico-2",
+      "midias": [
+        {
+          "src": "img/OIP.jpg",
+          "titulo": "Tela de configura??o 5GHz",
+          "texto": "Valide se WLAN 5GHz est? em Ligado e confirme aplica??o das mudan?as no modem."
+        }
+      ]
+    },
+    {
+      "titulo": "SSID - Ligado / Desligado",
+      "categoria": "WLAN",
+      "tags": [
+        "ssid"
+      ],
+      "resumo": "Controla se o nome da rede ficará disponível para os dispositivos.",
+      "detalhes": "Função: liga ou desliga o SSID específico.\n\nLigado: nome da rede aparece para conexão.\nDesligado: SSID não fica disponível.\n\nObs.: podem existir múltiplos SSIDs na mesma frequência (principal e convidados).",
+      "id": "topico-3",
+      "midias": [
+        {
+          "src": "img/OIP.jpg",
+          "titulo": "Configura??o de SSID",
+          "texto": "Mantenha nomes distintos para 2.4G e 5G para facilitar conex?o e diagn?stico no atendimento."
+        }
+      ]
+    },
+    {
+      "titulo": "Ping para Analista",
+      "categoria": "Diagnóstico",
+      "tags": [
+        "ping"
+      ],
+      "resumo": "Usado para medir latência e perda de pacotes entre origem e destino.",
+      "detalhes": "Ping envia pacote ICMP e mede ida/volta.\n\nReferência rápida:\n- Até 10ms: excelente\n- Até 50ms: bom\n- Acima de 150ms: perceptível para o cliente\n\nComandos:\nWindows: ping 8.8.8.8 -n 20\nLinux/macOS: ping 8.8.8.8 -c 20",
+      "id": "topico-4"
+    },
+    {
+      "titulo": "Tracert para Analista",
+      "categoria": "Diagnóstico",
+      "tags": [
+        "tracert"
+      ],
+      "resumo": "Mostra os saltos de rede para identificar onde está a degradação.",
+      "detalhes": "Leitura recomendada:\n- Hop 1: roteador/rede local do cliente\n- Hops intermediários: rede do provedor\n- Hops finais: destino (site/jogo/app)\n\nComandos:\nWindows: tracert 8.8.8.8\nLinux/macOS: traceroute 8.8.8.8",
+      "id": "topico-5"
+    },
+    {
+      "titulo": "DHCP e DNS para Suporte",
+      "categoria": "Treinamento",
+      "tags": [
+        "dhcp"
+      ],
+      "resumo": "Conceitos essenciais para diagnóstico rápido em atendimento.",
+      "detalhes": "DHCP entrega IP automaticamente.\nSintoma de falha: conectado sem navegar / obtendo IP.\n\nDNS traduz nomes para IP.\nSintoma de falha: app funciona e sites não abrem.\n\nTeste: usar DNS público 8.8.8.8 e 1.1.1.1 para validação.",
+      "id": "topico-6"
+    }
+  ],
+  "planilhas": [
+    {
+      "nome": "",
+      "url": "",
+      "obs": "Controle diário"
+    },
+    {
+      "nome": "Planilha de IPs e ONUs",
+      "url": "https://SEU_LINK_AQUI",
+      "obs": "Inventário técnico"
+    }
+  ],
+  "links_rapidos": [
+    {
+      "nome": "CRM / ERP",
+      "url": "https://SEU_LINK_AQUI",
+      "obs": "Sistema comercial"
+    },
+    {
+      "nome": "Monitoramento",
+      "url": "https://SEU_LINK_AQUI",
+      "obs": "Zabbix / Grafana"
+    }
+  ]
+}
