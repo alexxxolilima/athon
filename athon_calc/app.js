@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resultadoCard: $('resultadoCard'),
         btnReset: $('btnReset'),
-        btnTheme: $('btnTheme'), 
-        btnBlackMode: $('btnBlackMode'), 
+        btnTheme: $('btnTheme'),  
         brandTitle: $('brandTitle'),    
         totalOriginal: $('totalOriginal'),
         btnCopy: $('btnCopyResults'),
@@ -76,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const equip = parseFloat(DOM.custoEquip?.value || 0) || 0;
         const desc = Math.min(100, Math.max(0, parseFloat(DOM.descPercent?.value || 0)));
         const qtdDesc = Math.max(0, Math.min(C.MAX_FIDELIDADE, parseInt(DOM.qtdDesc?.value || 0)));
-        const isBlack = DOM.btnBlackMode ? DOM.btnBlackMode.checked : false; 
 
         let svaTotal = 0, svaData = [];
         DOM.svaInputs.forEach(i => {
@@ -233,7 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (DOM.custoEquip) DOM.custoEquip.value = d.equip || 0;
             if (DOM.descPercent) DOM.descPercent.value = d.desc || '';
             if (DOM.qtdDesc) DOM.qtdDesc.value = d.qtdDesc || 0;
-            if (DOM.btnBlackMode && d.isBlack !== undefined) DOM.btnBlackMode.checked = d.isBlack;
             if (d.sva) d.sva.forEach(s => {
                 const el = DOM.svaInputs.find(i => i.dataset.price === s.p);
                 if (el) el.value = s.v;
@@ -249,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
         [DOM.mesesFid, DOM.diasUso, DOM.custoEquip, DOM.qtdDesc].forEach(e => { if (e) e.value = 0; });
         if (DOM.descPercent) DOM.descPercent.value = '';
         DOM.svaInputs.forEach(i => i.value = 0);
-        if (DOM.btnBlackMode) DOM.btnBlackMode.checked = false; 
 
         [DOM.gPlano, DOM.gMeses, DOM.gDias, DOM.gDesc].forEach(g => g?.classList.remove('has-error'));
 
@@ -325,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (DOM.btnReset) DOM.btnReset.addEventListener('click', resetAll);
     if (DOM.btnTheme) DOM.btnTheme.addEventListener('click', toggleTheme);
     if (DOM.btnCopy) DOM.btnCopy.addEventListener('click', copyResults);
-    if (DOM.btnBlackMode) DOM.btnBlackMode.addEventListener('change', calcDebounced);
 
     initTheme();
     carregarStorage();
@@ -448,3 +443,4 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
 });
+
