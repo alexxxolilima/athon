@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         resultadoCard: $('resultadoCard'),
         btnReset: $('btnReset'),
         btnTheme: $('btnTheme'), 
-        btnBlackMode: $('btnBlackMode'), 
-        brandTitle: $('brandTitle'),    
-        totalOriginal: $('totalOriginal'),
         btnCopy: $('btnCopyResults'),
         msgCopy: $('copySuccessMessage'),
 
@@ -76,8 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const equip = parseFloat(DOM.custoEquip?.value || 0) || 0;
         const desc = Math.min(100, Math.max(0, parseFloat(DOM.descPercent?.value || 0)));
         const qtdDesc = Math.max(0, Math.min(C.MAX_FIDELIDADE, parseInt(DOM.qtdDesc?.value || 0)));
-        const isBlack = DOM.btnBlackMode ? DOM.btnBlackMode.checked : false; 
-
         let svaTotal = 0, svaData = [];
         DOM.svaInputs.forEach(i => {
             const q = Math.max(0, parseInt(i.value || 0));
@@ -89,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = {
             plano, custoAd, meses, dias, equip, desc, qtdDesc, svaTotal, svaData,
-            isBlack, 
             rawPlano: maskPlano?.unmaskedValue, rawCusto: maskCusto?.unmaskedValue
         };
         salvarStorage(data);
@@ -110,13 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let total = multa + proRata + d.svaTotal + d.equip + d.custoAd + multaDesc;
-        let totalOriginal = total;
-        
-        if (d.isBlack) {
-            total = total * 0.5;
-        }
-
-        return { multa, proRata, equip: d.equip, extra: d.custoAd, total, totalOriginal, sva: d.svaTotal, multaDesc, plano: d.plano, isBlack: d.isBlack }; // totalOriginal e isBlack NOVO
+        return { multa, proRata, equip: d.equip, extra: d.custoAd, total, sva: d.svaTotal, multaDesc, plano: d.plano };
     }
 
     function render(res, dias, plano) {
@@ -129,20 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         set(DOM.out.equip, fmt(res.equip));
         set(DOM.out.extra, fmt(res.extra));
         set(DOM.out.multaDesc, fmt(res.multaDesc));
-        
-        if (res.isBlack) {
-            if (DOM.totalOriginal) {
-                DOM.totalOriginal.style.display = 'block';
-                DOM.totalOriginal.textContent = fmt(res.totalOriginal);
-            }
-            if (DOM.brandTitle) DOM.brandTitle.textContent = "Athon Black";
-            if (DOM.out.total) DOM.out.total.style.color = "#22c55e";
-        } else {
-            if (DOM.totalOriginal) DOM.totalOriginal.style.display = 'none';
-            if (DOM.brandTitle) DOM.brandTitle.textContent = "Athon Off";
-            if (DOM.out.total) DOM.out.total.style.color = "";
-        }
-
         set(DOM.out.total, fmt(res.total));
     }
 
@@ -166,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!valid || (d.plano + d.svaTotal + d.equip + d.custoAd + d.meses + d.dias === 0)) {
             toggleResult(false);
-            render({ multa: 0, proRata: 0, equip: 0, extra: 0, total: 0, sva: 0, multaDesc: 0, isBlack: d.isBlack }, 0, 0); // isBlack adicionado
+            render({ multa: 0, proRata: 0, equip: 0, extra: 0, total: 0, sva: 0, multaDesc: 0 }, 0, 0);
             return;
         }
 
@@ -212,12 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function salvarStorage(d) {
         try {
             const payload = {
-                plano: d.rawPlano, custo: d.rawCusto, meses: d.meses, dias: d.dias,
-                equip: d.equip, desc: d.desc, qtdDesc: d.qtdDesc,
-                sva: DOM.svaInputs.map(i => ({ p: i.dataset.price, v: i.value })),
-                isBlack: d.isBlack 
-            };
-            localStorage.setItem(C.KEY_DATA, JSON.stringify(payload));
+            plano: d.rawPlano, custo: d.rawCusto, meses: d.meses, dias: d.dias,
+            equip: d.equip, desc: d.desc, qtdDesc: d.qtdDesc,
+            sva: DOM.svaInputs.map(i => ({ p: i.dataset.price, v: i.value }))
+        };
+        localStorage.setItem(C.KEY_DATA, JSON.stringify(payload));
         } catch (e) { }
     }
 
@@ -233,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (DOM.custoEquip) DOM.custoEquip.value = d.equip || 0;
             if (DOM.descPercent) DOM.descPercent.value = d.desc || '';
             if (DOM.qtdDesc) DOM.qtdDesc.value = d.qtdDesc || 0;
-            if (DOM.btnBlackMode && d.isBlack !== undefined) DOM.btnBlackMode.checked = d.isBlack;
             if (d.sva) d.sva.forEach(s => {
                 const el = DOM.svaInputs.find(i => i.dataset.price === s.p);
                 if (el) el.value = s.v;
@@ -249,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         [DOM.mesesFid, DOM.diasUso, DOM.custoEquip, DOM.qtdDesc].forEach(e => { if (e) e.value = 0; });
         if (DOM.descPercent) DOM.descPercent.value = '';
         DOM.svaInputs.forEach(i => i.value = 0);
-        if (DOM.btnBlackMode) DOM.btnBlackMode.checked = false; 
 
         [DOM.gPlano, DOM.gMeses, DOM.gDias, DOM.gDesc].forEach(g => g?.classList.remove('has-error'));
 
@@ -282,13 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `Cliente negativado em: ${dateStr}`, '',
             `Valor total da dívida: ${fmt(r.total)}`
         ];
-        
-        if (r.isBlack) {
-            lines.splice(2, 0, `(Campanha Athon Black - 50% OFF aplicado)`);
-            lines.splice(3, 0, `Valor original: ${fmt(r.totalOriginal)}`);
-        }
-
-        if (r.proRata > 0) lines.push(`${fmt(r.proRata)} — ${d.dias} dias de uso`);
+if (r.proRata > 0) lines.push(`${fmt(r.proRata)} — ${d.dias} dias de uso`);
         if (r.multa > 0) lines.push(`${fmt(r.multa)} — ${d.meses} meses de multa`);
         if (r.multaDesc > 0) lines.push(`${fmt(r.multaDesc)} — Mensalidades desc. (${d.qtdDesc}x ${d.desc}%)`);
         if (r.extra > 0) lines.push(`${fmt(r.extra)} — Custo adicional`);
@@ -325,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (DOM.btnReset) DOM.btnReset.addEventListener('click', resetAll);
     if (DOM.btnTheme) DOM.btnTheme.addEventListener('click', toggleTheme);
     if (DOM.btnCopy) DOM.btnCopy.addEventListener('click', copyResults);
-    if (DOM.btnBlackMode) DOM.btnBlackMode.addEventListener('change', calcDebounced);
 
     initTheme();
     carregarStorage();
@@ -448,3 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
 });
+
+});
+
