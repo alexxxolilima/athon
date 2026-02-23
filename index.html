@@ -1,0 +1,233 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Central de atendimento Athon Telecom" />
+  <meta name="author" content="Alex Lima, Gustavo Matos, Bianca Marques" />
+  <title>Athon Telecom</title>
+  <link rel="shortcut icon" href="assets/img/OIP.jpg" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Manrope", "system-ui", "sans-serif"]
+          },
+          colors: {
+            athon: {
+              900: "#06131f",
+              800: "#0b2134",
+              700: "#0f3350",
+              500: "#1f8cb8",
+              300: "#8dd7f0"
+            }
+          },
+          boxShadow: {
+            glow: "0 20px 45px rgba(3, 10, 20, 0.45)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --ui-radius-lg: 1.5rem;
+      --ui-radius-md: 0.9rem;
+      --ui-border-soft: rgba(132, 208, 243, 0.26);
+      --ui-shadow-soft: 0 24px 42px rgba(1, 8, 22, 0.5);
+      --ui-shadow-hover: 0 30px 52px rgba(1, 8, 22, 0.65);
+      --ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ui-speed: 320ms;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .ui-panel {
+      animation: panelEnter 520ms var(--ui-ease) both;
+    }
+
+    .ui-card {
+      border-radius: var(--ui-radius-lg);
+      transition: transform var(--ui-speed) var(--ui-ease), border-color var(--ui-speed) var(--ui-ease), box-shadow var(--ui-speed) var(--ui-ease);
+    }
+
+    .ui-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--ui-shadow-hover);
+    }
+
+    .ui-btn {
+      border-radius: var(--ui-radius-md);
+      transition: transform 220ms var(--ui-ease), box-shadow 220ms var(--ui-ease), background-color 220ms var(--ui-ease), color 220ms var(--ui-ease);
+      will-change: transform;
+    }
+
+    .ui-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .ui-btn:active {
+      transform: translateY(0);
+    }
+
+    .ui-btn:focus-visible {
+      outline: 2px solid rgba(125, 228, 255, 0.6);
+      outline-offset: 2px;
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(14px) scale(0.995);
+      transition: opacity 420ms var(--ui-ease), transform 420ms var(--ui-ease);
+    }
+
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    #menu-panel {
+      display: none;
+    }
+
+    .menu-tabs .tab.active {
+      background: rgba(141, 215, 240, 0.18);
+      color: #dff8ff;
+    }
+
+    #modal {
+      display: none;
+    }
+
+    #modal.show {
+      display: flex;
+    }
+
+    #page-loader {
+      display: none;
+    }
+
+    #page-loader.show {
+      display: flex;
+    }
+
+    @keyframes panelEnter {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ui-panel,
+      .ui-card,
+      .ui-btn,
+      .reveal-item {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .reveal-item {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#020819] text-slate-100 antialiased selection:bg-athon-500/40">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(0,130,181,0.22),transparent_42%),radial-gradient(circle_at_88%_10%,rgba(196,72,49,0.18),transparent_40%),linear-gradient(165deg,#030b1d_0%,#020714_45%,#040611_100%)]"></div>
+    <div class="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#00b3ff]/20 blur-3xl"></div>
+    <div class="absolute right-[-5rem] top-8 h-80 w-80 rounded-full bg-[#b64e2f]/20 blur-3xl"></div>
+    <div class="absolute bottom-[-8rem] left-1/4 h-96 w-96 rounded-full bg-[#003d8a]/25 blur-3xl"></div>
+  </div>
+
+  <div id="page-loader" aria-hidden="true" class="fixed inset-0 z-[100000] items-center justify-center bg-athon-900/70 backdrop-blur-sm">
+    <div class="h-14 w-14 animate-spin rounded-full border-4 border-white/10 border-t-athon-300"></div>
+  </div>
+
+  <main class="mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center px-4 py-8 sm:px-8">
+    <div class="floating fixed right-4 top-4 z-50 sm:right-8 sm:top-8" id="floating">
+      <button id="floating-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel" class="ui-btn rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xl leading-none text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-athon-300">⋮</button>
+
+      <section id="menu-panel" class="menu-panel absolute right-0 mt-3 w-80 overflow-hidden rounded-2xl border border-white/15 bg-athon-800/95 shadow-glow backdrop-blur" role="menu" aria-hidden="true">
+        <div class="menu-tabs grid grid-cols-2 gap-1 border-b border-white/10 p-2" role="tablist">
+          <button id="tab-1" class="tab active rounded-lg px-3 py-2 text-sm font-semibold" role="tab" aria-selected="true" data-tab="1">Planilhas</button>
+          <button id="tab-2" class="tab rounded-lg px-3 py-2 text-sm font-semibold" role="tab" aria-selected="false" data-tab="2">Drive</button>
+        </div>
+
+        <div class="menu-content space-y-1 p-3 text-sm">
+          <div id="panel-1" class="menu-links space-y-1" data-panel="1">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSczvb1FwJ7XZedC8lwt3ZjcLhTskn8hsVdxNpbCOohgbze7Lw/viewform" target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-slate-100 transition hover:bg-white/10">Financeiro Diário</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScJEhunLBOElAmHojkDzOLhIm4DO67iIlMxXvhwI1pZbK6Jgg/viewform" target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-slate-100 transition hover:bg-white/10">Solicitação de Cancelamento</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform" target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-slate-100 transition hover:bg-white/10">Solicitação de Renegociação</a>
+          </div>
+
+          <div id="panel-2" class="menu-links space-y-1" data-panel="2" hidden>
+            <a href="https://docs.google.com/document/d/1lkeGxBl5ONwcnZD8MCBfP9Evj8OQ7asrD7GNEVkJlOs/edit" target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-slate-100 transition hover:bg-white/10">Script Padrão Atendimento</a>
+            <a href="https://docs.google.com/document/d/1-Q0jSFAm52gtvv_Ymp_r3ck2OYHf2WqYCyHPB2mdbqc/edit" target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-slate-100 transition hover:bg-white/10">Informações Equipamentos</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <header class="ui-panel mt-20 w-full max-w-5xl sm:mt-16" role="banner">
+      <div class="ui-card reveal-item rounded-[1.75rem] border border-cyan-300/20 bg-[#08142b]/85 p-5 shadow-[0_25px_55px_rgba(1,9,24,0.6)] backdrop-blur">
+        <div class="flex items-center gap-4 sm:gap-5">
+          <img src="assets/img/OIP.jpg" alt="Logo da Athon Telecom" class="h-16 w-16 rounded-2xl border border-cyan-300/35 object-cover shadow-[0_12px_22px_rgba(0,0,0,0.35)]" onerror="this.src='https://via.placeholder.com/64x64?text=Logo'" />
+          <div class="flex-1">
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#63dfff]">Athon Telecom</p>
+            <h1 class="mt-1 text-3xl font-extrabold tracking-tight text-slate-100 sm:text-5xl">Painel</h1>
+            <p class="mt-2 text-sm font-medium text-slate-300 sm:text-lg"><span id="current-datetime" aria-live="polite"></span></p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="modules-wrap mt-7 grid w-full max-w-5xl gap-6 md:mt-10 md:grid-cols-2" role="list" aria-label="Módulos principais">
+      <article class="ui-card reveal-item group relative overflow-hidden rounded-[1.5rem] border border-cyan-300/25 bg-[#08142b]/90 p-6 shadow-[0_24px_40px_rgba(0,0,0,0.4)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40" role="listitem" tabindex="0">
+        <div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-cyan-300/10 blur-2xl"></div>
+        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#61dcff]">Módulo</p>
+        <h2 class="mt-2 text-4xl font-extrabold tracking-tight text-slate-100">Athon OFF</h2>
+        <p class="mt-4 max-w-md text-xl leading-relaxed text-slate-300">Calculadora para apoio operacional.</p>
+        <div class="mt-8">
+          <a href="./athon_calc/off.html" class="ui-btn inline-flex items-center justify-center rounded-xl border border-cyan-300/65 bg-cyan-400/10 px-5 py-2 text-2xl font-semibold text-cyan-100 transition hover:bg-cyan-300/20 focus:outline-none focus:ring-2 focus:ring-cyan-200/70" title="Abrir Athon OFF">Acessar Athon OFF</a>
+        </div>
+      </article>
+
+      <article class="ui-card reveal-item group relative overflow-hidden rounded-[1.5rem] border border-[#f0b84f]/40 bg-[#08142b]/90 p-6 shadow-[0_24px_40px_rgba(0,0,0,0.4)] transition duration-300 hover:-translate-y-1 hover:border-[#f0b84f]/60" role="listitem" tabindex="0">
+        <div class="absolute -right-8 -top-10 h-40 w-40 rounded-full bg-[#f0b84f]/10 blur-2xl"></div>
+        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#f8d26f]">Módulo</p>
+        <h2 class="mt-2 text-4xl font-extrabold tracking-tight text-slate-100">Athon FAQ</h2>
+        <p class="mt-4 max-w-md text-xl leading-relaxed text-slate-300">Base de conhecimento.</p>
+        <div class="mt-8">
+          <a href="./faq/faq.html" class="ui-btn inline-flex items-center justify-center rounded-xl border border-[#f0b84f]/60 bg-[#f0b84f]/10 px-5 py-2 text-2xl font-semibold text-[#ffe5ad] transition hover:bg-[#f0b84f]/20 focus:outline-none focus:ring-2 focus:ring-[#f3c969]/75" title="Abrir Athon FAQ">Acessar Athon FAQ</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="modal" class="modal fixed inset-0 z-[9999] items-stretch justify-center bg-slate-950/90" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-shell relative flex h-screen w-full flex-col">
+      <button id="modal-close" class="modal-close absolute right-5 top-5 z-10 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400 font-black text-athon-900 shadow-lg transition hover:bg-cyan-300" aria-label="Fechar módulo">✕</button>
+      <div class="modal-loading fixed inset-0 z-[10001] hidden items-center justify-center" aria-hidden="true">
+        <div class="spinner h-12 w-12 animate-spin rounded-full border-4 border-white/15 border-t-cyan-300" aria-hidden="true"></div>
+      </div>
+      <iframe id="modal-frame" class="modal-frame h-full w-full border-0 bg-athon-900" src="" title="Módulo em tela cheia" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+
+  <script src="athon/los.js" defer></script>
+</body>
+</html>
