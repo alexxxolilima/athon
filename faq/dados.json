@@ -1,0 +1,1752 @@
+﻿{
+    "app":  {
+                "tema_padrao":  "dark",
+                "atalho_tema":  "Ctrl+J",
+                "animacoes":  true,
+                "logo_url":  "../assets/img/OIP.jpg",
+                "versao":  "2.0",
+                "atualizado_em":  "2026-03-03"
+            },
+    "equipamentos":  [
+                         {
+                             "id":  "zte-f670l-tj-1",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-tj-2",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tj_telecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-tj-3",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "TJ_telecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-tj-4",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tjelecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-iw-1",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-iw-2",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "iwnet111025",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-iw-3",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "iwnet7615",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-play-1",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "Play",
+                             "usuario":  "playnet",
+                             "senha":  "playf670l",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-play-2",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "Play",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-play-3",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "Play",
+                             "usuario":  "multipro",
+                             "senha":  "multipro",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "zte-f670l-play-4",
+                             "fabricante":  "ZTE / Multilaser",
+                             "modelo":  "F670L (Interface azul)",
+                             "filial":  "Play",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "zte",
+                                          "f670l",
+                                          "gpon",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Acesso web padrão: 192.168.1.1 (pode variar conforme firmware e operadora).",
+                             "ip_padrao":  "192.168.1.1",
+                             "especificacoes":  "Recurso | Especificação\nVelocidade suportada (cabo) | Até 1 Gbps\nWi-Fi 2.4 GHz | Até 300 Mbps (IEEE 802.11 b/g/n)\nWi-Fi 5 GHz | Até 867 Mbps (IEEE 802.11 a/n/ac)\nPortas LAN | 4x Gigabit Ethernet (RJ45)\nCompatibilidade | IPv4 e IPv6\nMesh / Band Steering | Suportado\nSeparação de redes | Suportada (2.4 GHz e 5 GHz)",
+                             "procedimento":  "1) Validar cenário inicial: cabo ou Wi-Fi, distância do roteador, número de dispositivos e horário da falha.\n2) Conferir LEDs e sinal óptico (RX/TX) antes de qualquer ajuste de Wi-Fi.\n3) Acessar WLAN \u003e Wi-Fi circundante, executar detecção de rede e ajustar canal menos congestionado (priorizar 1, 6 ou 11 em 2.4 GHz).\n4) Em caso de incompatibilidade (impressora, câmera, IoT), desativar Band Steering e separar SSIDs:\n   - SSID 2.4 GHz: manter ativo para alcance e compatibilidade.\n   - SSID 5 GHz: manter ativo para maior throughput em curta distância.\n5) Validar teste de velocidade preferencialmente via cabo (sem consumo paralelo).\n6) Escalonar para N2 se houver:\n   - LOS aceso / PON apagado;\n   - RX fora do padrão interno;\n   - Login Radius incorrect ou perfil de reset.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/8a50790f-14cd-401a-9642-a955b03d1dd312002antenasf670zteRE90701.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Imagem de referência do equipamento."
+                                            },
+                                            {
+                                                "src":  "https://product-hub-prd.madeiramadeira.com.br/786972841/images/b8cd0501-6c01-4661-b4df-aa055585d60012002antenasf670zteRE90702.png?bg-color=FFF\u0026canvas=1%3A1\u0026width=640",
+                                                "titulo":  "Foto real — Multilaser/ZTE F670L (RE907)",
+                                                "texto":  "Outra vista do equipamento."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "ONT/ONU GPON com Wi-Fi dual band."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_wifi.svg",
+                                                "titulo":  "Wi-Fi",
+                                                "texto":  "AC1200 (2.4 + 5 GHz)."
+                                            }
+                                        ],
+                             "detalhes":  "Padrão operacional do Departamento de Atendimento (ZTE F670L)\n- 2.4 GHz: maior alcance, menor throughput e maior suscetibilidade à interferência.\n- 5 GHz: menor alcance, maior throughput, recomendado para streaming e videoconferência.\n- Perfis 802.11:\n  * 802.11b: até 11 Mbps (legado)\n  * 802.11g: até 54 Mbps\n  * 802.11n: até 600 Mbps (varia por hardware)\n  * Modo misto b/g/n: maior compatibilidade, com limitação pelo dispositivo mais lento.\n- Separar SSIDs reduz troca automática de banda e melhora estabilidade para dispositivos legados."
+                         },
+                         {
+                             "id":  "intelbras-tj-1",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-tj-2",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tj_telecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-tj-3",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "TJ_telecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-tj-4",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tjelecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-iw-1",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-iw-2",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "iwnet111025",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-iw-3",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "iw7615",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "intelbras-iw-4",
+                             "fabricante":  "Intelbras",
+                             "modelo":  "Intelbras",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "tjelecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "intelbras",
+                                          "ont",
+                                          "onu",
+                                          "gpon"
+                                      ],
+                             "obs":  "Credenciais operacionais cadastradas para acesso (variam por firmware).",
+                             "especificacoes":  "Modelo: confirmar etiqueta do equipamento (varia por contrato).\nWi-Fi/portas: variam por modelo; validar se é dual band e se portas são Gigabit.\nObservação: credenciais e menus podem mudar por firmware/operadora.",
+                             "procedimento":  "1) Validar IP de acesso e credencial do equipamento (etiqueta/ACS).\n2) Priorizar testes cabeados para validar entrega do link.\n3) Se suspeita de reset/login incorreto: validar Log Radius (quando PPPoE) e escalar para N2.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Intelbras (genérico)",
+                                                "texto":  "Confirmar modelo exato para specs completas."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-tj-1",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "TJ",
+                             "usuario":  "adminisp",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet (painel)",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-tj-2",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "TJ",
+                             "usuario":  "adminisp",
+                             "senha":  "adminisp",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet (painel)",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-tj-3",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tjtelecom",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet (painel)",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-iw-1",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "IW",
+                             "usuario":  "adminisp",
+                             "senha":  "adminisp",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet (painel)",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-iw-2",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "IW",
+                             "usuario":  "adminisp",
+                             "senha":  "iwnet111025",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet (painel)",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "cianet-iw-3",
+                             "fabricante":  "Cianet",
+                             "modelo":  "Cianet",
+                             "filial":  "IW",
+                             "usuario":  "adminisp",
+                             "senha":  "ncl55gq503di",
+                             "tipo":  "ONT/ONU",
+                             "tags":  [
+                                          "cianet",
+                                          "ont",
+                                          "onu",
+                                          "porta8080",
+                                          "porta8085"
+                                      ],
+                             "porta":  "8080/8085",
+                             "especificacoes":  "Acesso: porta 8080 ou 8085 (conforme rede/firmware).\nObservação: credenciais podem variar por filial/instalação.",
+                             "procedimento":  "1) Confirmar porta correta (8080/8085) e se o cliente está na mesma rede.\n2) Se não abrir: validar IP de gerenciamento e se há bloqueio local.\n3) Se autenticação falhar: escalar para N2 (reconfiguração/ACS).",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Cianet",
+                                                "texto":  "Acesso via porta 8080/8085."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "tplink-wr840-tj",
+                             "fabricante":  "TP-Link",
+                             "modelo":  "TL-WR840N (2.4 GHz)",
+                             "filial":  "TJ",
+                             "usuario":  "tjtelecom",
+                             "senha":  "(não informado)",
+                             "tipo":  "Roteador",
+                             "tags":  [
+                                          "tp-link",
+                                          "wr840n",
+                                          "wifi4",
+                                          "n300",
+                                          "2.4ghz",
+                                          "fast-ethernet"
+                                      ],
+                             "obs":  "Roteador 2.4 GHz; portas 10/100 limitam planos acima de 100 Mbps.",
+                             "ip_padrao":  "192.168.0.1 / 192.168.1.1 (varia por configuração)",
+                             "especificacoes":  "Wi-Fi: 2.4 GHz (IEEE 802.11 b/g/n) — até 300 Mbps teórico\nPortas: 4x LAN Fast Ethernet (10/100) + 1x WAN Fast Ethernet (10/100)\nSem 5 GHz; para planos acima de 100 Mbps, orientar teste cabeado e avaliação de upgrade de roteador",
+                             "procedimento":  "1) Alinhar expectativa: Wi-Fi 2.4 GHz possui throughput real menor e maior interferência.\n2) Se o plano for superior a 100 Mbps, validar limitação das portas 10/100 e orientar upgrade.\n3) Em instabilidade, ajustar canal (1, 6 ou 11) e revisar posicionamento do equipamento.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://static.tp-link.com/TL-WR840N_EU_6.0_01_normal_1511257436045t.jpg",
+                                                "titulo":  "Foto real — TP-Link TL-WR840N",
+                                                "texto":  "Imagem de referência do modelo."
+                                            },
+                                            {
+                                                "src":  "https://static.tp-link.com/TL-WR840N_EU_6.0_02_normal_1511257191055j.jpg",
+                                                "titulo":  "Foto real — TP-Link TL-WR840N",
+                                                "texto":  "Outra vista do modelo."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "Roteador N300 2.4 GHz com portas 10/100."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "tplink-wr840-iw",
+                             "fabricante":  "TP-Link",
+                             "modelo":  "TL-WR840N (2.4 GHz)",
+                             "filial":  "IW",
+                             "usuario":  "7615",
+                             "senha":  "(não informado)",
+                             "tipo":  "Roteador",
+                             "tags":  [
+                                          "tp-link",
+                                          "wr840n",
+                                          "wifi4",
+                                          "n300",
+                                          "2.4ghz",
+                                          "fast-ethernet"
+                                      ],
+                             "obs":  "Roteador 2.4 GHz; portas 10/100 limitam planos acima de 100 Mbps.",
+                             "ip_padrao":  "192.168.0.1 / 192.168.1.1 (varia por configuração)",
+                             "especificacoes":  "Wi-Fi: 2.4 GHz (IEEE 802.11 b/g/n) — até 300 Mbps teórico\nPortas: 4x LAN Fast Ethernet (10/100) + 1x WAN Fast Ethernet (10/100)\nSem 5 GHz; para planos acima de 100 Mbps, orientar teste cabeado e avaliação de upgrade de roteador",
+                             "procedimento":  "1) Alinhar expectativa: Wi-Fi 2.4 GHz possui throughput real menor e maior interferência.\n2) Se o plano for superior a 100 Mbps, validar limitação das portas 10/100 e orientar upgrade.\n3) Em instabilidade, ajustar canal (1, 6 ou 11) e revisar posicionamento do equipamento.",
+                             "midias":  [
+                                            {
+                                                "src":  "https://static.tp-link.com/TL-WR840N_EU_6.0_01_normal_1511257436045t.jpg",
+                                                "titulo":  "Foto real — TP-Link TL-WR840N",
+                                                "texto":  "Imagem de referência do modelo."
+                                            },
+                                            {
+                                                "src":  "https://static.tp-link.com/TL-WR840N_EU_6.0_02_normal_1511257191055j.jpg",
+                                                "titulo":  "Foto real — TP-Link TL-WR840N",
+                                                "texto":  "Outra vista do modelo."
+                                            },
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Visão geral",
+                                                "texto":  "Roteador N300 2.4 GHz com portas 10/100."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "tplink-ac2000-tj",
+                             "fabricante":  "TP-Link",
+                             "modelo":  "TP-Link AC2000",
+                             "filial":  "TJ",
+                             "usuario":  "admin",
+                             "senha":  "tjtelecom",
+                             "tipo":  "Roteador",
+                             "tags":  [
+                                          "tp-link",
+                                          "ac2000",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Modelo AC2000 genérico; confirmar etiqueta para especificação exata.",
+                             "especificacoes":  "Classe AC2000 (Wi-Fi 5 / 802.11ac) normalmente indica:\n- 2.4 GHz: até 300 Mbps (802.11n)\n- 5 GHz: até 1733 Mbps (802.11ac)\nPortas: em modelos AC2000, normalmente há portas Gigabit (confirmar etiqueta).\nObservação: para \u0027dados 100% exatos\u0027, confirmar o modelo impresso (ex.: Archer C2300 é AC2300).",
+                             "procedimento":  "1) Priorizar 5 GHz perto do roteador para teste de velocidade.\n2) Se cliente usa IoT: separar SSIDs 2.4/5 e evitar WPA3 em dispositivos antigos.\n3) Se plano alto e Wi-Fi não bate: verificar largura de canal, interferência e posicionamento.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Roteador Dual Band (AC)",
+                                                "texto":  "Confirmar modelo para especificação exata."
+                                            }
+                                        ]
+                         },
+                         {
+                             "id":  "tplink-ac2000-iw",
+                             "fabricante":  "TP-Link",
+                             "modelo":  "TP-Link AC2000",
+                             "filial":  "IW",
+                             "usuario":  "admin",
+                             "senha":  "7615",
+                             "tipo":  "Roteador",
+                             "tags":  [
+                                          "tp-link",
+                                          "ac2000",
+                                          "wifi5",
+                                          "ac",
+                                          "dualband",
+                                          "5ghz",
+                                          "gigabit"
+                                      ],
+                             "obs":  "Modelo AC2000 genérico; confirmar etiqueta para especificação exata.",
+                             "especificacoes":  "Classe AC2000 (Wi-Fi 5 / 802.11ac) normalmente indica:\n- 2.4 GHz: até 300 Mbps (802.11n)\n- 5 GHz: até 1733 Mbps (802.11ac)\nPortas: em modelos AC2000, normalmente há portas Gigabit (confirmar etiqueta).\nObservação: para \u0027dados 100% exatos\u0027, confirmar o modelo impresso (ex.: Archer C2300 é AC2300).",
+                             "procedimento":  "1) Priorizar 5 GHz perto do roteador para teste de velocidade.\n2) Se cliente usa IoT: separar SSIDs 2.4/5 e evitar WPA3 em dispositivos antigos.\n3) Se plano alto e Wi-Fi não bate: verificar largura de canal, interferência e posicionamento.",
+                             "midias":  [
+                                            {
+                                                "src":  "../assets/img/ico_router.svg",
+                                                "titulo":  "Roteador Dual Band (AC)",
+                                                "texto":  "Confirmar modelo para especificação exata."
+                                            }
+                                        ]
+                         }
+                     ],
+    "scripts":  [
+                    {
+                        "id":  "msg-corporativo-abertura",
+                        "titulo":  "Abertura — Suporte Corporativo",
+                        "texto":  "Olá, tudo bem? Meu nome é [NOME] e sou do departamento de Atendimento Corporativo da Athon Telecom.\nPara iniciarmos o atendimento com segurança, por gentileza informe o CNPJ e o nome do responsável.\nEm seguida, descreva o comportamento da conexão (sem acesso, lentidão, oscilação ou falha específica).",
+                        "palavras_chave":  [
+                                               "corporativo",
+                                               "cnpj",
+                                               "abertura",
+                                               "saudação"
+                                           ],
+                        "categoria":  "Corporativo"
+                    },
+                    {
+                        "id":  "msg-analise",
+                        "titulo":  "Atendimento — Em análise",
+                        "texto":  "Agradecemos as informações.\nNeste momento, o departamento de Atendimento está analisando os indicadores da conexão e validando os registros técnicos.\nPeço, por gentileza, que aguarde alguns instantes para conclusão da verificação.",
+                        "palavras_chave":  [
+                                               "análise",
+                                               "aguarde",
+                                               "diagnóstico"
+                                           ],
+                        "categoria":  "Corporativo"
+                    },
+                    {
+                        "id":  "msg-validacao",
+                        "titulo":  "Atendimento — Validação pós-ajuste",
+                        "texto":  "Foram aplicados ajustes de conectividade no sistema.\nPor gentileza, valide agora se o serviço foi normalizado no equipamento principal e nos dispositivos utilizados.",
+                        "palavras_chave":  [
+                                               "validação",
+                                               "normalizou",
+                                               "teste"
+                                           ],
+                        "categoria":  "Corporativo"
+                    },
+                    {
+                        "id":  "msg-manutencao",
+                        "titulo":  "Controle de Manutenção — Manutenção programada/emergencial",
+                        "texto":  "Prezado(a), identificamos manutenção de rede na sua região.\nNossa equipe técnica já está atuando para normalização do serviço no menor prazo possível.\n\nOrientação:\n- Mantenha ONU/roteador energizados.\n- A reconexão ocorrerá automaticamente após a liberação da rede.\n\nAgradecemos sua compreensão.",
+                        "palavras_chave":  [
+                                               "manutenção",
+                                               "fibra",
+                                               "sem conexão"
+                                           ],
+                        "categoria":  "Manutenção"
+                    },
+                    {
+                        "id":  "msg-rompimento",
+                        "titulo":  "Controle de Manutenção — Rompimento de fibra",
+                        "texto":  "Prezado(a), foi identificado rompimento de fibra na sua região.\nA equipe técnica já está em campo para recomposição do enlace.\n\nOrientação:\n- Mantenha os equipamentos ligados.\n- Após o reparo, o retorno será automático.\n\nAgradecemos o contato e a compreensão.",
+                        "palavras_chave":  [
+                                               "rompimento",
+                                               "fibra",
+                                               "manutenção",
+                                               "sem conexão"
+                                           ],
+                        "categoria":  "Manutenção"
+                    },
+                    {
+                        "id":  "msg-dvr-cameras",
+                        "titulo":  "DVR e câmeras IP — Triagem de Atendimento",
+                        "texto":  "Para chamados de DVR/câmeras, o departamento de Atendimento deve separar falha de internet de falha de configuração local.\n\nPasso a passo:\n1) Confirmar navegação normal no local.\n2) Validar IP local do DVR/câmera, gateway e DNS.\n3) Testar acesso local na mesma rede.\n4) Em acesso remoto, validar IP público, cenário CGNAT e necessidade de redirecionamento.\n5) Registrar evidências (horário, testes, print/log).\n\nEscalonar para Suporte Técnico (N2) quando houver necessidade de NAT/roteamento avançado.",
+                        "palavras_chave":  [
+                                               "dvr",
+                                               "câmera",
+                                               "camera",
+                                               "ip",
+                                               "acesso remoto",
+                                               "cgnat"
+                                           ],
+                        "categoria":  "Equipamentos secundários"
+                    },
+                    {
+                        "id":  "msg-impressora-wifi",
+                        "titulo":  "Impressora Wi-Fi — Procedimento de compatibilidade",
+                        "texto":  "Grande parte das impressoras opera somente em 2.4 GHz.\n\nFluxo do departamento de Atendimento:\n1) Confirmar se o modelo suporta 5 GHz.\n2) Quando necessário, separar SSIDs e conectar a impressora em 2.4 GHz.\n3) Validar padrão de segurança compatível (preferencialmente WPA2 para equipamentos legados).\n4) Executar teste de impressão e registrar resultado no chamado.",
+                        "palavras_chave":  [
+                                               "impressora",
+                                               "wifi 2.4",
+                                               "ssid",
+                                               "compatibilidade",
+                                               "iot"
+                                           ],
+                        "categoria":  "Equipamentos secundários"
+                    },
+                    {
+                        "id":  "msg-iptv",
+                        "titulo":  "IPTV/TV Box — Diretriz de atendimento",
+                        "texto":  "IPTV/TV Box normalmente envolve aplicativos e equipamentos de terceiros.\nA Athon Telecom garante o suporte à conectividade do link, não ao funcionamento interno da plataforma de terceiros.\n\nFluxo do departamento de Atendimento:\n- Validar estabilidade do link (teste de velocidade e ping).\n- Confirmar se a falha ocorre apenas no aplicativo/dispositivo.\n- Com link normal, orientar contato com o fornecedor do serviço/equipamento.",
+                        "palavras_chave":  [
+                                               "iptv",
+                                               "tv box",
+                                               "streaming",
+                                               "anatel",
+                                               "suporte"
+                                           ],
+                        "categoria":  "IPTV e repetidor"
+                    },
+                    {
+                        "id":  "msg-repetidor",
+                        "titulo":  "Repetidor - Diretriz de atendimento",
+                        "texto":  "Olá, realizei as verificações em sistema e identifiquei que a falha na sua conexão está relacionada ao uso de repetidor de sinal.\n\nGostaria de esclarecer que a nossa empresa não oferece suporte técnico para esse tipo de equipamento, pois ele pode causar instabilidade, lentidão ou até mesmo queda total da conexão em alguns pontos da residência.\n\nPara que possamos garantir a qualidade do serviço, recomendamos que o(a) senhor(a) utilize apenas o modem/roteador que fornecemos na instalação, sem o auxílio de repetidores externos.\n\nSe houver necessidade de ampliar a cobertura de sinal em sua residência, podemos avaliar junto ao nosso setor responsável outras opções seguras, como a instalação de pontos adicionais, conforme disponibilidade em contrato.\n\nNesse momento, para restabelecer sua conexão, o ideal é desconectar o repetidor e conectar-se diretamente à rede original do modem/roteador.\n\nPosso acompanhar com o(a) senhor(a) esse teste agora mesmo. Deseja que eu lhe auxilie passo a passo?",
+                        "palavras_chave":  [
+                                               "repetidor",
+                                               "instabilidade",
+                                               "lentidão",
+                                               "queda",
+                                               "mesh",
+                                               "cobertura"
+                                           ],
+                        "categoria":  "IPTV e repetidor"
+                    },
+                    {
+                        "id":  "senha-app",
+                        "titulo":  "Senha do Aplicativo — Athon Telecom",
+                        "texto":  "Acesso ao aplicativo:\nLogin: CPF do titular (sem pontos e sem traço).\nSenha: 12345678",
+                        "palavras_chave":  [
+                                               "aplicativo",
+                                               "senha",
+                                               "login",
+                                               "cpf"
+                                           ],
+                        "categoria":  "Atendimento geral"
+                    },
+                    {
+                        "id":  "msg-speedtest-padrao",
+                        "titulo":  "Teste de velocidade - Orientação completa de validação",
+                        "texto":  "Entendo, o(a) senhor(a) está verificando que a velocidade não corresponde ao contratado. Vou explicar alguns pontos importantes e orientar como realizar o teste corretamente para validarmos juntos.\n\nO que significam as medidas do teste\n- Download: representa a velocidade que sua conexão consegue baixar conteúdos da internet, e é esse valor que deve se aproximar da velocidade contratada.\n- Upload: representa a velocidade de envio de arquivos, como quando o(a) senhor(a) envia fotos, vídeos ou documentos. Geralmente é menor que a de download.\n\nDiferenças de equipamentos e cabos\n- Para que o teste atinja a velocidade contratada, é necessário verificar se o computador utiliza placa e cabo compatíveis.\n- Cabos de rede do tipo /100 limitam a velocidade em até 100 Mbps.\n- Cabos /1000 (Gigabit) suportam até 1000 Mbps.\n- Caso o cabo utilizado seja do tipo /100, mesmo que o plano seja maior, o teste não vai atingir a velocidade contratada.\n\nSobre o Wi-Fi\n- O sinal via Wi-Fi sofre degradação natural.\n- Distância do aparelho de roteamento, paredes, espelhos, eletrodomésticos e estrutura da residência impactam o resultado.\n- Por esses fatores, o Wi-Fi dificilmente mostrará exatamente a velocidade contratada, sendo apenas uma estimativa.\n\nOrientação para o teste correto\n1) Realize o teste em um computador conectado diretamente ao modem/roteador via cabo de rede (preferencialmente /1000).\n2) Desconecte todos os outros dispositivos da rede durante o teste.\n3) Feche todos os aplicativos e abas do navegador antes de iniciar.\n4) Se possível, realize o teste em uma aba anônima.\n5) O site oficial para o teste é: https://www.speedtest.net/pt\n\nEncerramento\nAtendente: Por gentileza, poderia realizar o teste seguindo essas orientações e me enviar o resultado? Assim conseguimos validar juntos se está dentro do contratado ou se será necessário acionar nosso setor técnico.",
+                        "palavras_chave":  [
+                                               "teste de velocidade",
+                                               "speedtest",
+                                               "download",
+                                               "upload",
+                                               "wifi",
+                                               "cabo",
+                                               "gigabit"
+                                           ],
+                        "categoria":  "Teste de velocidade"
+                    },
+                    {
+                        "id":  "msg-speedtest-sem-5g",
+                        "titulo":  "Velocidade — Cliente sem 5 GHz",
+                        "texto":  "Quando o cliente não dispõe de 5 GHz, orientar validação por cabo para medição fiel da entrega.\nEm Wi-Fi 2.4 GHz, variações são esperadas por interferência, distância e barreiras físicas.\nRegistrar no chamado que a limitação é tecnológica e não necessariamente falha de rede.",
+                        "palavras_chave":  [
+                                               "velocidade",
+                                               "sem 5ghz",
+                                               "cabo",
+                                               "speedtest"
+                                           ],
+                        "categoria":  "Teste de velocidade"
+                    },
+                    {
+                        "id":  "msg-speedtest-2g",
+                        "titulo":  "Velocidade — Validação em 2.4 GHz",
+                        "texto":  "Em rede 2.4 GHz, a estabilidade pode ser impactada por interferência e ocupação de canal.\nO departamento de Atendimento deve priorizar:\n- teste cabeado para referência de entrega;\n- ajuste de canal (1, 6 ou 11);\n- reposicionamento do roteador;\n- orientação de uso de 5 GHz quando disponível.",
+                        "palavras_chave":  [
+                                               "velocidade",
+                                               "2.4g",
+                                               "wifi",
+                                               "teste"
+                                           ],
+                        "categoria":  "Teste de velocidade"
+                    },
+                    {
+                        "id":  "msg-vpn",
+                        "titulo":  "VPN - Solicitação de IP público para diagnóstico",
+                        "texto":  "Atendente: Referente à sua solicitação, podemos efetuar um diagnóstico através do IP público da sua VPN para identificar se há alguma questão em nossa rede que esteja interferindo na utilização.\n\nÉ importante esclarecer que nossa conexão funciona apenas como uma ponte até o servidor da sua empresa. Ou seja, ao se conectar na VPN, o tráfego do(a) senhor(a) passa a utilizar a rede da sua empresa, não mais a nossa. Por esse motivo, podem ocorrer instabilidades ou lentidão no dispositivo conectado à VPN, que não estão relacionadas diretamente à nossa conexão.\n\nNeste caso, precisamos que o(a) senhor(a) entre em contato com o setor de TI da sua empresa e solicite o IP público da VPN. Com esse dado, conseguiremos realizar as análises necessárias em sua conexão.\n\nCaso o(a) senhor(a) não saiba identificar o IP, pode acessar o site https://meuip.com.br/ para obter essa informação.\n\nAssim que tiver esse dado, por gentileza, nos encaminhe para que possamos prosseguir com a verificação.",
+                        "palavras_chave":  [
+                                               "vpn",
+                                               "ip público",
+                                               "diagnóstico",
+                                               "ti",
+                                               "empresa",
+                                               "meuip"
+                                           ],
+                        "categoria":  "Corporativo"
+                    },
+                    {
+                        "id":  "msg-sondagem-inicial",
+                        "titulo":  "Inicial - Confirmação da Situação e Sondagem",
+                        "texto":  "Atendente: Para iniciarmos a verificação, vou fazer algumas perguntas rápidas para entender melhor o cenário.\n\n1. Confirmação da situação\n- A conexão está totalmente sem sinal ou apenas lenta e oscilando?\n- O problema acontece em todos os dispositivos (celular, computador, TV) ou apenas em algum específico?\n\n2. Tipo de acesso\n- O(a) senhor(a) está utilizando a internet pelo Wi-Fi ou pelo cabo de rede?\n- Caso esteja utilizando Wi-Fi, consegue verificar se o sinal aparece disponível para conexão?\n\n3. Equipamento\n- O modem/roteador está ligado normalmente?\n- As luzes do equipamento estão acesas? Estão fixas ou piscando?\n- Já foi realizado o teste de desligar o equipamento da tomada por 60 segundos e ligar novamente? Se sim, houve alguma alteração?\n\n4. Tempo de ocorrência\n- Há quanto tempo o(a) senhor(a) está sem conexão?\n- O problema começou hoje ou já vem acontecendo há alguns dias?\n\n5. Localidade\n- Há mais alguém na mesma residência ou vizinhança enfrentando o mesmo problema?\n- O(a) senhor(a) notou se havia algum técnico ou manutenção em andamento próximo à sua rua?\n\n6. Situação contratual\n- O(a) senhor(a) realizou o pagamento da última mensalidade?\n- Está dentro do prazo ou há algum débito em aberto?\n(Explicação: após alguns dias de atraso, a conexão pode ficar bloqueada parcialmente.)\n\n7. Possíveis interferências\n- Houve chuva forte, ventos, queda de energia ou algum acidente próximo à residência antes de o problema começar?\n- Algum cabo do lado de fora foi rompido, puxado ou desconectado?\n- O(a) senhor(a) percebeu se houve troca de senha ou alteração na rede Wi-Fi recentemente?\n\n8. Questões adicionais\n- O(a) senhor(a) percebe lentidão em algum dispositivo ou aplicativo específico?\n- Alguma luz do equipamento está vermelha? Se sim, qual o nome abaixo da luz?\n- O(a) senhor(a) utiliza IPTV ou TV BOX em sua conexão?\n- No nome da rede aparece alguma mensagem como \"conectado sem internet\", \"internet indisponível\" ou \"cliente reset\"?\n\nEncerramento da sondagem\nAtendente: Perfeito, agradeço pelas informações. Com base no que o(a) senhor(a) me passou, vou realizar a verificação em sistema e, se necessário, encaminhar um procedimento técnico ou abrir uma ordem de serviço para regularizar a conexão.",
+                        "palavras_chave":  [
+                                               "inicial",
+                                               "sondagem",
+                                               "sem conexão",
+                                               "lentidão",
+                                               "oscilação",
+                                               "wi-fi",
+                                               "cabo",
+                                               "los"
+                                           ],
+                        "categoria":  "Atendimento geral"
+                    },
+                    {
+                        "id":  "msg-suporte-padrao",
+                        "titulo":  "Suporte - Testes, Normalização e Encaminhamento",
+                        "texto":  "1. Autorização para testes\nAtendente: Senhor(a), para prosseguir, irei realizar alguns testes que podem causar interrupção temporária da conexão. Podemos seguir?\n- Reinicie o roteador, desligando-o da tomada, aguardando 10 segundos e ligando novamente.\n- Por gentileza, verifique atrás do equipamento menor: há um cabo de cor cinza ou amarela conectado?\n- Irei realizar uma atualização na sua rede. Durante este procedimento, que dura até 2 minutos, a conexão pode cair e retornará automaticamente.\n\nApós a atualização\nAtendente: Realizei o procedimento, senhor(a). Por favor, teste acessando o YouTube e verifique se o vídeo carrega normalmente.\n\n2. Normalização\nCaso a conexão seja restabelecida:\nAtendente: Que ótimo, senhor(a)! Solicito que acompanhe a conexão ao longo do dia. Se houver qualquer falha, nosso suporte está disponível 24 horas. Posso auxiliar em algo mais neste momento?\n\n3. Quando não normaliza - LOS / Encaminhamento\nAtendente: Senhor(a), realizamos todos os procedimentos padrões e a conexão não foi restabelecida. Encaminhei as informações ao setor de T.I., que fará uma análise remota em até 10 minutos.\nPeço que mantenha os equipamentos ligados.\n\nAssim que a análise terminar, entraremos em contato para informar se a conexão foi normalizada ou se será necessário enviar um técnico.\n\n4. Agendamento de visita técnica\nCaso seja necessário:\nAtendente: Senhor(a), foi identificada a necessidade de uma visita técnica no local. Podemos agendar para a data XX/XX/XXXX?\nPara isso, por gentileza, confirme seu endereço, telefone de contato e, se possível, nos informe sua localização para facilitar o deslocamento do técnico.\n\n5. Controle de manutenção\nRompimento:\nPrezado senhor(a), identificamos falta de conexão em sua região devido a rompimento de fibra. Nossa equipe já está no local realizando os reparos. Mantenha os equipamentos ligados, que a conexão retornará automaticamente.\n\nManutenção:\nPrezado senhor(a), em sua região está sendo realizada manutenção na fibra. Nossa equipe trabalha para normalizar a conexão o mais breve possível. A conexão retornará automaticamente quando finalizarmos.\n\nCaso o cliente questione vizinho com conexão:\nAtendente: Nossos clientes possuem saídas de distribuição diferentes. Infelizmente, a saída em que o(a) senhor(a) está conectado apresenta falha, mas já está em reparo.\n\n6. Orientações extras\nSenha do aplicativo Athon Telecom:\n- Login: CPF do titular (sem pontos ou traço)\n- Senha: 12345678",
+                        "palavras_chave":  [
+                                               "suporte",
+                                               "teste",
+                                               "normalização",
+                                               "los",
+                                               "encaminhamento",
+                                               "visita técnica",
+                                               "ordem de serviço"
+                                           ],
+                        "categoria":  "Atendimento geral"
+                    },
+                    {
+                        "id":  "msg-upgrade-down",
+                        "titulo":  "Upgrade/Down - Alteração de plano",
+                        "texto":  "1. Apresentação do plano\nAtendente: Para que possamos atualizar o seu plano, será necessário renovar a fidelização por mais 12 meses. Além disso, precisamos do envio dos seus documentos atualizados (RG ou CNH, frente e verso) e uma selfie segurando o mesmo documento. O senhor teria disponibilidade para realizar esse procedimento agora?\n\n2. Caso o cliente demonstre interesse\nExplicação sobre o processo:\nAtendente: Para que a alteração seja efetivada, é necessário realizar a assinatura do contrato digital, fidelizando o(a) senhor(a) por mais 12 meses. Por motivos de segurança, somente o titular deve realizar a assinatura. Podemos confirmar a alteração?\n\nConfirmação cadastral:\nAtendente: Para finalizar, será necessário encaminhar uma foto do documento frente e verso, podendo ser RG ou CNH, e uma selfie com o documento de identidade ao lado do rosto. Esta etapa é apenas para confirmação cadastral.\n\nBloqueio temporário para assinatura:\nAtendente: Importante informar que a conexão do(a) senhor(a) entrará em bloqueio temporário apenas para que seja possível realizar a assinatura no site. Assim que a assinatura for concluída, a conexão voltará ao normal imediatamente.\n\nEmissão dos boletos:\nAtendente: Estarei solicitando ao setor responsável a emissão dos novos boletos. Eles ficarão disponíveis em nossas plataformas digitais. O primeiro boleto virá com um valor proporcional aos dias utilizados, tudo bem?",
+                        "palavras_chave":  [
+                                               "upgrade",
+                                               "downgrade",
+                                               "alteração de plano",
+                                               "fidelização",
+                                               "contrato digital",
+                                               "selfie"
+                                           ],
+                        "categoria":  "Comercial"
+                    },
+                    {
+                        "id":  "msg-financeiro-retencao",
+                        "titulo":  "Financeiro / Renegociação / Retenção",
+                        "texto":  "1. Valor proporcional\nAtendente: Senhora, sua primeira fatura virá com um valor proporcional aos dias utilizados, contando a partir da última data de fechamento do boleto anterior até o primeiro vencimento do contrato.\n\n2. Bloqueio por falta de pagamento\nAtendente: Senhor, a conexão entrou em bloqueio automático devido à falta de pagamento da mensalidade referente ao mês de XXX. O pagamento já foi efetuado?\n\nCaso o cliente confirme pagamento:\nAtendente: Irei realizar um desbloqueio de confiança por 72 horas, até que a baixa bancária conste em nosso sistema. Lembrando que, após esse prazo, caso o pagamento não seja identificado, a conexão voltará a ser bloqueada automaticamente, sendo normalizada mediante apresentação de comprovante.\n\nOrientação para envio de comprovante:\nPara anexarmos o comprovante, ele deve conter as seguintes informações: data do pagamento, data do vencimento, código de autenticação e nome do pagador.\n\n3. Dificuldade em pagamento de boleto\nAtendente: Senhor, o boleto expirou e será necessário emitir um novo. Este novo boleto será encaminhado via e-mail e estará disponível para pagamento em até 48 horas.\nImportante: quando o boleto está em atraso, alguns bancos não permitem pagamento pelo aplicativo ou internet banking.\nCaso vá a uma agência física, é possível pagar no caixa eletrônico.\nTambém é possível efetuar o pagamento em correspondentes autorizados que aceitam títulos vencidos.\n\n4. Renegociação\nAtendente: Senhora, encaminhei sua solicitação ao departamento responsável. Eles entrarão em contato no período comercial, de segunda a sábado, das 08h às 14h.\nPoderia me confirmar um número de telefone atualizado para que possamos prosseguir?\n\n5. Cancelamento ou congelamento\nAtendente: Senhor, para entender melhor, qual seria o motivo da solicitação de cancelamento ou congelamento?\nCaso o cliente mantenha a solicitação:\nAtendente: Certo, em até 48 horas a partir da data de hoje, o departamento responsável entrará em contato com o senhor para prosseguir com o cancelamento.",
+                        "palavras_chave":  [
+                                               "financeiro",
+                                               "bloqueio",
+                                               "pagamento",
+                                               "renegociação",
+                                               "retenção",
+                                               "cancelamento",
+                                               "congelamento"
+                                           ],
+                        "categoria":  "Financeiro"
+                    },
+                    {
+                        "id":  "msg-ip-privado-faixas",
+                        "titulo":  "Rede - Faixas de IP privado",
+                        "texto":  "Faixas reservadas para IP privado:\n- 192.168.0.0 - 192.168.255.255 = IP privado\n- 172.16.0.0 - 172.31.255.255 = IP privado\n- 10.0.0.0 - 10.255.255.255 = IP privado",
+                        "palavras_chave":  [
+                                               "ip privado",
+                                               "faixas privadas",
+                                               "192.168",
+                                               "172.16",
+                                               "10.0.0.0",
+                                               "rede"
+                                           ],
+                        "categoria":  "Rede"
+                    }
+                ],
+    "topicos":  [
+                    {
+                        "id":  "n1-checklist",
+                        "categoria":  "Atendimento",
+                        "titulo":  "Checklist de Atendimento",
+                        "resumo":  "Roteiro padrão para triagem, coleta de evidências e definição de encaminhamento técnico.",
+                        "detalhes":  "Objetivo: padronizar o atendimento inicial, reduzir retrabalho e melhorar a assertividade de escalonamento.\n\n1) Identificação e cenário\n- Confirmar CPF/CNPJ, titular, endereço, telefone e melhor horário para contato.\n- Validar sintoma principal: sem acesso, lentidão, oscilação ou falha em serviço específico.\n- Confirmar meio de teste: cabo, Wi-Fi 2.4 GHz, Wi-Fi 5 GHz ou aplicação corporativa (VPN).\n\n2) Evidências obrigatórias\n- Teste de velocidade com horário.\n- Status de LEDs e leitura RX/TX (quando disponível).\n- Log Radius (em cenário PPPoE).\n- IP público do cliente em casos de acesso remoto.\n\n3) Ações do Departamento de Atendimento\n- Reinício orientado e teste controlado.\n- Validação cabeada.\n- Ajuste de canal Wi-Fi e separação de SSIDs quando aplicável.\n- Validação de DNS e testes de ping/traceroute.\n\n4) Encaminhar para Suporte Técnico (N2) quando\n- Houver indício de falha física (LOS/PON/RX fora do padrão).\n- Houver erro de autenticação recorrente.\n- For necessária intervenção avançada (NAT, VLAN, PPPoE, roteamento, bridge).\n\nPadrão de registro no chamado:\n- Sintoma + Testes realizados + Resultado + Próximo passo.",
+                        "tags":  [
+                                     "atendimento",
+                                     "triagem",
+                                     "procedimento",
+                                     "chamado",
+                                     "evidências"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "Triagem de Atendimento",
+                                           "texto":  "Padroniza a coleta e evita retrabalho."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "wifi-bandas",
+                        "categoria":  "Wi-Fi",
+                        "titulo":  "2.4 GHz ou 5 GHz",
+                        "resumo":  "Orientação técnica para escolha entre 2.4 GHz e 5 GHz conforme cenário do cliente.",
+                        "detalhes":  "2.4 GHz\n- Maior alcance e melhor propagação em ambientes com paredes.\n- Maior suscetibilidade à interferência.\n\n5 GHz\n- Menor alcance e maior desempenho em curta distância.\n- Recomendado para streaming, videoconferência e jogos.\n\nDiretriz do Departamento de Atendimento\n- Cliente próximo ao roteador e com lentidão: priorizar teste em 5 GHz.\n- Cliente distante: avaliar 2.4 GHz e alternativa de cobertura (Mesh, conforme política).\n- Para medição contratual, priorizar teste cabeado.",
+                        "tags":  [
+                                     "wifi",
+                                     "2.4ghz",
+                                     "5ghz",
+                                     "alcance",
+                                     "velocidade",
+                                     "compatibilidade"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_wifi.svg",
+                                           "titulo":  "Bandas Wi-Fi",
+                                           "texto":  "5 GHz é Wi-Fi; não confundir com 5G móvel."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "wifi-circundante",
+                        "categoria":  "Wi-Fi",
+                        "titulo":  "Wi-Fi circundante — escolha de canal com menor ocupação",
+                        "resumo":  "Procedimento para reduzir interferência em 2.4 GHz usando \u0027Wi-Fi circundante\u0027.",
+                        "detalhes":  "Passo a passo (painéis ZTE)\n1) WLAN \u003e Wi-Fi circundante\n2) Executar detecção de rede (Scan)\n3) Analisar canais com maior ocupação\n4) Ajustar para canal menos congestionado (preferência: 1, 6 ou 11 em 2.4 GHz)\n\nBoas práticas\n- Evitar canais sobrepostos no 2.4 GHz.\n- Revalidar após reconexão dos dispositivos.\n\nEncaminhamento\n- Sem melhoria após ajuste: registrar evidências e avaliar escalonamento técnico.",
+                        "tags":  [
+                                     "wifi",
+                                     "canal",
+                                     "interferência",
+                                     "wlan",
+                                     "circundante",
+                                     "2.4ghz"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_wifi.svg",
+                                           "titulo":  "Interferência",
+                                           "texto":  "Canal certo reduz colisão e melhora estabilidade."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "band-steering",
+                        "categoria":  "Wi-Fi",
+                        "titulo":  "Band Steering — como desligar e separar SSIDs",
+                        "resumo":  "Quando o cliente tem queda por troca automática ou precisa conectar IoT em 2.4 GHz.",
+                        "detalhes":  "Quando aplicar\n- Dispositivos IoT sem suporte estável em banda unificada.\n- Oscilação por troca automática entre 2.4 GHz e 5 GHz.\n\nProcedimento (ZTE)\n1) WLAN \u003e Band Steering\n2) Definir como Desligado e aplicar\n3) WLAN Básica \u003e Configuração SSID\n4) Definir SSIDs distintos para 2.4 GHz e 5 GHz\n\nPós-ajuste\n- Orientar o cliente sobre qual SSID utilizar por ambiente.\n- Registrar validação de estabilidade e velocidade.",
+                        "tags":  [
+                                     "wifi",
+                                     "band steering",
+                                     "ssid",
+                                     "2.4ghz",
+                                     "5ghz",
+                                     "iot"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_wifi.svg",
+                                           "titulo":  "Separação de SSID",
+                                           "texto":  "Evita confusão e melhora compatibilidade."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "ping-diagnostico",
+                        "categoria":  "Diagnóstico",
+                        "titulo":  "Ping no roteador — interpretação de latência e perda",
+                        "resumo":  "Modelo de diagnóstico via menu Diagnóstico (ICMP).",
+                        "detalhes":  "Objetivo\n- Validar comunicação com destino e identificar perda de pacotes.\n\nExecução (painel ZTE/ONT)\n1) Acessar Diagnóstico\n2) Informar IP/Servidor de destino\n3) Manter saída em Auto\n4) Executar diagnóstico de rede\n\nInterpretação de referência\n- 3 a 10 ms: excelente para rota local/regional.\n- 30 a 80 ms: dentro do esperado conforme rota.\n- Acima de 100 ms: possível rota longa/congestionada.\n- Perda acima de 0%: indício de instabilidade.\n\nEncaminhar para Suporte Técnico (N2)\n- Perda recorrente em ambiente cabeado ou em primeiros saltos.",
+                        "tags":  [
+                                     "ping",
+                                     "icmp",
+                                     "diagnóstico",
+                                     "latência",
+                                     "perda",
+                                     "pacotes"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_ping.svg",
+                                           "titulo":  "Ping",
+                                           "texto":  "Ferramenta rápida para separar \u0027internet\u0027 vs \u0027Wi-Fi\u0027."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "traceroute",
+                        "categoria":  "Diagnóstico",
+                        "titulo":  "Traceroute — identificação do ponto de degradação",
+                        "resumo":  "Guia simples para explicar rota e identificar o salto problemático.",
+                        "detalhes":  "Definição\n- Exibe os saltos percorridos até o destino e a latência por trecho.\n\nLeitura prática\n- Degradação nos primeiros saltos: indício local (LAN/Wi-Fi/equipamento).\n- Degradação intermediária: possível impacto de rota/upstream.\n- Falha apenas no destino: possível indisponibilidade do serviço remoto.\n\nRegistro no chamado\n- Anexar saída do traceroute com horário e destino testado.",
+                        "tags":  [
+                                     "traceroute",
+                                     "tracert",
+                                     "rota",
+                                     "diagnóstico",
+                                     "latência",
+                                     "saltos"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_ping.svg",
+                                           "titulo":  "Traceroute",
+                                           "texto":  "Ajuda a justificar escalonamento técnico."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "speedtest",
+                        "categoria":  "Diagnóstico",
+                        "titulo":  "Teste de velocidade — padrão operacional",
+                        "resumo":  "Checklist para o teste bater com a velocidade contratada.",
+                        "detalhes":  "Padrão recomendado\n1) Priorizar teste cabeado.\n2) Reduzir consumo paralelo durante a medição.\n3) Encerrar aplicações de tráfego intenso.\n4) Realizar teste em pelo menos duas plataformas.\n5) Registrar download, upload e ping.\n\nObservação\n- Em 2.4 GHz, o throughput real pode ser reduzido por interferência.\n- Em 5 GHz, o desempenho tende a ser melhor em curta distância.",
+                        "tags":  [
+                                     "speedtest",
+                                     "fast",
+                                     "velocidade",
+                                     "download",
+                                     "upload",
+                                     "ping"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_speed.svg",
+                                           "titulo":  "Teste de velocidade",
+                                           "texto":  "Padronizar evita \u0027falso negativo\u0027."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "dns",
+                        "categoria":  "Rede",
+                        "titulo":  "DNS — quando trocar e como explicar sem complicar",
+                        "resumo":  "Orientação prática para sintomas de DNS e uso de DNS do provedor.",
+                        "detalhes":  "Sintomas comuns\n- Alguns sites não abrem, enquanto outros funcionam.\n- Aplicativos retornam erro de resolução de servidor.\n\nFluxo do Departamento de Atendimento\n- Validar DNS atual.\n- Testar DNS alternativo apenas para diagnóstico.\n- Limpar cache DNS quando aplicável.\n- Registrar DNS original e DNS testado no chamado.",
+                        "tags":  [
+                                     "dns",
+                                     "resolução",
+                                     "sites",
+                                     "rede"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "DNS",
+                                           "texto":  "Traduz nomes para IPs; falha vira \u0027site não abre\u0027."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "ip-publico-privado",
+                        "categoria":  "Rede",
+                        "titulo":  "IP privado vs IP público — aplicação prática em acesso remoto",
+                        "resumo":  "Explicação objetiva para atendimento de câmeras, VPN e serviços externos.",
+                        "detalhes":  "IP Privado\n- Endereço dentro da rede do cliente (ex.: 192.168.x.x, 10.x.x.x).\n- Não é acessível diretamente pela internet.\n\nIP Público\n- Endereço visível na internet (atribuído pelo provedor).\n- Pode ser fixo ou dinâmico; em CGNAT pode ser compartilhado.\n\nAplicação prática\n- Câmeras/portas remotas geralmente exigem IP público e NAT/portas.\n- VPN corporativa depende do servidor da empresa; a internet do provedor é apenas o \u0027caminho\u0027.",
+                        "tags":  [
+                                     "ip",
+                                     "público",
+                                     "privado",
+                                     "cgnat",
+                                     "câmera",
+                                     "vpn"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "Endereçamento",
+                                           "texto":  "Ajuda a alinhar expectativa do cliente."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "rx-tx",
+                        "categoria":  "Fibra",
+                        "titulo":  "RX/TX — leitura de potência óptica e critério de escalonamento",
+                        "resumo":  "Como interpretar rapidamente sinal óptico na ONU/ONT.",
+                        "detalhes":  "RX (Receive)\n- Potência recebida pela ONU/ONT a partir da OLT.\n- Quanto mais negativo o valor, mais fraco o sinal.\n\nTX (Transmit)\n- Potência transmitida da ONU/ONT para a rede.\n\nDiretriz\n- Variação excessiva ou valor fora do padrão interno exige análise técnica.\n- LOS aceso ou PON apagado: escalonamento imediato.\n\nRegistro\n- Informar RX, TX, status de LEDs e testes realizados.",
+                        "tags":  [
+                                     "fibra",
+                                     "rx",
+                                     "tx",
+                                     "onu",
+                                     "ont",
+                                     "potência"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_fibra.svg",
+                                           "titulo":  "Potência óptica",
+                                           "texto":  "Sinal fraco é causa comum de instabilidade."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "radius",
+                        "categoria":  "Autenticação",
+                        "titulo":  "Log Radius — interpretar Login OK vs Login incorrect",
+                        "resumo":  "Como o departamento de Atendimento utiliza o log para identificar credencial, reset ou rede.",
+                        "detalhes":  "Login OK (verde)\n- Autenticação concluída com sucesso.\n\nLogin incorrect (vermelho)\n- Falha de autenticação por credencial/perfil/equipamento resetado.\n\nFluxo do Departamento de Atendimento\n- Validar login apresentado no log.\n- Em perfil de reset (ex.: clientereset/roteador@resetado), encaminhar para Suporte Técnico (N2).\n\nEvidência obrigatória\n- Horário, login, BRAS e MAC.",
+                        "tags":  [
+                                     "radius",
+                                     "pppoe",
+                                     "login",
+                                     "autenticação",
+                                     "bras",
+                                     "reset"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_radius.svg",
+                                           "titulo":  "Radius",
+                                           "texto":  "Separar \u0027link\u0027 de \u0027login incorreto\u0027 rapidamente."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "mac-vendors",
+                        "categoria":  "Ferramentas",
+                        "titulo":  "MAC Vendors — identificar fabricante pelo MAC",
+                        "resumo":  "Quando o cliente não sabe o que está conectado (TV Box, repetidor, etc.).",
+                        "detalhes":  "O que faz\n- Identifica o fabricante associado ao prefixo do MAC.\n\nComo usar no atendimento\n1) Coletar MAC do dispositivo conectado (ONU/roteador/ACS).\n2) Consultar no MAC Vendors.\n3) Pesquisar o fabricante para inferir o tipo de dispositivo.\n\nImportante\n- Identifica o fabricante, não o modelo exato.",
+                        "tags":  [
+                                     "mac",
+                                     "vendor",
+                                     "ferramenta",
+                                     "rede",
+                                     "dispositivos"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "MAC Vendors",
+                                           "texto":  "Ajuda a achar repetidor/TV Box escondido."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "repetidor-iptv",
+                        "categoria":  "Wi-Fi",
+                        "titulo":  "Repetidor / IPTV (TV Box) — orientação padrão e limites de suporte",
+                        "resumo":  "Mensagem e conduta para reduzir atrito, alinhar expectativa e registrar evidências técnicas.",
+                        "detalhes":  "Repetidores\n- Podem causar degradação e quedas (meio-duplex, retransmissão, posicionamento ruim).\n- Suporte limitado: orientar posicionamento e testes básicos; não garantir performance.\n\nIPTV/TV Box\n- Equipamentos não homologados podem gerar consumo alto e instabilidade.\n- Orientar o cliente a contatar fornecedor quando o problema for do app/dispositivo.\n\nBoa prática\n- Se houver Mesh homologado/indicado, sugerir como alternativa.",
+                        "tags":  [
+                                     "repetidor",
+                                     "iptv",
+                                     "tv box",
+                                     "wifi",
+                                     "mesh"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_wifi.svg",
+                                           "titulo":  "Cobertura",
+                                           "texto":  "Mesh tende a ser melhor que repetidor."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "vpn",
+                        "categoria":  "Corporativo",
+                        "titulo":  "VPN — orientação para análise de instabilidade",
+                        "resumo":  "Procedimento para atendimento corporativo com foco em evidências de rota e destino.",
+                        "detalhes":  "Premissa\n- A rede do provedor entrega conectividade até o servidor corporativo.\n- Instabilidade pode estar no servidor VPN de destino.\n\nFluxo do Departamento de Atendimento\n- Solicitar IP público do servidor VPN junto ao TI do cliente.\n- Validar IP público do cliente.\n- Executar ping/traceroute para o destino, quando permitido.\n- Registrar evidências e encaminhar quando houver anomalia de rota.",
+                        "tags":  [
+                                     "vpn",
+                                     "corporativo",
+                                     "ip público",
+                                     "diagnóstico"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "VPN",
+                                           "texto":  "Precisamos do IP do servidor para testar rota."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "cabo-rede",
+                        "categoria":  "Infra",
+                        "titulo":  "Cabo de rede — Cat5/5e/6 e impacto no plano",
+                        "resumo":  "Guia técnico para validar limitação física de porta/cabo em planos acima de 100 Mbps.",
+                        "detalhes":  "100 Mbps\n- Portas/cabos Fast Ethernet limitam o throughput a aproximadamente 100 Mbps.\n\n1 Gbps\n- Para planos acima de 100 Mbps, usar portas Gigabit e cabos Cat5e/Cat6.\n\nFluxo do Departamento de Atendimento\n- Confirmar porta em uso durante o teste.\n- Em placa 10/100, orientar limitação técnica e novo teste em equipamento compatível.",
+                        "tags":  [
+                                     "cabo",
+                                     "cat5",
+                                     "cat6",
+                                     "gigabit",
+                                     "100mbps",
+                                     "1gbps"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "Cabo",
+                                           "texto":  "Cabo/porta errados \u0027cortam\u0027 velocidade."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "padroes-wifi",
+                        "categoria":  "Wi-Fi",
+                        "titulo":  "802.11 b/g/n/ac/ax — o que muda e como escolher",
+                        "resumo":  "Explicação prática para suporte e para orientar o cliente.",
+                        "detalhes":  "Resumo técnico\n- 802.11b/g: padrões legados em 2.4 GHz, com menor desempenho.\n- 802.11n (Wi-Fi 4): operação em 2.4/5 GHz.\n- 802.11ac (Wi-Fi 5): maior throughput em 5 GHz.\n- 802.11ax (Wi-Fi 6): maior eficiência em ambientes densos.\n\nDiretriz de atendimento\n- Equipamento apenas 2.4 GHz não entrega desempenho equivalente a redes modernas em Wi-Fi.\n- Em planos altos, considerar roteador com suporte a Wi-Fi 6 conforme política comercial.",
+                        "tags":  [
+                                     "wifi",
+                                     "802.11",
+                                     "bgn",
+                                     "ac",
+                                     "ax",
+                                     "wifi6"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_wifi.svg",
+                                           "titulo":  "Padrões Wi-Fi",
+                                           "texto":  "Wi-Fi 6 é 802.11ax."
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "equip-secundarios-n1",
+                        "categoria":  "Atendimento",
+                        "titulo":  "Equipamentos secundários (DVR, câmeras e impressoras)",
+                        "resumo":  "Fluxo de triagem para separar falha de link da falha do equipamento de terceiros.",
+                        "detalhes":  "Objetivo\n- Separar falha de conectividade da falha do equipamento de terceiros.\n\nChecklist do Departamento de Atendimento\n1) Validar internet geral (navegação, ping e velocidade).\n2) Validar conectividade local do equipamento (IP, gateway, DNS, Wi-Fi/cabo).\n3) Em acesso remoto, validar IP público e cenário CGNAT.\n4) Registrar evidências no chamado.\n\nEncaminhar para Suporte Técnico (N2) quando\n- Houver necessidade de ajuste avançado (NAT, bridge, roteamento, portas).\n- Persistir falha após validações básicas.",
+                        "tags":  [
+                                     "atendimento",
+                                     "equipamentos secundários",
+                                     "dvr",
+                                     "câmera",
+                                     "impressora"
+                                 ],
+                        "midias":  [
+                                       {
+                                           "src":  "../assets/img/ico_router.svg",
+                                           "titulo":  "Triagem de Atendimento",
+                                           "texto":  "Padronização para casos com equipamentos de terceiros."
+                                       }
+                                   ]
+                    }
+                ],
+    "links_rapidos":  [
+                          {
+                              "titulo":  "MacVendors",
+                              "url":  "https://macvendors.com/",
+                              "descricao":  "",
+                              "tags":  [
+                                           "mac",
+                                           "vendor",
+                                           "fabricante",
+                                           "rede"
+                                       ]
+                          },
+                          {
+                              "titulo":  "DownDetector",
+                              "url":  "https://downdetector.com.br/",
+                              "descricao":  "",
+                              "tags":  [
+                                           "serviço",
+                                           "instabilidade",
+                                           "indisponibilidade"
+                                       ]
+                          },
+                          {
+                              "titulo":  "Meu IP",
+                              "url":  "https://meuip.com.br/",
+                              "descricao":  "",
+                              "tags":  [
+                                           "ip",
+                                           "publico",
+                                           "vpn"
+                                       ]
+                          },
+                          {
+                              "titulo":  "Speedtest",
+                              "url":  "https://www.speedtest.net/pt",
+                              "descricao":  "",
+                              "tags":  [
+                                           "speedtest",
+                                           "velocidade",
+                                           "latencia"
+                                       ]
+                          },
+                          {
+                              "titulo":  "ACS (Acesso interno)",
+                              "url":  "#",
+                              "descricao":  "",
+                              "tags":  [
+                                           "acs",
+                                           "tr069",
+                                           "gestao remota",
+                                           "interno"
+                                       ]
+                          },
+                          {
+                              "titulo":  "ISP.Tools",
+                              "url":  "https://isp.tools/",
+                              "descricao":  "",
+                              "tags":  [
+                                           "isp",
+                                           "ferramentas",
+                                           "diagnostico"
+                                       ]
+                          },
+                          {
+                              "titulo":  "Text Blaze — Extensão Chrome",
+                              "url":  "https://chromewebstore.google.com/detail/text-blaze-templates-and/idgadaccgipmpannjkmfddolnnhmeklj",
+                              "descricao":  "",
+                              "tags":  [
+                                           "text blaze",
+                                           "atalhos",
+                                           "snippets",
+                                           "chrome"
+                                       ]
+                          },
+                          {
+                              "titulo":  "ChatGPT",
+                              "url":  "https://chatgpt.com/",
+                              "descricao":  "",
+                              "tags":  [
+                                           "ia",
+                                           "chatgpt",
+                                           "assistente"
+                                       ]
+                          },
+                          {
+                              "titulo":  "Gemini",
+                              "url":  "https://gemini.google.com/app?hl=pt-BR",
+                              "descricao":  "",
+                              "tags":  [
+                                           "ia",
+                                           "gemini",
+                                           "google"
+                                       ]
+                          }
+                      ],
+    "planilhas":  [
+                      {
+                          "titulo":  "Financeiro Diário",
+                          "url":  "https://docs.google.com/forms/d/e/1FAIpQLSczvb1FwJ7XZedC8lwt3ZjcLhTskn8hsVdxNpbCOohgbze7Lw/viewform",
+                          "descricao":  "",
+                          "tags":  [
+                                       "financeiro",
+                                       "diario"
+                                   ]
+                      },
+                      {
+                          "titulo":  "Solicitação de Cancelamento",
+                          "url":  "https://docs.google.com/forms/d/e/1FAIpQLScJEhunLBOElAmHojkDzOLhIm4DO67iIlMxXvhwI1pZbK6Jgg/viewform",
+                          "descricao":  "",
+                          "tags":  [
+                                       "cancelamento",
+                                       "formulario"
+                                   ]
+                      },
+                      {
+                          "titulo":  "Solicitação de Renegociação",
+                          "url":  "https://docs.google.com/forms/d/e/1FAIpQLSeTqSGoTwbn4qA8zSQWfDXKqRr7v4U735BCUc7Obi09Q4u8aw/viewform",
+                          "descricao":  "",
+                          "tags":  [
+                                       "renegociacao",
+                                       "comercial"
+                                   ]
+                      }
+                  ]
+}
+
+
