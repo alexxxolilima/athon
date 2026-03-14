@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Central Athon FAQ para busca de tópicos, scripts e equipamentos" />
+  <meta name="author" content="Alex Lima, Bianca Marques" />
+  <title>Athon FAQ</title>
+  <link rel="shortcut icon" href="/assets/img/OIP.jpeg" type="image/jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Manrope", "system-ui", "sans-serif"]
+          },
+          colors: {
+            athon: {
+              950: "#050f1d",
+              900: "#081a2d",
+              800: "#0f2a46",
+              700: "#1f4d78",
+              500: "#2ca3d6",
+              300: "#8ddcf2"
+            }
+          },
+          boxShadow: {
+            panel: "0 24px 48px rgba(2, 10, 24, 0.35)"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-mode min-h-screen bg-athon-950 text-slate-100 antialiased selection:bg-cyan-400/30">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -left-24 top-0 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+    <div class="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-sky-400/15 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-athon-700/40 blur-3xl"></div>
+  </div>
+
+  <div class="page-shell">
+    <header class="topbar rounded-2xl border border-white/10 bg-athon-900/70 shadow-panel backdrop-blur">
+      <div class="brand-wrap flex items-center gap-3">
+        <div id="logoSlot" class="logo-slot ring-2 ring-cyan-300/25" aria-label="Logo"></div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100/75">Base De Conhecimento</p>
+          <h1 class="top-title">Athon FAQ</h1>
+        </div>
+      </div>
+
+      <div class="header-path" aria-label="Caminho de navegação">
+        <span class="path-root">Athon FAQ</span>
+        <span class="path-sep">›</span>
+        <span id="routeCurrent" class="path-current">Home</span>
+      </div>
+
+    </header>
+
+    <div class="content-layout">
+      <nav class="panel-nav" aria-label="Navegação de painéis">
+        <button type="button" class="nav-btn active" data-view="view-home" data-label="Home" aria-label="Home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5M5.5 9.8V20h13V9.8M9.5 20v-6h5v6"/></svg>
+        </button>
+        <button type="button" class="nav-btn" data-view="view-procedimentos" data-label="Scripts" aria-label="Scripts">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4h8l4 4v12H8z"/><path stroke-linecap="round" d="M16 4v4h4M11 13h6M11 17h6M11 9h2"/></svg>
+        </button>
+        <button type="button" class="nav-btn" data-view="view-equipamentos" data-label="Equipamentos" aria-label="Acesso ao equipamento">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14 7l3 3m-8 8l6-6m-8.5 6.5l2-2a2.5 2.5 0 013.5 0l.5.5a2.5 2.5 0 010 3.5l-2 2a2.5 2.5 0 01-3.5 0l-.5-.5a2.5 2.5 0 010-3.5zM16.5 2.5l5 5a2.1 2.1 0 010 3l-1.5 1.5-8-8 1.5-1.5a2.1 2.1 0 013 0z"/></svg>
+        </button>
+        <button type="button" class="nav-btn" data-view="view-links" data-label="Links" aria-label="Links de acesso">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l4-4M8 16H6a4 4 0 010-8h3M16 8h2a4 4 0 010 8h-3"/></svg>
+        </button>
+        <button type="button" class="nav-btn" data-view="view-favoritos" data-label="Favoritos" aria-label="Favoritos">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.7 5.46 6.03.88-4.36 4.25 1.03 6.01L12 16.8l-5.4 2.83 1.03-6.01L3.27 9.34l6.03-.88L12 3z"/></svg>
+        </button>
+      </nav>
+
+      <main class="views">
+        <section id="view-home" class="view view--home active" aria-label="Painel inicial">
+          <section id="homeKpis" class="home-kpis" aria-label="Resumo rápido"></section>
+          <section class="insights" aria-label="Indicadores visuais do FAQ">
+            <article class="insight-card">
+              <h2>Distribuição por Filial</h2>
+              <div id="branchChart" class="chart-list"></div>
+            </article>
+            <article class="insight-card">
+              <h2>Cobertura de Conteúdo</h2>
+              <div id="coverageChart" class="chart-list"></div>
+            </article>
+          </section>
+          <section class="home-details panel">
+            <div class="panel-head-row">
+              <h2>Leitura Executiva da Operação</h2>
+            </div>
+            <div id="homeSummary" class="home-summary"></div>
+          </section>
+        </section>
+
+        <section id="view-procedimentos" class="view view--procedimentos" aria-label="Painel de procedimentos e script">
+          <section class="panel compact">
+            <label class="search-wrap" for="globalSearch">
+              <span>Pesquisa inteligente</span>
+              <input id="globalSearch" type="search" placeholder="Ex: ping, dns, band steering" />
+            </label>
+          </section>
+
+          <div id="procResultsWrap" class="split-grid">
+            <section id="scriptSection" class="panel">
+              <div class="panel-head-row">
+                <h2>Script</h2>
+                <p id="scriptCount">script(s)</p>
+              </div>
+              <div id="scriptCategoryFilters" class="script-filters" aria-label="Filtros de script"></div>
+              <div id="scriptPanelBody" class="result-shell">
+                <div id="scriptResults" class="stack"></div>
+                <div id="scriptPager" class="pager">
+                  <button id="scriptPrev" type="button">Anterior</button>
+                  <span id="scriptPageInfo">Página 1/1</span>
+                  <button id="scriptNext" type="button">Próxima</button>
+                </div>
+              </div>
+            </section>
+            <section id="topicSection" class="panel">
+              <div class="panel-head-row">
+                <h2>Procedimentos</h2>
+                <p id="topicCount">tópico(s)</p>
+              </div>
+              <div id="topicPanelBody" class="result-shell">
+                <div id="topicGrid" class="cards-grid"></div>
+                <div id="topicPager" class="pager">
+                  <button id="topicPrev" type="button">Anterior</button>
+                  <span id="topicPageInfo">Página 1/1</span>
+                  <button id="topicNext" type="button">Próxima</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="view-equipamentos" class="view view--equipamentos" aria-label="Painel de equipamentos">
+          <section class="panel compact">
+            <label class="search-wrap" for="equipmentSearch">
+              <span>Buscar equipamento</span>
+              <input id="equipmentSearch" type="search" placeholder="Ex: F670L, TP-LINK, Intelbras" />
+            </label>
+            <div class="branch-filter">
+              <button type="button" class="branch-btn branch-btn--tj" data-branch="TJ">TJ</button>
+              <button type="button" class="branch-btn branch-btn--iw" data-branch="IW">IW</button>
+              <button type="button" class="branch-btn branch-btn--play" data-branch="Play">Play</button>
+            </div>
+          </section>
+
+          <section id="equipSection" class="panel">
+            <div class="panel-head-row">
+              <h2>Acesso de Equipamentos</h2>
+              <p id="equipCount">0 equipamento(s)</p>
+            </div>
+            <div id="equipPanelBody" class="result-shell">
+              <div id="equipmentResults" class="cards-grid"></div>
+              <div id="equipPager" class="pager">
+                <button id="equipPrev" type="button">Anterior</button>
+                <span id="equipPageInfo">Página 1/1</span>
+                <button id="equipNext" type="button">Próxima</button>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-links" class="view view--links" aria-label="Painel de links e planilhas">
+          <section class="panel compact">
+            <label class="search-wrap" for="linksSearch">
+              <span>Buscar link</span>
+              <input id="linksSearch" type="search" placeholder="Ex: MacVendors, Speedtest, Text Blaze" />
+            </label>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head-row">
+              <h2>Links de Acesso</h2>
+              <p id="linksCount">0 link(s)</p>
+            </div>
+            <div id="linksList" class="links-list"></div>
+          </section>
+
+          <section class="panel compact">
+            <label class="search-wrap" for="planilhasSearch">
+              <span>Buscar planilha</span>
+              <input id="planilhasSearch" type="search" placeholder="Ex: Financeiro, Cancelamento, Renegociação" />
+            </label>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head-row">
+              <h2>Planilhas</h2>
+              <p id="planilhasCount">0 item(ns)</p>
+            </div>
+            <div id="planilhasList" class="links-list"></div>
+          </section>
+        </section>
+
+        <section id="view-favoritos" class="view view--favoritos" aria-label="Painel de favoritos">
+          <section class="panel">
+            <div class="panel-head-row">
+              <h2 id="favTitle">Favoritos: Equipamentos</h2>
+              <div class="fav-switch">
+                <button type="button" class="fav-tab active" data-fav-type="equipamentos">Equipamentos</button>
+                <button type="button" class="fav-tab" data-fav-type="topicos">Tópicos</button>
+                <button type="button" class="fav-tab" data-fav-type="scripts">Script</button>
+              </div>
+            </div>
+            <div id="favList" class="stack"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="detailModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <div class="modal-heading">
+          <h3 id="modalTitle"></h3>
+          <p id="modalMeta" class="meta"></p>
+        </div>
+        <button id="closeModal" class="close-btn" type="button">Fechar</button>
+      </div>
+      <div class="modal-content">
+        <div id="modalMedia" class="modal-media"></div>
+        <pre id="modalBody" class="modal-body"></pre>
+      </div>
+      <div class="modal-actions">
+        <button id="copyModal" type="button">Copiar informação</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
