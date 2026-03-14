@@ -3,7 +3,7 @@
                 "tema_padrao":  "dark",
                 "atalho_tema":  "Ctrl+J",
                 "animacoes":  true,
-                "logo_url":  "../assets/img/OIP.jpeg",
+                "logo_url":  "assets/img/OIP.jpeg",
                 "versao":  "2.0",
                 "atualizado_em":  "2026-03-13"
             },
